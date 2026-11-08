@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 1 of 6. Containment, deflection, resolution and false containment: why a support bot's dashboard says 70 percent when the customers say otherwise, and how to compute the true number from a contact log.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="Deflection is not resolution - learn ai customer support with phoebe">
+<meta property="og:description" content="Session 1 of 6. The bot ended 14 of 20 chats without a person. Nine customers actually got their problem solved.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/courses/01-deflection-is-not-resolution.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Deflection is not resolution - learn ai customer support with phoebe">
+<meta name="twitter:description" content="Session 1 of 6. Containment counts where the chat ended. Resolution counts whether the problem did.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 1 · Deflection is not resolution - learn ai customer support with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=1">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-ai-customer-support-with-phoebe</a> / Session 1 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn AI + Customer Support with Phoebe · Session 1 of 6</div>
+    <h1>Deflection is not <span class="accent">resolution</span></h1>
+    <p class="sub">The vendor's slide says the bot deflects 70 percent of contacts. Tonight you find out what that number counts, what it leaves out, and how to compute the one that matters: how many customers actually got their problem solved. You leave with the first page of Quayside's support operating plan, the metric definition every later session builds on.</p>
+    <div class="chip-row">
+      <span class="chip level">🟢 Start here</span>
+      <span class="chip audience">Support and CX leads being sold a bot</span>
+      <span class="chip audience">Team leads and analysts who will run it</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:3">0-3 · Welcome</span>
+      <span class="a2" style="flex:17">3-20 · Three definitions, one number</span>
+      <span class="a3" style="flex:22">20-42 · Build-along: Quayside's true resolution</span>
+      <span class="a4" style="flex:3">42-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ INTRO ============ -->
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Six sessions, one support plan</h2>
+    </div>
+    <p class="lede">Six sessions of 45 minutes, and <strong>one document that grows each time</strong>: Quayside's support operating plan. Quayside is a constructed digital bank with about 180,000 customers, 24 support agents and roughly 14,000 contacts a month across chat and email. Every session adds one section, and session 6 prices the whole plan on a live bench.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">Constructed Quayside example = invented, labelled every time</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> Four definitions that vendors blur on purpose, the reason their dashboards report the flattering one, and a contact log you turn into a true resolution rate by hand. Then the first section of Quayside's plan: a metric definition precise enough that a vendor cannot redefine it for you.</p>
+    </div>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>The question every session comes back to<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>A vendor says the bot deflects. Three questions sit behind that word, and the slide answers none of them: <strong>how many customers actually got their problem solved, at what cost, and who caught the ones it failed?</strong></p>
+        <p>Those three questions organise everything that follows. Sessions 1 and 2 are about the first one, sessions 3 to 5 about the third, and session 6 puts a price on all of it. No vendor account is needed for any build-along: every one runs in your browser or on the plan page.</p>
+        <div class="callout example">
+          <span class="ex-pill">Real world</span>
+          <p>Gartner surveyed 5,728 customers in December 2023 and reported in July 2024 that 64 percent "would prefer that companies didn't use artificial intelligence (AI) in their customer service". The top concern was that "it will get more difficult reaching a person". That is the customer's version of the question above, and it is why a support plan has to answer it in numbers.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PART 1 ============ -->
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers containment, deflection, resolution, repeat contact</span>
+      <h2>Four words that sound the same and count different things</h2>
+      <span class="tag concept">7 min live</span>
+    </div>
+    <p class="lede">Containment counts where the chat ended. Resolution counts whether the problem ended. Most of what goes wrong with support bots lives in the gap between those two sentences, and the gap has a name: false containment.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 370" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Twenty bot chats from one constructed hour at Quayside: 6 handed to a person, 14 ended without one. Of the 14, 9 were resolved with no repeat within 7 days, 3 came back within 7 days, and 2 never came back but were still unsolved. Containment is 70 percent, true resolution 45 percent.">
+        <defs>
+          <filter id="s1aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s1aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#0A4DBF" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s1aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#0D1B33" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s1aH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s1aL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s1aS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s1aB { font: 800 11px Inter, sans-serif; fill: #B8480C; }
+          .s1aV { font: 800 20px Inter, sans-serif; fill: #0A2E73; }
+          .s1aW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s1aN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s1aH" x="30" y="26">WHERE 20 BOT CHATS ACTUALLY END</text>
+        <text class="s1aS" x="290" y="26">one hour of Quayside's pilot, constructed</text>
+
+        <g filter="url(#s1aSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="140" width="110" height="80" rx="6" transform="rotate(-1.5 85 180)" fill="url(#s1aHc)"/>
+          <rect x="180" y="150" width="120" height="60" rx="10" transform="rotate(0.8 240 180)" fill="#EDF2FC"/>
+          <path d="M144 180 L174 180" marker-end="url(#s1aAr)"/>
+          <rect x="360" y="50" width="200" height="56" rx="8" transform="rotate(-0.5 460 78)" fill="#FFFFFF"/>
+          <rect x="360" y="160" width="200" height="56" rx="8" transform="rotate(0.4 460 188)" fill="#0A4DBF"/>
+          <path d="M302 170 C330 170 330 80 354 80" marker-end="url(#s1aAr)"/>
+          <path d="M302 188 L354 188" marker-end="url(#s1aAr)"/>
+          <rect x="620" y="110" width="230" height="50" rx="8" transform="rotate(0.4 735 135)" fill="#FFFFFF"/>
+          <rect x="620" y="180" width="230" height="50" rx="8" transform="rotate(-0.4 735 205)" fill="#FDF0E6"/>
+          <rect x="620" y="250" width="230" height="50" rx="8" transform="rotate(0.3 735 275)" fill="#FDF0E6"/>
+          <path d="M562 180 C590 180 590 136 614 136" marker-end="url(#s1aAr)"/>
+          <path d="M562 192 C590 192 590 205 614 205" marker-end="url(#s1aAr)"/>
+          <path d="M562 204 C590 204 590 274 614 274" marker-end="url(#s1aAr)"/>
+          <path d="M858 184 Q868 184 868 194 L868 288 Q868 298 858 298" stroke="#B8480C"/>
+        </g>
+
+        <text class="s1aL" x="36" y="130">20 bot chats</text>
+        <text class="s1aS" x="30" y="242">every one started</text>
+        <text class="s1aS" x="30" y="257">with the bot</text>
+        <text class="s1aH" x="196" y="176">The bot</text>
+        <text class="s1aS" x="196" y="194">answers first</text>
+
+        <text class="s1aL" x="374" y="74">Handed to a person</text>
+        <text class="s1aS" x="374" y="93">not contained</text>
+        <text class="s1aV" x="544" y="92" text-anchor="end">6</text>
+        <text class="s1aW" x="374" y="183">Ended without a person</text>
+        <text class="s1aW" x="374" y="203">14 · the vendor's 70%</text>
+
+        <text class="s1aL" x="634" y="132">Resolved, no repeat</text>
+        <text class="s1aS" x="634" y="150">within 7 days</text>
+        <text class="s1aV" x="836" y="146" text-anchor="end">9</text>
+        <text class="s1aL" x="634" y="202">Came back in 7 days</text>
+        <text class="s1aS" x="634" y="220">same issue, a repeat</text>
+        <text class="s1aV" x="836" y="216" text-anchor="end">3</text>
+        <text class="s1aL" x="634" y="272">Never came back, unsolved</text>
+        <text class="s1aS" x="634" y="290">found only by reading it</text>
+        <text class="s1aV" x="836" y="286" text-anchor="end">2</text>
+        <text class="s1aB" x="360" y="262">FALSE CONTAINMENT: 5 OF THE 14</text>
+        <text class="s1aS" x="360" y="280">the chat ended, the problem did not</text>
+
+        <text class="s1aN" x="30" y="330">Containment: 14 of 20 = 70%. Resolution, measured: 9 of 20 = 45%.</text>
+        <text class="s1aN" x="30" y="352">Same hour, same chats. The dashboard shows the first number.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - containment counts the middle box; resolution counts only the top right one</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>The four words, defined so nobody can move them<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <table class="clean">
+          <tr><th>Word</th><th>What it counts</th><th>When you can count it</th></tr>
+          <tr><td><strong>Containment</strong></td><td>Conversations that ended without reaching a person</td><td>The moment the chat closes</td></tr>
+          <tr><td><strong>Deflection</strong></td><td>Contacts that never reached a person because something else answered first. Vendors use it loosely, often as a synonym for containment</td><td>The moment the chat closes</td></tr>
+          <tr><td><strong>Resolution</strong></td><td>Customers whose problem actually ended</td><td>Only after a window, and only with a check</td></tr>
+          <tr><td><strong>Repeat contact</strong></td><td>The same customer, about the same issue, inside the window</td><td>At the end of the window</td></tr>
+        </table>
+        <p><strong>False containment</strong> is the difference: a conversation counted as contained whose problem was not resolved. Every one of them is a customer who was told, in effect, that they were done.</p>
+        <div class="callout tip">
+          <p><strong>The one-line test.</strong> Ask of any number on a vendor slide: could it have been computed the moment the chat ended? If yes, it is a containment number, whatever the slide calls it.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>There is no standard window, so choose one and write it down<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The contact-centre research firm SQM Group defines internal first contact resolution by whether the customer came back "for the same issue within 1 to 30 days", and adds that "there is no standard for internal FCR measurement". A poll reported by Call Centre Helper found "the most common method of measuring FCR was to track repeat contacts within a given timeframe".</p>
+        <p>So the window is a decision, not a fact. Quayside picks <strong>7 days</strong>: long enough to see a transfer that never arrived or a refund that never showed, short enough to report weekly. A bank with monthly statements might reasonably pick 30. What is not reasonable is leaving the choice to whoever builds the dashboard.</p>
+        <div class="callout example">
+          <span class="ex-pill">Real world</span>
+          <p>Klarna's February 2024 announcement of its AI assistant listed many numbers. One of them was "a 25% drop in repeat inquiries". Session 5 takes the whole announcement apart; for now, notice that the repeat number is the only one in the list that speaks to resolution rather than to where the chat ended.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PART 2 ============ -->
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers how vendors count a resolution</span>
+      <h2>Why the dashboard reports the flattering number</h2>
+      <span class="tag concept">6 min live</span>
+    </div>
+    <p class="lede">The vendor is not lying. It is counting what it can see from where it sits, which is the end of the chat. Resolution needs two things the bot cannot see: what the customer did next, and whether the answer was right.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A timeline from the end of a chat to seven days later. Intercom counts an assumed resolution when the customer leaves without asking for more; Zendesk's window is 2 hours for messaging by default and 72 hours for email, and its verified tier has a language model read the chat; Quayside's definition waits 7 days and reads a sample. The customer's repeat contact on day 3 is visible only to the 7 day window.">
+        <defs>
+          <filter id="s1bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="13" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s1bHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#0A4DBF" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s1bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#0D1B33" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s1bH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s1bL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s1bS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s1bB { font: 800 11px Inter, sans-serif; fill: #B8480C; }
+          .s1bW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s1bN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s1bH" x="30" y="24">WHERE EACH DEFINITION STOPS LOOKING</text>
+
+        <g filter="url(#s1bSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="40" y="40" width="200" height="56" rx="8" transform="rotate(-0.6 140 68)" fill="#FFFFFF"/>
+          <rect x="300" y="40" width="230" height="56" rx="8" transform="rotate(0.5 415 68)" fill="#EDF2FC"/>
+          <rect x="600" y="40" width="240" height="56" rx="8" transform="rotate(-0.4 720 68)" fill="#0A4DBF"/>
+          <path d="M80 140 L830 140" marker-end="url(#s1bAr)"/>
+          <path d="M100 130 L100 150 M260 130 L260 150 M470 130 L470 150 M720 130 L720 150"/>
+          <path d="M120 98 L104 126" stroke="#4E5A70"/>
+          <path d="M400 98 L270 126 M430 98 L462 126" stroke="#4E5A70"/>
+          <path d="M720 98 L720 126" stroke="#4E5A70"/>
+          <path d="M112 182 C170 250 560 250 616 152" stroke="#B8480C" stroke-dasharray="5 6" marker-end="url(#s1bAr)"/>
+          <circle cx="622" cy="140" r="7" fill="#B8480C" stroke="#B8480C"/>
+        </g>
+
+        <text class="s1bL" x="54" y="64">Intercom: assumed</text>
+        <text class="s1bS" x="54" y="82">left without asking for more</text>
+        <text class="s1bL" x="314" y="64">Zendesk: 2 h chat, 72 h email</text>
+        <text class="s1bS" x="314" y="82">verified = an LLM reads the chat</text>
+        <text class="s1bW" x="614" y="64">Quayside: a 7 day window</text>
+        <text class="s1bW" x="614" y="84">+ a person reads a sample</text>
+
+        <text class="s1bS" x="100" y="168" text-anchor="middle">chat ends</text>
+        <text class="s1bS" x="260" y="168" text-anchor="middle">+2 hours</text>
+        <text class="s1bS" x="470" y="168" text-anchor="middle">+72 hours</text>
+        <text class="s1bS" x="720" y="168" text-anchor="middle">+7 days</text>
+        <text class="s1bS" x="840" y="168" text-anchor="end">not to scale</text>
+        <text class="s1bB" x="360" y="252" text-anchor="middle">THE SAME CUSTOMER, SAME ISSUE, WRITES AGAIN ON DAY 3</text>
+
+        <text class="s1bN" x="30" y="284">Only a window long enough to see the repeat can count it. Only a read can catch the wrong answer.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the customer comes back after two of the three definitions have stopped looking</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>What three vendors say they count, in their own words<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Each of these was read on the vendor's own page on 2026-11-09. Pricing and definitions here change often: re-verify before you put any of it in a contract.</p>
+        <div class="prompt-box bad">
+          <span class="label">Intercom Fin, help centre: what counts as a resolution</span>
+A resolution is counted when, following Fin's last answer in a
+conversation, the customer confirms ("Ok thanks", "That helped")
+"or exits the conversation without requesting further assistance
+(assumed resolution)."
+        </div>
+        <p>Intercom's pricing page lists Fin at "$0.99 per outcome", and the FAQ counts the case where customers "don't ask for more help after Fin responds". An assumed resolution is billed like a confirmed one. If the customer returns to the same conversation, "that resolution will be deducted and not charged". A new conversation three days later is a different conversation.</p>
+        <div class="prompt-box good">
+          <span class="label">★ Zendesk, resolution tiers introduced May 18, 2026</span>
+Contained: "The AI agent handled the interaction to completion
+without the customer requesting further assistance."
+"This tier does not count against your resolution allowance."
+
+Verified: "The AI agent successfully resolved the interaction."
+A large language model "evaluates the text of the conversation to
+confirm that the customer's request was satisfactorily resolved."
+        </div>
+        <p>Zendesk's windows: email ends "72 hours after the first email", messaging "2 hours after the first message" by default (it "can be increased up to 72 hours"). Its own product now separates contained from verified, which is the distinction this session is about, drawn by a vendor.</p>
+        <p>Salesforce lists Agentforce at "$2" per conversation on its pricing page, with Flex Credits as the newer model. No Salesforce page that defines a conversation, containment or deflection could be read, so none is quoted here.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Where the definition gets negotiated, and who owns that conversation<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Whether a vendor's definition of resolution is good enough to launch on, and how to write the resolution-definition clause into the contract, belongs to the launch gate. That is taught in full in <a href="https://phoebefu6.github.io/learn-agent-launch-with-phoebe/courses/b5-gate-the-chatbot.html">Agent Launch: gate the chatbot ↗</a>. This session takes over after launch: the operating number you report every week, whatever the contract says.</p>
+        <p>A support-QA vendor put the problem in one sentence: "Containment counts the absence of a human, not the presence of a resolution." It is a vendor blog, so treat it as a quotable line rather than evidence, but it is the right line.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PART 3 ============ -->
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers what false containment costs</span>
+      <h2>Every false containment shows up somewhere else on the P&amp;L</h2>
+      <span class="tag concept">4 min live</span>
+    </div>
+    <p class="lede">A falsely contained customer does not disappear. Some come back angrier and take longer to serve. Some do not come back, and some of those leave. The bot's cost line looks better and the cost moves to lines nobody connected to the bot.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cost per resolved contact from the session 6 bench, constructed inputs: today with no AI 7.71 dollars; the vendor pitch at 70 percent, as billed, 6.57 dollars; the same pitch counting customers lost, 8.84 dollars; the session 6 plan counting customers lost, 6.29 dollars.">
+        <defs>
+          <filter id="s1cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="21" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+        </defs>
+        <style>
+          .s1cH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s1cL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s1cS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s1cW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s1cV { font: 800 12px Inter, sans-serif; fill: #0A2E73; }
+          .s1cN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s1cH" x="30" y="30">COST PER RESOLVED CONTACT, FOUR WAYS TO RUN QUAYSIDE</text>
+
+        <g filter="url(#s1cSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="260" y="56" width="419" height="30" rx="5" transform="rotate(-0.3 470 71)" fill="#3E6FCE"/>
+          <rect x="260" y="108" width="357" height="30" rx="5" transform="rotate(0.3 438 123)" fill="#EDF2FC"/>
+          <rect x="260" y="160" width="480" height="30" rx="5" transform="rotate(-0.2 500 175)" fill="#B8480C"/>
+          <rect x="260" y="212" width="342" height="30" rx="5" transform="rotate(0.3 431 227)" fill="#0A4DBF"/>
+        </g>
+
+        <text class="s1cL" x="240" y="76" text-anchor="end">Today, no AI</text>
+        <text class="s1cW" x="274" y="76">$7.71</text>
+        <text class="s1cL" x="240" y="128" text-anchor="end">Vendor pitch, as billed</text>
+        <text class="s1cV" x="276" y="128">$6.57</text>
+        <text class="s1cL" x="240" y="180" text-anchor="end">Vendor pitch, all-in</text>
+        <text class="s1cW" x="274" y="180">$8.84 · 1,568 customers never came back</text>
+        <text class="s1cL" x="240" y="232" text-anchor="end">Session 6 plan, all-in</text>
+        <text class="s1cW" x="274" y="232">$6.29</text>
+
+        <text class="s1cN" x="30" y="276">Session 6 bench, constructed inputs. All-in adds the customers a false containment loses. Yours will differ.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the vendor pitch is the cheapest line on the invoice and the most expensive per customer actually helped</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Where the five falsely contained customers go<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Take the 5 false containments from the figure in Part 1. In Quayside's constructed model, which session 6 prices, three things happen:</p>
+        <ul>
+          <li><strong>Most come back.</strong> The model assumes 60 percent return within the window, and each repeat takes 1.5 times the normal handle time, because the customer explains the problem again and is less patient doing it.</li>
+          <li><strong>The rest go quiet.</strong> They are invisible to every containment number and to the repeat-contact number too. Only reading a sample finds them, which is why session 5 exists.</li>
+          <li><strong>Some of the quiet ones leave.</strong> The model assumes 15 percent of them close their account. Churn modelling itself is a different discipline, taught in <a href="https://phoebefu6.github.io/learn-customer-retention-with-phoebe/courses/a7-churn-prediction.html">Customer Retention: churn prediction ↗</a>; here it is one honest line on the support P&amp;L.</li>
+        </ul>
+        <p>Every one of those percentages is constructed, and the bench labels them so. What is not constructed is the shape: <strong>you also paid the AI fee on every falsely contained conversation</strong>, because under an assumed-resolution definition they were billed as outcomes.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>What customers say they fear, and what they say they would do<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The same July 2024 Gartner release reported that "53% of customers would consider switching to a competitor if they found out a company was going to use AI for customer service". It is a stated intention from a survey, not observed behaviour, so do not put it in a forecast. It is still the right thing to read aloud when someone proposes measuring the bot by containment alone: the thing customers say they fear is exactly the thing containment cannot see.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ DEMO ============ -->
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>Quayside's true resolution, from a contact log</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">Below is one constructed hour of Quayside's bot pilot: 20 chats, what the customer asked, how the chat ended, and whether the customer came back within 7 days. You compute three numbers from it by hand, then write the first section of the plan. No tool needed; a pen works.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Quayside's support operating plan as a one-page document with six sections. Section 1, the metric definition, is filled tonight; sections 2 to 6 are empty and labelled with the session that fills them. The definition reads: resolved means no repeat on the same issue within 7 days and not failed by a sample read; report containment and true resolution together.">
+        <defs>
+          <filter id="s1dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="29" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s1dHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#0A4DBF" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s1dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#0D1B33" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s1dH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s1dL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s1dS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s1dA { font: 700 11px Inter, sans-serif; fill: #0A4DBF; }
+          .s1dN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s1dH" x="40" y="28">QUAYSIDE SUPPORT OPERATING PLAN</text>
+        <text class="s1dS" x="300" y="28">constructed, one page</text>
+
+        <g filter="url(#s1dSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="40" y="40" width="360" height="226" rx="6" transform="rotate(-0.5 220 153)" fill="#FFFFFF"/>
+          <rect x="54" y="52" width="332" height="30" rx="4" fill="#EDF2FC" stroke="#0A4DBF"/>
+          <rect x="54" y="88" width="332" height="30" rx="4" fill="url(#s1dHc)" stroke="#CBD4E4"/>
+          <rect x="54" y="124" width="332" height="30" rx="4" fill="url(#s1dHc)" stroke="#CBD4E4"/>
+          <rect x="54" y="160" width="332" height="30" rx="4" fill="url(#s1dHc)" stroke="#CBD4E4"/>
+          <rect x="54" y="196" width="332" height="30" rx="4" fill="url(#s1dHc)" stroke="#CBD4E4"/>
+          <rect x="54" y="232" width="332" height="26" rx="4" fill="url(#s1dHc)" stroke="#CBD4E4"/>
+          <path d="M392 67 C420 67 420 80 436 80" marker-end="url(#s1dAr)"/>
+          <rect x="444" y="52" width="410" height="206" rx="10" transform="rotate(0.4 649 155)" fill="#EDF2FC"/>
+        </g>
+
+        <text class="s1dL" x="66" y="72">1 · The metric definition</text>
+        <text class="s1dA" x="376" y="72" text-anchor="end">tonight</text>
+        <text class="s1dL" x="66" y="108">2 · Automate / assist / human map</text>
+        <text class="s1dS" x="376" y="108" text-anchor="end">s2</text>
+        <text class="s1dL" x="66" y="144">3 · Assist rules</text>
+        <text class="s1dS" x="376" y="144" text-anchor="end">s3</text>
+        <text class="s1dL" x="66" y="180">4 · Hand-off rules</text>
+        <text class="s1dS" x="376" y="180" text-anchor="end">s4</text>
+        <text class="s1dL" x="66" y="216">5 · QA plan</text>
+        <text class="s1dS" x="376" y="216" text-anchor="end">s5</text>
+        <text class="s1dL" x="66" y="250">6 · Staffing and cost</text>
+        <text class="s1dS" x="376" y="250" text-anchor="end">s6</text>
+
+        <text class="s1dH" x="462" y="80">TONIGHT'S SECTION</text>
+        <text class="s1dL" x="462" y="108">Resolved = no repeat on the same issue in 7 days</text>
+        <text class="s1dL" x="462" y="130">and not failed by the weekly sample read.</text>
+        <text class="s1dL" x="462" y="158">False containment = no person, not resolved.</text>
+        <text class="s1dL" x="462" y="186">Report both every week: containment AND</text>
+        <text class="s1dL" x="462" y="208">true resolution, side by side.</text>
+        <text class="s1dL" x="462" y="236">Owner: the support lead, not the vendor.</text>
+
+        <text class="s1dN" x="40" y="290">Five empty sections, five sessions. Each one is written against tonight's definition.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the first section is the one every later number is measured against</figcaption>
+    </figure>
+
+    <table class="clean">
+      <tr><th>#</th><th>The customer asked about</th><th>How the chat ended</th><th>Back within 7 days?</th></tr>
+      <tr><td>1</td><td>A card that has not arrived</td><td>Handed to a person</td><td>-</td></tr>
+      <tr><td>2</td><td>The euro exchange rate</td><td>Ended, said thanks</td><td>No</td></tr>
+      <tr><td>3</td><td>A top-up pending for two days</td><td>Ended, no reply</td><td>Yes, day 2</td></tr>
+      <tr><td>4</td><td>Changing a PIN</td><td>Ended, said thanks</td><td>No</td></tr>
+      <tr><td>5</td><td>A payment they do not recognise</td><td>Handed to a person</td><td>-</td></tr>
+      <tr><td>6</td><td>Whether Apple Pay works</td><td>Ended, no reply</td><td>No</td></tr>
+      <tr><td>7</td><td>A transfer the recipient never got</td><td>Ended, no reply</td><td>Yes, day 3</td></tr>
+      <tr><td>8</td><td>The age limit for an account</td><td>Ended, said thanks</td><td>No</td></tr>
+      <tr><td>9</td><td>A card swallowed by an ATM</td><td>Handed to a person</td><td>-</td></tr>
+      <tr><td>10</td><td>The fee on a cash withdrawal</td><td>Ended, no reply</td><td>No</td></tr>
+      <tr><td>11</td><td>A refund not showing</td><td>Ended, no reply</td><td>Yes, day 5</td></tr>
+      <tr><td>12</td><td>Ordering a spare card</td><td>Ended, said thanks</td><td>No</td></tr>
+      <tr><td>13</td><td>Closing the account</td><td>Handed to a person</td><td>-</td></tr>
+      <tr><td>14</td><td>An identity check that keeps failing</td><td>Ended, no reply</td><td>No</td></tr>
+      <tr><td>15</td><td>Which countries are supported</td><td>Ended, said thanks</td><td>No</td></tr>
+      <tr><td>16</td><td>Being charged twice</td><td>Handed to a person</td><td>-</td></tr>
+      <tr><td>17</td><td>A virtual card that will not work</td><td>Ended, no reply</td><td>No</td></tr>
+      <tr><td>18</td><td>Top-up limits</td><td>Ended, said thanks</td><td>No</td></tr>
+      <tr><td>19</td><td>A lost phone with the app on it</td><td>Handed to a person</td><td>-</td></tr>
+      <tr><td>20</td><td>Activating a new card</td><td>Ended, no reply</td><td>No</td></tr>
+    </table>
+    <p class="mono">Constructed Quayside example. Rows 14 and 17 hide something the log cannot show: step 3 finds it.</p>
+
+    <div class="steps">
+      <div class="step"><p><strong>Count containment the vendor's way.</strong> Every chat that ended without a person counts. That is every row except 1, 5, 9, 13, 16 and 19: 14 of 20, which is <strong>70 percent</strong>. This is the number on the slide.</p>
+        <div class="prompt-box good"><span class="label">★ Containment</span>
+chats that ended without a person / all bot chats
+= 14 / 20 = 70%</div></div>
+      <div class="step"><p><strong>Apply the 7-day window.</strong> Rows 3, 7 and 11 came back about the same issue. They were contained and not resolved. Take them out: 11 of 20, which is 55 percent. The repeat-contact window alone removed 15 points.</p></div>
+      <div class="step"><p><strong>Read the eleven that look resolved.</strong> In a real week you read a sample; here the sample is all eleven. Two fail. Row 14 got the steps for a first-time identity check, not a failing one. Row 17 got instructions for ordering a virtual card, not fixing one. Neither customer came back, and neither problem was solved. True resolution: 9 of 20, which is <strong>45 percent</strong>.</p>
+        <div class="prompt-box good"><span class="label">★ True resolution</span>
+(contained, no repeat within 7 days, not failed by the read) / all bot chats
+= 9 / 20 = 45%
+
+False containment = 14 - 9 = 5 of the 14 contained (36%)</div></div>
+      <div class="step"><p><strong>Write the definition into the plan.</strong> Copy this into section 1 of your own version of Quayside's plan, and change the window if you can defend another one.</p>
+        <div class="prompt-box good"><span class="label">★ Plan section 1 · the metric definition</span>
+Resolved: the customer did not contact us again about the same issue
+within 7 days, AND the conversation was not failed in the weekly
+sample read.
+False containment: ended without a person, and not resolved.
+We report containment and true resolution every week, side by side.
+A vendor's "resolution" is reported under the vendor's name, never ours.
+Owner: the support lead.</div></div>
+      <div class="step"><p><strong>Write the weekly line.</strong> One sentence that would have stopped the 70 percent slide in its tracks: "Containment 70 percent, true resolution 45 percent, false containment 5 of 14." Two numbers side by side is the whole trick: neither can be quoted without the other.</p></div>
+    </div>
+
+    <div class="wipe" data-title="The same hour, reported two ways" data-label-a="Vendor dashboard" data-label-b="Quayside's weekly line" data-foot="Drag to compare. Both are true. Only one tells you what happened to the customers.">
+      <div class="wipe-a">
+        <p><strong>AI resolution rate: 70%</strong></p>
+        <p>14 conversations resolved without an agent. 6 escalated. Average handle time under two minutes.</p>
+      </div>
+      <div class="wipe-b">
+        <p><strong>Containment 70%, true resolution 45%.</strong></p>
+        <p>5 of 14 contained chats were false containment: 3 came back within 7 days, 2 were wrong answers found by reading.</p>
+      </div>
+    </div>
+
+    <div class="tick" data-stages="Asks|Bot answers|Chat ends|Day 7|Read" data-title="One chat, five places to count it">
+      <p class="tick-note" data-stage="0"><b>Asks.</b> Row 7: the recipient never got the transfer.</p>
+      <p class="tick-note" data-stage="1"><b>Bot answers.</b> It explains how long transfers normally take.</p>
+      <p class="tick-note" data-stage="2"><b>Chat ends.</b> No reply. Containment counts it, and an assumed-resolution definition bills it.</p>
+      <p class="tick-note" data-stage="3"><b>Day 7.</b> The customer wrote again on day 3. A repeat contact: not resolved.</p>
+      <p class="tick-note" data-stage="4"><b>Read.</b> The read would have caught it anyway: the bot answered the timing question, not the missing money.</p>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Why 45 percent is not a disaster.</strong> Six handed-off chats went to people, so they were never the bot's to resolve. Nine customers were genuinely helped without waiting for an agent. The problem is never that the bot resolves fewer than the slide says. It is deciding staffing, cost and customer promises on the slide's number.</p>
+    </div>
+  </section>
+
+  <!-- ============ HOMEWORK ============ -->
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before session 2</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Find the definition behind your own dashboard.</strong> If you run or are evaluating a bot, find the help-centre article that says when a conversation counts as resolved. Copy the sentence. Note whether it could be computed the moment the chat ended.</li>
+      <li><strong>Pull 20 real conversations</strong> that your current dashboard counts as resolved or contained, and repeat tonight's three steps on them: containment, the repeat window, the read.</li>
+      <li><strong>Pick your window and defend it in one sentence.</strong> 7 days, 14, 30: whichever you choose, write down what kind of problem would show up after it.</li>
+      <li><strong>Write your weekly line.</strong> Two numbers side by side, in the form "containment X, true resolution Y, false containment Z of N". Show it to one colleague and ask which number they would have reported.</li>
+    </ol>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 1 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">1 · A bot ended 14 of 20 chats without a person. 3 of those customers came back within 7 days about the same issue, and reading the rest finds 2 wrong answers. What is the true resolution rate?</p>
+      <button class="qopt" type="button">A · 70 percent, because 14 of 20 chats ended without a person</button>
+      <button class="qopt" type="button">B · 55 percent, because 3 of the 14 came back</button>
+      <button class="qopt" type="button">C · 45 percent, because 9 of 20 had no repeat and passed the read</button>
+      <p class="qwhy">70 percent is containment. 55 percent applies the window but trusts every answer the customer did not complain about. Only 9 customers both stayed away and got a right answer: 45 percent.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="1">
+      <p class="qtext">2 · Under Intercom's published definition, a customer who leaves the chat after Fin's answer without asking for more help counts as what?</p>
+      <button class="qopt" type="button">A · Nothing, until the customer confirms the problem is solved</button>
+      <button class="qopt" type="button">B · An assumed resolution, billed like a confirmed one at $0.99 per outcome</button>
+      <button class="qopt" type="button">C · A hand-off, because the customer did not confirm</button>
+      <p class="qwhy">Intercom counts it when the customer "exits the conversation without requesting further assistance (assumed resolution)". A return to the same conversation is deducted; a new conversation days later is not the same conversation.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">3 · Why does Quayside's plan report containment and true resolution side by side, rather than replacing one with the other?</p>
+      <button class="qopt" type="button">A · Containment says where the chat ended and resolution says whether the problem did; the gap between them is the false containment you manage</button>
+      <button class="qopt" type="button">B · Containment is a vendor metric and should be dropped, but auditors still ask for it</button>
+      <button class="qopt" type="button">C · Resolution cannot be measured at all, so containment is the best available stand-in</button>
+      <p class="qwhy">Both are true numbers about different things. Reported together, neither can be quoted without the other, and the difference between them is a number with an owner.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <!-- ============ OFFICIAL COVERAGE ============ -->
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Intercom Fin: pricing and outcome definitions</span><span class="note">"$0.99 per outcome"; confirmed vs assumed resolution; the reopen deduction. Read on intercom.com, 2026-11-09</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Zendesk automated resolution tiers</span><span class="note">Contained, verified, assisted escalation; the 2 hour and 72 hour windows. Read on support.zendesk.com, 2026-11-09</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Salesforce Agentforce pricing</span><span class="note">"$2" per conversation and Flex Credits, from the pricing page. No Salesforce definition of containment was readable</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">First contact resolution windows</span><span class="note">SQM Group: 1 to 30 days, "no standard"; the repeat-contact method</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Gartner customer survey, July 2024</span><span class="note">64 percent would prefer no AI in service; 53 percent would consider switching; top concern, reaching a person</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">The launch gate and contract clauses</span><span class="note">Linked, not retaught: Agent Launch b5 owns resolution as a launch criterion and the pricing clause</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <!-- ============ CHEAT SHEET ============ -->
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 1 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>Containment</b><span>Where the chat ended. Countable the moment it closes.</span></div>
+      <div class="cheat-item"><b>Resolution</b><span>Whether the problem ended. Needs a window and a read.</span></div>
+      <div class="cheat-item"><b>False containment</b><span>Ended without a person, not resolved. 5 of 14 in tonight's hour.</span></div>
+      <div class="cheat-item"><b>The one-line test</b><span>Could the number be computed when the chat ended? Then it is containment.</span></div>
+      <div class="cheat-item"><b>Assumed resolution</b><span>Intercom bills a customer who left without asking for more like one who confirmed.</span></div>
+      <div class="cheat-item"><b>The weekly line</b><span>Containment 70, true resolution 45, false containment 5 of 14. Always both.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>You can now measure what the bot resolved. Session 2 decides what it should be allowed to touch at all: 616 real customer messages, a classifier you train in your browser, and the moment the "automate the busiest intents" plan hands lost cards and unrecognised payments to a bot.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 1 of 6 · learn-ai-customer-support-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="../index.html">← All sessions</a> &nbsp;·&nbsp; <a href="02-triage-before-anyone-answers.html">Next: Triage: read the message before anyone answers →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/app.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 6 of 6. Price Quayside's support plan on a live bench: Erlang C staffing at an 80/20 service level, the true-resolution funnel, cost per resolved contact and the customers a bot falsely contains. The vendor pitch needs fewer agents and costs more per customer actually helped.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="The support plan: price it on the bench - learn ai customer support with phoebe">
+<meta property="og:description" content="Session 6 of 6. Erlang C, the true-resolution funnel and cost per resolved contact, on one live bench.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/courses/06-price-the-support-plan.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The support plan: price it on the bench - learn ai customer support with phoebe">
+<meta name="twitter:description" content="Session 6 of 6. 24 agents to 16, and $7.71 to $8.84 per resolved customer. The bench shows both.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 6 · The support plan: price it on the bench - learn ai customer support with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=1">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-ai-customer-support-with-phoebe</a> / Session 6 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn AI + Customer Support with Phoebe · Session 6 of 6</div>
+    <h1>The support plan: <span class="accent">price it on the bench</span></h1>
+    <p class="sub">Five sessions built Quayside's plan one section at a time. Tonight it gets a price. A live bench staffs the queue hour by hour with the real Erlang C formula at an 80/20 service level, follows every contact through the true-resolution funnel, and reports two things a vendor slide never puts side by side: the cost per resolved contact, and the customers the bot told they were done when they were not.</p>
+    <div class="chip-row">
+      <span class="chip level">🔴 The capstone</span>
+      <span class="chip audience">Support and CX leads signing the plan</span>
+      <span class="chip audience">Analysts who will have to defend its numbers</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:3">0-3 · Welcome</span>
+      <span class="a2" style="flex:17">3-20 · Erlang C, the funnel, the forecasts</span>
+      <span class="a3" style="flex:22">20-42 · Bench: price the plan, write the memo</span>
+      <span class="a4" style="flex:3">42-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ INTRO ============ -->
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Five sections in, one price to put on them</h2>
+    </div>
+    <p class="lede">Quayside's plan now has a metric definition, a triage map, assist rules, hand-off rules and a QA plan. <strong>Section 6 is staffing and cost</strong>, and it is the only section a finance director will read first. Tonight you make sure the number they read is the true one.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">Constructed Quayside example: every input on the bench</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> Why agents do not scale with volume, computed rather than asserted. A funnel that turns "deflects 70 percent" into customers actually helped. A bench that shows the vendor pitch needing 16 agents instead of 24 and costing more per resolved customer than today. And Quayside's support plan memo, written from numbers you produced.</p>
+    </div>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>What the bench computes and what it assumes<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The queueing arithmetic is real: the Erlang C formula and its service-level formula, as written in the ITU-D Teletraffic Engineering Handbook, run for each of Quayside's 12 open hours. The bench reproduces a published worked example (below) to the percentage point.</p>
+        <p>Every input is constructed and labelled on the widget: 14,000 contacts a month, 70 percent chat, handle times of 7.5 and 8 minutes, $4,500 per agent-month, 30 percent shrinkage, what happens to customers who were falsely contained, and how well the bot does beyond the safe third of volume. Change them in your head as you read; your numbers will differ.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PART 1 ============ -->
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers Erlang C and the service level</span>
+      <h2>Agents do not scale with volume</h2>
+      <span class="tag concept">7 min live</span>
+    </div>
+    <p class="lede">Halve the contacts and you do not halve the agents. Customers arrive at random, so some minutes bring three chats at once, and a queue that is busy 95 percent of the time keeps almost everyone waiting. Erlang C turns arrivals and handle time into the number of people needed to answer most customers quickly.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Koole's worked example: 100 calls per quarter hour with a handle time of 3 minutes 30 seconds, about 23.3 agents' worth of work. Erlang C gives the share answered within 20 seconds: 24 agents 20.6 percent, 25 agents 44.6, 26 agents 62.0, 27 agents 74.4, 28 agents 83.0, 29 agents 89.0, 30 agents 93.0. The 80 percent target is first met at 28.">
+        <defs>
+          <filter id="s6aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="61" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+        </defs>
+        <style>
+          .s6aH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s6aL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s6aS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s6aB { font: 800 11px Inter, sans-serif; fill: #B8480C; }
+          .s6aV { font: 800 12px Inter, sans-serif; fill: #0A2E73; }
+          .s6aW { font: 800 11px Inter, sans-serif; fill: #FFFFFF; }
+          .s6aA { font: 700 11px Inter, sans-serif; fill: #0A4DBF; }
+          .s6aN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s6aH" x="30" y="26">ONE MORE AGENT, HOW MANY MORE CUSTOMERS ANSWERED IN 20 SECONDS</text>
+        <text class="s6aS" x="30" y="44">Koole's example: 100 calls a quarter hour, 3:30 handle time, about 23.3 agents of pure work</text>
+
+        <g filter="url(#s6aSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M100 270 L820 270"/>
+          <path d="M100 270 L100 70"/>
+          <path d="M104 110 L816 110" stroke="#B8480C" stroke-dasharray="6 6"/>
+          <rect x="124" y="229" width="60" height="41" rx="4" fill="#B8CBEF"/>
+          <rect x="224" y="181" width="60" height="89" rx="4" fill="#B8CBEF"/>
+          <rect x="324" y="146" width="60" height="124" rx="4" fill="#B8CBEF"/>
+          <rect x="424" y="121" width="60" height="149" rx="4" fill="#B8CBEF"/>
+          <rect x="524" y="104" width="60" height="166" rx="4" fill="#0A4DBF"/>
+          <rect x="624" y="92" width="60" height="178" rx="4" fill="#3E6FCE"/>
+          <rect x="724" y="84" width="60" height="186" rx="4" fill="#3E6FCE"/>
+        </g>
+
+        <text class="s6aB" x="108" y="102">80% TARGET</text>
+        <text class="s6aV" x="154" y="222" text-anchor="middle">20.6%</text>
+        <text class="s6aV" x="254" y="174" text-anchor="middle">44.6%</text>
+        <text class="s6aV" x="354" y="139" text-anchor="middle">62.0%</text>
+        <text class="s6aV" x="454" y="150" text-anchor="middle">74.4%</text>
+        <text class="s6aW" x="554" y="150" text-anchor="middle">83.0%</text>
+        <text class="s6aW" x="654" y="150" text-anchor="middle">89.0%</text>
+        <text class="s6aW" x="754" y="150" text-anchor="middle">93.0%</text>
+        <text class="s6aL" x="154" y="290" text-anchor="middle">24</text>
+        <text class="s6aL" x="254" y="290" text-anchor="middle">25</text>
+        <text class="s6aL" x="354" y="290" text-anchor="middle">26</text>
+        <text class="s6aL" x="454" y="290" text-anchor="middle">27</text>
+        <text class="s6aL" x="554" y="290" text-anchor="middle">28</text>
+        <text class="s6aL" x="654" y="290" text-anchor="middle">29</text>
+        <text class="s6aL" x="754" y="290" text-anchor="middle">30</text>
+        <text class="s6aA" x="460" y="308" text-anchor="middle">agents on the floor</text>
+
+        <text class="s6aN" x="30" y="330">Koole: Erlang C predicts "only around 21%" wait under 20 seconds at 24 agents. The bench's formula gives 20.6.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the first extra agent buys 24 points, the sixth buys 4: the curve, not the average, sets the roster</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Erlang C in four sentences, and 80/20 in one<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Workload</strong> is arrivals times handle time: 100 calls a quarter hour at 3.5 minutes each is about 23.3 agents of continuous work. <strong>Erlang C</strong> gives the probability that an arriving customer has to wait at all, for a given number of agents above that workload; the ITU-D handbook calls it "Erlang's C-formula, Erlang's second formula, or Erlang's formula for waiting time systems". <strong>The service-level formula</strong> then gives the share answered within t seconds: one minus that probability times a decay that depends on the spare agents. <strong>Staffing</strong> is the smallest number of agents that reaches the target.</p>
+        <p>The target Quayside uses is the common one. Ger Koole defines it as "the minimal number of agents required to answer 80% of the calls within 20 seconds". In his worked example, Erlang C says 24 agents answer only about 21 percent that fast and 28 reach 80 percent. The bench's implementation gives 20.6 percent at 24 and 83.0 at 28.</p>
+        <div class="callout example">
+          <span class="ex-pill">Real world</span>
+          <p>This is the arithmetic behind every "the bot frees up X agents" claim. Containment removes contacts; Erlang C decides how many agents those contacts were costing. Remove the easy, quick contacts and the remaining queue keeps its peaks, which is why the bench's vendor pitch removes 70 percent of first contacts and only a third of the agents.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Two things the bench's Erlang C leaves out<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <ul>
+          <li><strong>Abandonment.</strong> Koole: "some calls, while waiting for service in queue, abandon", which is "not part of the Erlang C model". Ignoring it overstates the agents needed when queues are long. Koole calls the model that includes it Erlang X; the academic literature also uses the name Erlang A, which was not read at source here.</li>
+          <li><strong>Chat concurrency.</strong> The bench staffs chat as one conversation per agent at a time. Agents who hold two or three chats at once need fewer seats and take longer per chat. If your floor works concurrently, the shape of every result below holds and the agent counts do not.</li>
+        </ul>
+        <p>Email is not queued in real time, so the bench adds it as workload hours spread over the day rather than running it through Erlang C.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PART 2 ============ -->
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers the true-resolution funnel and cost per resolved contact</span>
+      <h2>Follow 14,000 contacts to the ones that were actually solved</h2>
+      <span class="tag concept">6 min live</span>
+    </div>
+    <p class="lede">The bench takes session 1's definitions and runs them on a month. Every contact either reaches a person, or is resolved by the bot, or is falsely contained. The falsely contained either come back, at a higher handle time, or never come back. Cost per resolved contact divides what the month cost by the customers whose problem ended.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The vendor pitch on the session 6 bench, constructed inputs: 14,000 contacts a month, 9,800 taken by the bot and 4,200 by people. The bot truly resolves 5,880, so 60.0 percent, and falsely contains 3,920, all counted as resolved on the vendor dashboard. 2,352 come back as repeat contacts at 1.5 times the handle time; 1,568 never come back.">
+        <defs>
+          <filter id="s6bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="67" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s6bHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#0A4DBF" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s6bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#0D1B33" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s6bH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s6bL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s6bS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s6bB { font: 800 11px Inter, sans-serif; fill: #B8480C; }
+          .s6bV { font: 800 16px Inter, sans-serif; fill: #0A2E73; }
+          .s6bW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s6bN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s6bH" x="30" y="26">THE VENDOR PITCH, ONE MONTH, FOLLOWED TO THE END</text>
+        <text class="s6bS" x="380" y="26">session 6 bench, constructed inputs</text>
+
+        <g filter="url(#s6bSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="110" width="130" height="80" rx="6" transform="rotate(-1 95 150)" fill="url(#s6bHc)"/>
+          <rect x="210" y="60" width="170" height="56" rx="8" transform="rotate(0.5 295 88)" fill="#EDF2FC"/>
+          <rect x="210" y="190" width="170" height="56" rx="8" transform="rotate(-0.5 295 218)" fill="#FFFFFF"/>
+          <rect x="440" y="40" width="190" height="56" rx="8" transform="rotate(-0.4 535 68)" fill="#0A4DBF"/>
+          <rect x="440" y="118" width="190" height="56" rx="8" transform="rotate(0.4 535 146)" fill="#B8480C"/>
+          <rect x="680" y="96" width="170" height="50" rx="8" transform="rotate(0.4 765 121)" fill="#FDF0E6"/>
+          <rect x="680" y="166" width="170" height="50" rx="8" transform="rotate(-0.4 765 191)" fill="#FDF0E6"/>
+          <path d="M162 140 C186 140 186 90 204 90" marker-end="url(#s6bAr)"/>
+          <path d="M162 160 C186 160 186 216 204 216" marker-end="url(#s6bAr)"/>
+          <path d="M382 80 C410 80 410 68 434 68" marker-end="url(#s6bAr)"/>
+          <path d="M382 96 C410 96 410 146 434 146" marker-end="url(#s6bAr)"/>
+          <path d="M632 140 C656 140 656 121 674 121" marker-end="url(#s6bAr)"/>
+          <path d="M632 154 C656 154 656 191 674 191" marker-end="url(#s6bAr)"/>
+          <path d="M766 218 C766 262 330 262 300 250" marker-end="url(#s6bAr)" stroke-dasharray="5 6"/>
+        </g>
+
+        <text class="s6bL" x="44" y="104">14,000 contacts</text>
+        <text class="s6bS" x="30" y="208">a month, chat and email</text>
+        <text class="s6bL" x="224" y="84">Bot takes 70%</text>
+        <text class="s6bV" x="224" y="106">9,800</text>
+        <text class="s6bL" x="224" y="214">People take 30%</text>
+        <text class="s6bV" x="224" y="236">4,200</text>
+        <text class="s6bW" x="454" y="64">Truly resolved: 60.0%</text>
+        <text class="s6bW" x="454" y="84">5,880</text>
+        <text class="s6bW" x="454" y="142">Falsely contained</text>
+        <text class="s6bW" x="454" y="162">3,920, counted resolved</text>
+        <text class="s6bL" x="694" y="118">Come back: 2,352</text>
+        <text class="s6bS" x="694" y="136">at 1.5x the handle time</text>
+        <text class="s6bL" x="694" y="188">Never come back</text>
+        <text class="s6bB" x="694" y="206">1,568 a month</text>
+        <text class="s6bS" x="430" y="280">repeats join the human queue: 6,552 contacts reach a person</text>
+
+        <text class="s6bN" x="30" y="316">Vendor dashboard: 100% resolved. Measured: 60.0%. Agents: 16 instead of 24. All-in cost per resolved: $8.84 vs $7.71.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - every number here is printed by the bench below when you press "The vendor pitch: 70%"</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Two costs per resolved contact, and why you report both<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Operating cost per resolved contact</strong> is agents plus AI fees, divided by customers whose problem ended. <strong>All-in</strong> adds one more line: the customers a false containment loses. Quayside's constructed assumption is that 15 percent of the customers who never come back close their account, each worth $120 a year. Churn modelling proper belongs to <a href="https://phoebefu6.github.io/learn-customer-retention-with-phoebe/courses/a7-churn-prediction.html">Customer Retention ↗</a>; here it is one honest, labelled line.</p>
+        <p>The two disagree exactly where the decision is. On the bench, pushing the bot to 90 percent has the lowest operating cost of any setting, $5.67, and an all-in cost of $6.60, worse than the plan's $6.29, with 1,722 customers a month told they were done. Report one number and you choose the plan by accident.</p>
+        <div class="callout example">
+          <span class="ex-pill">Real world</span>
+          <p>Klarna's CEO, reported by CX Dive quoting a May 2025 Bloomberg interview: "As cost unfortunately seems to have been a too predominant evaluation factor when organizing this, what you end up having is lower quality". Session 5 showed the other side of that story, which Klarna also tells. The bench cannot settle it; it can show you which of your own numbers would have warned you.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Pricing per outcome, per conversation, per token<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Intercom lists Fin at "$0.99 per outcome" and counts an assumed resolution as an outcome. Salesforce's pricing page lists "$2" per conversation for Agentforce, alongside Flex Credits. The bench charges a flat price per bot conversation and lets you set it: at $2 instead of $0.99, Quayside's plan moves from $6.17 to $6.53 per resolved contact. Under an outcome model you also pay for false containments that were billed as outcomes, which is part of the false-containment cost the bench reports.</p>
+        <p>The cost of a single model call, in tokens, is one line inside that price and is taught in <a href="https://phoebefu6.github.io/learn-llm-inference-with-phoebe/courses/01-where-the-money-goes.html">LLM Inference: where the money goes ↗</a>. Vendor prices change often: re-verify before you sign.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PART 3 ============ -->
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers forecasts, findings and announcements</span>
+      <h2>Read the industry's numbers by what kind of number they are</h2>
+      <span class="tag concept">4 min live</span>
+    </div>
+    <p class="lede">The plan you take to a board will be compared with numbers from analysts and from companies that went first. They are three different kinds of number: things measured, things predicted, and things announced. Only the first kind belongs in a plan.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A timeline of six public numbers about AI in customer service. February 2024, Klarna announces the work of 700 agents, an announcement. July 2024, Gartner survey, 64 percent would prefer no AI, measured. March 2025, Gartner predicts 80 percent of common issues by 2029, a prediction. May 2025, Klarna's CEO on lower quality, reported. June 2025, Gartner predicts half of planned cuts abandoned by 2027, a prediction. November 2025, Klarna says the work of 853 agents, reported.">
+        <defs>
+          <filter id="s6cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="71" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <marker id="s6cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#0D1B33" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s6cL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s6cS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s6cD { font: 700 11px Inter, sans-serif; fill: #0A2E73; }
+          .s6cW { font: 800 11px Inter, sans-serif; fill: #FFFFFF; }
+          .s6cK { font: 800 11px Inter, sans-serif; fill: #0D1B33; }
+          .s6cN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <g filter="url(#s6cSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M40 120 L850 120" marker-end="url(#s6cAr)"/>
+          <circle cx="90" cy="120" r="7" fill="#FFFFFF"/>
+          <circle cx="225" cy="120" r="7" fill="#FFFFFF"/>
+          <circle cx="360" cy="120" r="7" fill="#FFFFFF"/>
+          <circle cx="495" cy="120" r="7" fill="#FFFFFF"/>
+          <circle cx="630" cy="120" r="7" fill="#FFFFFF"/>
+          <circle cx="765" cy="120" r="7" fill="#FFFFFF"/>
+          <rect x="44" y="56" width="92" height="22" rx="11" fill="#B8CBEF"/>
+          <rect x="179" y="56" width="92" height="22" rx="11" fill="#0A4DBF"/>
+          <rect x="314" y="56" width="92" height="22" rx="11" fill="#B8480C"/>
+          <rect x="449" y="56" width="92" height="22" rx="11" fill="#FFFFFF"/>
+          <rect x="584" y="56" width="92" height="22" rx="11" fill="#B8480C"/>
+          <rect x="719" y="56" width="92" height="22" rx="11" fill="#FFFFFF"/>
+        </g>
+
+        <text class="s6cK" x="90" y="71" text-anchor="middle">announced</text>
+        <text class="s6cW" x="225" y="71" text-anchor="middle">measured</text>
+        <text class="s6cW" x="360" y="71" text-anchor="middle">predicted</text>
+        <text class="s6cK" x="495" y="71" text-anchor="middle">reported</text>
+        <text class="s6cW" x="630" y="71" text-anchor="middle">predicted</text>
+        <text class="s6cK" x="765" y="71" text-anchor="middle">reported</text>
+
+        <text class="s6cD" x="90" y="100" text-anchor="middle">Feb 2024</text>
+        <text class="s6cD" x="225" y="100" text-anchor="middle">Jul 2024</text>
+        <text class="s6cD" x="360" y="100" text-anchor="middle">Mar 2025</text>
+        <text class="s6cD" x="495" y="100" text-anchor="middle">May 2025</text>
+        <text class="s6cD" x="630" y="100" text-anchor="middle">Jun 2025</text>
+        <text class="s6cD" x="765" y="100" text-anchor="middle">Nov 2025</text>
+
+        <text class="s6cL" x="90" y="150" text-anchor="middle">Klarna: work</text>
+        <text class="s6cL" x="90" y="166" text-anchor="middle">of 700 agents</text>
+        <text class="s6cL" x="225" y="150" text-anchor="middle">Gartner: 64%</text>
+        <text class="s6cL" x="225" y="166" text-anchor="middle">prefer no AI</text>
+        <text class="s6cL" x="360" y="150" text-anchor="middle">Gartner: 80% of</text>
+        <text class="s6cL" x="360" y="166" text-anchor="middle">common, by 2029</text>
+        <text class="s6cL" x="495" y="150" text-anchor="middle">Klarna CEO:</text>
+        <text class="s6cL" x="495" y="166" text-anchor="middle">"lower quality"</text>
+        <text class="s6cL" x="630" y="150" text-anchor="middle">Gartner: 50% drop</text>
+        <text class="s6cL" x="630" y="166" text-anchor="middle">cuts, by 2027</text>
+        <text class="s6cL" x="765" y="150" text-anchor="middle">Klarna: work</text>
+        <text class="s6cL" x="765" y="166" text-anchor="middle">of 853 agents</text>
+
+        <text class="s6cS" x="90" y="190" text-anchor="middle">a workload estimate</text>
+        <text class="s6cS" x="225" y="190" text-anchor="middle">5,728 customers</text>
+        <text class="s6cS" x="360" y="190" text-anchor="middle">a forecast</text>
+        <text class="s6cS" x="495" y="190" text-anchor="middle">via CX Dive</text>
+        <text class="s6cS" x="630" y="190" text-anchor="middle">a forecast</text>
+        <text class="s6cS" x="765" y="190" text-anchor="middle">via CX Dive</text>
+
+        <text class="s6cN" x="30" y="240">Only the survey is a measurement, and it measures what customers say. None of the six measures resolution.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - six numbers that get quoted together, and not one of them is a resolution rate</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>What each of the six can and cannot support in a plan<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <table class="clean">
+          <tr><th>Number</th><th>Kind</th><th>Can support</th></tr>
+          <tr><td>Klarna, Feb 2024: "the equivalent work of 700 full-time agents"</td><td>Announced, estimate</td><td>That workload moved. Not how many people were needed, nor what was resolved</td></tr>
+          <tr><td>Gartner, Jul 2024: 64 percent would prefer no AI in service</td><td>Measured, a survey</td><td>What customers say they want. A reason to make reaching a person easy</td></tr>
+          <tr><td>Gartner, Mar 2025: 80 percent of common issues "By 2029"</td><td>Predicted</td><td>Nothing in a plan for next year. Note the word "common" (session 2)</td></tr>
+          <tr><td>Klarna CEO, May 2025: "lower quality"</td><td>Reported</td><td>That a company that went first changed course on quality</td></tr>
+          <tr><td>Gartner, Jun 2025: 50 percent abandon planned cuts "By 2027"</td><td>Predicted</td><td>A caution against booking headcount savings before you have measured resolution</td></tr>
+          <tr><td>Klarna, Q3 2025: work of more than 853 agents</td><td>Reported, from an earnings call</td><td>That Klarna still describes the assistant as doing more work, not less</td></tr>
+        </table>
+        <div class="callout example">
+          <span class="ex-pill">Real world</span>
+          <p>Gartner's June 2025 release explains its own prediction: "many companies struggle to achieve their 'agent-less' staffing goals", and recommends a "digital first, but not digital only" strategy. Read next to the bench, that is the vendor pitch rung: fewer agents on paper, more cost per customer actually helped.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>The only kind of number your plan should rest on<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Your own, measured on session 1's definition and session 5's sample. The bench is a planning tool: it shows how the levers interact and which direction each moves the cost. Its inputs are constructed. Before the plan goes to anyone with a budget, replace every constructed input with a measured one, starting with true bot resolution and the share of falsely contained customers who come back.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ DEMO ============ -->
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>The bench: price Quayside's plan, then write the memo</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">The bench below computes everything live as you press a rung or move a lever. Walk the ladder in order; every number in the steps is one the bench prints. Then build your own plan, and write the memo from it.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="How the bench turns five levers into a price. The share automated and the bot's true resolution split contacts into resolved, handed off and falsely contained. The hand-off catches part of the failures. People handle their share plus the handed-off and the repeat contacts, and agent assist shortens handle time. Erlang C converts that hourly workload into agents. Agents times cost plus AI price times bot conversations, divided by resolved customers, gives cost per resolved contact.">
+        <defs>
+          <filter id="s6dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="73" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <marker id="s6dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#0D1B33" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s6dH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s6dL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s6dS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s6dA { font: 700 11px Inter, sans-serif; fill: #0A4DBF; }
+          .s6dW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s6dN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s6dH" x="30" y="26">FIVE LEVERS IN, ONE PRICE OUT</text>
+
+        <g filter="url(#s6dSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="50" width="180" height="200" rx="10" transform="rotate(-0.5 120 150)" fill="#EDF2FC"/>
+          <rect x="250" y="60" width="170" height="70" rx="8" transform="rotate(0.5 335 95)" fill="#FFFFFF"/>
+          <rect x="250" y="160" width="170" height="70" rx="8" transform="rotate(-0.5 335 195)" fill="#FFFFFF"/>
+          <rect x="460" y="110" width="160" height="70" rx="8" transform="rotate(0.4 540 145)" fill="#FFFFFF"/>
+          <rect x="660" y="110" width="190" height="70" rx="10" transform="rotate(-0.6 755 145)" fill="#0A4DBF"/>
+          <path d="M212 100 L244 96" marker-end="url(#s6dAr)"/>
+          <path d="M212 190 L244 194" marker-end="url(#s6dAr)"/>
+          <path d="M422 104 C444 104 444 136 454 138" marker-end="url(#s6dAr)"/>
+          <path d="M422 190 C444 190 444 156 454 154" marker-end="url(#s6dAr)"/>
+          <path d="M622 145 L654 145" marker-end="url(#s6dAr)"/>
+        </g>
+
+        <text class="s6dA" x="44" y="74">THE FIVE LEVERS</text>
+        <text class="s6dL" x="44" y="100">Share automated</text>
+        <text class="s6dL" x="44" y="124">Bot's true resolution</text>
+        <text class="s6dL" x="44" y="148">Hand-off catch rate</text>
+        <text class="s6dL" x="44" y="172">Assist uplift, max 14%</text>
+        <text class="s6dL" x="44" y="196">AI price per chat</text>
+        <text class="s6dS" x="44" y="226">plus the vendor-view switch</text>
+
+        <text class="s6dL" x="264" y="86">The funnel</text>
+        <text class="s6dS" x="264" y="104">resolved, handed off,</text>
+        <text class="s6dS" x="264" y="119">falsely contained</text>
+        <text class="s6dL" x="264" y="186">The human queue</text>
+        <text class="s6dS" x="264" y="204">first contacts, hand-offs,</text>
+        <text class="s6dS" x="264" y="219">repeats at 1.5x</text>
+        <text class="s6dL" x="474" y="136">Erlang C, hourly</text>
+        <text class="s6dS" x="474" y="154">agents at 80/20,</text>
+        <text class="s6dS" x="474" y="169">then shrinkage</text>
+        <text class="s6dW" x="674" y="136">Cost per resolved</text>
+        <text class="s6dW" x="674" y="156">+ falsely contained</text>
+
+        <text class="s6dN" x="30" y="284">Real formula, constructed inputs. Every output on the bench is labelled with which is which.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the price comes out of the queue, and the queue comes out of the funnel</figcaption>
+    </figure>
+
+    <div id="acs-plan"></div>
+
+    <div class="steps">
+      <div class="step"><p><strong>Press "Today, no AI".</strong> 24 agents, peak 7 seats at 80/20, $108,000 a month, <strong>$7.71</strong> per resolved contact. This is the baseline every other rung is compared with, and it matches the 24 agents Quayside has.</p></div>
+      <div class="step"><p><strong>Press "The vendor pitch: 70%".</strong> 16 agents. Tick "Show the vendor dashboard" and the bot's resolution reads 100.0 percent; untick it and the true figure is 60.0 percent. 3,920 customers a month falsely contained, 1,568 of them never come back. Operating cost $6.57 per resolved contact, and <strong>$8.84 all-in: worse than today</strong>.</p></div>
+      <div class="step"><p><strong>Press "Assist only".</strong> No bot at all, agent assist at the published 14 percent: 23 agents and $7.39. Modest, and with zero falsely contained customers.</p></div>
+      <div class="step"><p><strong>Press "Automate the safe third", then "+ a hand-off".</strong> The bot takes 35 percent, the share session 2's gated map could answer safely: 19 agents, 735 falsely contained, $6.98 all-in. A hand-off that catches 70 percent of the bot's failing chats leaves 221 falsely contained and $6.61 all-in. The dashboard now reads 89.5 percent against a true 85.0, because hand-offs are no longer counted as resolved.</p></div>
+      <div class="step"><p><strong>Press "The plan".</strong> Safe third, hand-off, and assist: 18 agents, $85,851 a month, <strong>$6.17</strong> per resolved contact, <strong>$6.29</strong> all-in, 221 falsely contained, 88 never come back.</p></div>
+      <div class="step"><p><strong>Press "Push to 90%".</strong> 14 agents and the lowest operating cost on the bench, $5.67. All-in $6.60, worse than the plan, with 1,722 falsely contained and true bot resolution down to 54.4 percent. Then press "Same plan at $2": $6.53 per resolved contact instead of $6.17.</p></div>
+      <div class="step"><p><strong>Now make your own.</strong> Move the levers until you have a plan you would sign, then press "Write Quayside's plan memo from these numbers". It unlocks at 4 passport stamps, and the link beside it opens it anyway. Copy the memo into section 6.</p>
+        <div class="prompt-box good"><span class="label">★ Plan section 6 · staffing and cost (the plan rung, constructed)</span>
+Automate 35% of contacts first, only on intents with a true resolution
+near 85%. The hand-off catches 70% of failing bot conversations.
+Agent assist assumed at +14% resolutions per hour.
+Staff 18 agents (today: 24), peak 5 seats at 80/20.
+Cost per resolved contact $6.17 ($6.29 counting customers lost).
+Customers falsely contained: 221 a month, 88 never come back.
+Vendor dashboard would report 89.5%; the true figure is 85.0%.
+Constructed Quayside example. Re-verify vendor pricing before you sign.</div></div>
+    </div>
+
+    <div class="scorecard" data-strict="1" data-title="Final scorecard: would you sign Quayside's plan?" data-foot="Strict on purpose: a plan with one row at 0 is not ready, however good the total.">
+      <div class="sc-row"><div class="sc-q">The hand-off rules name every trigger and the context packet travels with the customer<em>Not "escalate when needed". The list, with thresholds.</em></div></div>
+      <div class="sc-row"><div class="sc-q">The QA plan reads a sample every week with one rubric for bot and people, and the judge is calibrated<em>CSAT appears only with its response rate beside it.</em></div></div>
+      <div class="sc-row"><div class="sc-q">Staffing is computed at a service level, not by dividing headcount by containment<em>An 80/20 target, hour by hour.</em></div></div>
+      <div class="sc-row"><div class="sc-q">Cost is reported per resolved contact, with the falsely contained count beside it<em>Both costs, operating and all-in.</em></div></div>
+      <div class="sc-row"><div class="sc-q">A named person owns false containment, and every constructed input has a date to be replaced by a measured one<em>True bot resolution first.</em></div></div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Why the bench can disagree with you.</strong> It is built so that the obvious move, automating more, can make the plan worse. If a planning tool can only report improvements, it is measuring your optimism. Push to 90 percent and the vendor pitch both exist on the ladder for that reason.</p>
+    </div>
+  </section>
+
+  <!-- ============ HOMEWORK ============ -->
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>After session 6</h2>
+      <span class="tag exercise">45 min</span>
+    </div>
+    <ol>
+      <li><strong>Replace one constructed input with a measured one.</strong> True bot resolution is the most valuable: take session 5's sample and compute it on session 1's definition.</li>
+      <li><strong>Re-run your plan on the bench</strong> with that number, and write down which output moved most.</li>
+      <li><strong>Grade yourself on the final scorecard</strong> and fix the lowest row before anyone sees the plan.</li>
+      <li><strong>Send the memo to one person who will argue with it</strong>: finance, compliance, or the team lead who will run the floor. The objection you get is the next thing to measure.</li>
+    </ol>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 6 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">1 · On the bench, the vendor pitch cuts agents from 24 to 16. Why is its all-in cost per resolved contact, $8.84, higher than today's $7.71?</p>
+      <button class="qopt" type="button">A · 3,920 customers a month are falsely contained: repeats come back at 1.5 times the handle time, the AI fee was paid on them, and some of the 1,568 who never return leave</button>
+      <button class="qopt" type="button">B · The AI price of $0.99 per conversation is higher than an agent's cost per contact</button>
+      <button class="qopt" type="button">C · Erlang C overstates the agents needed when volume falls</button>
+      <p class="qwhy">Operating cost per resolved contact does fall, to $6.57. The all-in figure adds what false containment costs, and at a true resolution of 60.0 percent that is most of the saving and more.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="1">
+      <p class="qtext">2 · In Koole's worked example, 24 agents answer about 21 percent of calls within 20 seconds and 28 answer 80 percent. What does that teach about staffing?</p>
+      <button class="qopt" type="button">A · Agents scale linearly with volume, so a 30 percent cut in contacts cuts agents by 30 percent</button>
+      <button class="qopt" type="button">B · Near full utilisation, a few agents make the difference between most customers waiting and most being answered fast, so savings must be computed, not divided</button>
+      <button class="qopt" type="button">C · The 80/20 target is arbitrary and can be dropped when a bot is introduced</button>
+      <p class="qwhy">Workload was about 23.3 agents; staffing it at 24 leaves almost no slack, and waits explode. That non-linearity is why the bench runs Erlang C hour by hour instead of scaling headcount by containment.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">3 · "Push to 90%" has the lowest operating cost on the bench, $5.67. Why does the plan at 35 percent still win?</p>
+      <button class="qopt" type="button">A · Because the 90 percent setting needs more agents</button>
+      <button class="qopt" type="button">B · Because vendors cannot technically automate 90 percent</button>
+      <button class="qopt" type="button">C · Its all-in cost is worse, $6.60 against $6.29, and it falsely contains 1,722 customers a month against 221</button>
+      <p class="qwhy">Past the safe third, the bot is answering questions it cannot resolve. The second number on the bench, customers falsely contained, is what keeps the first from choosing for you.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <!-- ============ OFFICIAL COVERAGE ============ -->
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Erlang C and the service-level formula</span><span class="note">ITU-D Teletraffic Engineering Handbook, eq. 12.6 and 12.34, implemented in the bench and checked against Koole's worked example</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">80/20 and the abandonment limit</span><span class="note">Koole, Call Center Optimization, first chapters</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Gartner predictions, 2025</span><span class="note">80 percent of common issues by 2029; 50 percent abandon planned cuts by 2027. Taught as predictions</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Vendor prices</span><span class="note">Intercom $0.99 per outcome; Salesforce $2 per conversation. Re-verify before delivery</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Klarna 2025 and Q3 2025</span><span class="note">Reported via CX Dive; the Bloomberg original and the earnings call were not read</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Every Quayside input</span><span class="note">Constructed and labelled on the bench: volumes, handle times, costs, return and churn shares, bot resolution past the safe third</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <!-- ============ CHEAT SHEET ============ -->
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 6 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>Erlang C</b><span>Staff to a service level, hour by hour. 24 agents: 20.6% in 20 s. 28: 83.0%.</span></div>
+      <div class="cheat-item"><b>Two costs</b><span>Operating and all-in, per resolved contact. Report both or one chooses for you.</span></div>
+      <div class="cheat-item"><b>The vendor pitch</b><span>16 agents, dashboard 100%, true 60.0%, $8.84 all-in against $7.71 today.</span></div>
+      <div class="cheat-item"><b>The plan</b><span>35% automated, hand-off, assist: 18 agents, $6.17, 221 falsely contained.</span></div>
+      <div class="cheat-item"><b>Push to 90%</b><span>Cheapest to run at $5.67, worse all-in at $6.60, 1,722 falsely contained.</span></div>
+      <div class="cheat-item"><b>Kinds of number</b><span>Measured, predicted, announced. Only measured goes in the plan.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">What you now own</span>
+    <p>A support operating plan with six sections, each measured against a definition a vendor cannot move: what resolution means, what the bot may touch, how agents use drafts, when the bot lets go, how quality is read, and what it all costs per customer actually helped. Replace the constructed inputs with your own, and it is a plan you can sign.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 6 of 6 · learn-ai-customer-support-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="05-qa-you-can-trust.html">← Prev: The quality bar: QA you can trust</a> &nbsp;·&nbsp; <a href="../index.html">Course home</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/app.js?v=2"></script>
+<script src="../assets/acs-live.js?v=2"></script>
+</body>
+</html>

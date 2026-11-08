@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 2 of 6. Intent, urgency and risk; the automate, assist and human map; and a real classifier trained in your browser on Banking77 customer messages, so you can watch the busiest-intents plan hand lost cards to a bot.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="Triage: read the message before anyone answers - learn ai customer support with phoebe">
+<meta property="og:description" content="Session 2 of 6. 616 real customer messages, a classifier trained in your browser, and the map that decides what the bot may touch.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/courses/02-triage-before-anyone-answers.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Triage: read the message before anyone answers - learn ai customer support with phoebe">
+<meta name="twitter:description" content="Session 2 of 6. Automate the busiest 20 intents and the bot answers 37 risky messages. The classifier was right; the map was wrong.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 2 · Triage: read the message before anyone answers - learn ai customer support with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=1">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-ai-customer-support-with-phoebe</a> / Session 2 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn AI + Customer Support with Phoebe · Session 2 of 6</div>
+    <h1>Triage: read the message <span class="accent">before anyone answers</span></h1>
+    <p class="sub">Before a bot answers anything, something has to decide what the message is, how urgent it is and what goes wrong if the answer is wrong. Tonight you train a real intent classifier on real banking customer messages, in your browser, then decide which intents Quayside's bot may answer, and watch what the obvious plan does to lost cards and unrecognised payments.</p>
+    <div class="chip-row">
+      <span class="chip level">🟡 Builds on session 1</span>
+      <span class="chip audience">Support and CX leads choosing what to automate</span>
+      <span class="chip audience">Team leads who will own the queues</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:3">0-3 · Welcome</span>
+      <span class="a2" style="flex:17">3-20 · Intent, urgency, risk, and the map</span>
+      <span class="a3" style="flex:22">20-42 · Playground: 616 real messages</span>
+      <span class="a4" style="flex:3">42-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ INTRO ============ -->
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>From a number you can trust to a map you can defend</h2>
+    </div>
+    <p class="lede">Session 1 gave Quayside a definition of resolution that a vendor cannot quietly move. Tonight adds <strong>section 2 of the plan: the automate / assist / human map</strong>, one decision per kind of message, made on real messages rather than on a vendor's demo.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">Real rows: Banking77, CC BY 4.0</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> The three readings every message needs before anyone answers it. A map of Quayside's 77 intents into automate, assist and human. And a number you can only get by running it: how many risky messages each plan would have kept from a person, counted on 616 real customer messages.</p>
+    </div>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>Why the map comes before the bot<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Session 1 showed that a bot's resolution rate is lower than its containment rate. Part of the gap is the bot answering badly. A bigger part, usually, is the bot answering at all: messages that should never have reached it. That is a triage decision, and it is made before any model is chosen.</p>
+        <p>Triage here means routing <em>tickets</em> to queues and people. Routing <em>requests between models</em> to save cost is a different problem, taught in <a href="https://phoebefu6.github.io/learn-llm-inference-with-phoebe/courses/02-routing.html">LLM Inference: routing ↗</a>.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PART 1 ============ -->
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers intent, urgency and risk</span>
+      <h2>Three readings of one message</h2>
+      <span class="tag concept">6 min live</span>
+    </div>
+    <p class="lede">Intent is what the customer wants. Urgency is how fast it has to happen. Risk is what it costs if the answer is wrong. A classifier gives you the first; the other two are decisions your organisation makes per intent, and they are the ones that decide who answers.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A real Banking77 message asking about card payments the customer did not make and asking for a freeze, read three ways: the intent is card payment not recognised, the urgency is now because money may still be leaving, and the risk is fraud and a dispute. The three readings route it to a person, now.">
+        <defs>
+          <filter id="s2aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="31" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s2aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#0A4DBF" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s2aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#0D1B33" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s2aH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s2aL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s2aS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s2aB { font: 800 11px Inter, sans-serif; fill: #B8480C; }
+          .s2aA { font: 700 11px Inter, sans-serif; fill: #0A4DBF; }
+          .s2aW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s2aN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s2aH" x="30" y="26">ONE REAL MESSAGE, THREE READINGS</text>
+        <text class="s2aS" x="290" y="26">Banking77 test split, text unchanged</text>
+
+        <g filter="url(#s2aSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M30 70 Q30 56 44 56 L326 56 Q340 56 340 70 L340 150 Q340 164 326 164 L90 164 L64 186 L68 164 L44 164 Q30 164 30 150 Z" fill="#FFFFFF"/>
+          <path d="M344 100 C380 100 380 74 410 74" marker-end="url(#s2aAr)"/>
+          <path d="M344 110 L410 140" marker-end="url(#s2aAr)"/>
+          <path d="M344 120 C380 120 380 206 410 206" marker-end="url(#s2aAr)"/>
+          <rect x="418" y="50" width="260" height="50" rx="8" transform="rotate(-0.5 548 75)" fill="#EDF2FC"/>
+          <rect x="418" y="116" width="260" height="50" rx="8" transform="rotate(0.4 548 141)" fill="#EDF2FC"/>
+          <rect x="418" y="182" width="260" height="50" rx="8" transform="rotate(-0.3 548 207)" fill="#FDF0E6"/>
+          <path d="M682 75 C720 75 720 130 742 136" marker-end="url(#s2aAr)"/>
+          <path d="M682 141 L742 141" marker-end="url(#s2aAr)"/>
+          <path d="M682 207 C720 207 720 152 742 146" marker-end="url(#s2aAr)"/>
+          <rect x="750" y="110" width="104" height="62" rx="10" transform="rotate(1 802 141)" fill="#B8480C"/>
+          <circle cx="60" cy="206" r="12"/>
+          <path d="M38 252 C42 230 78 230 82 252"/>
+        </g>
+
+        <text class="s2aL" x="46" y="82">"What can I do about some payments on</text>
+        <text class="s2aL" x="46" y="102">my card I didn't make. Please put a</text>
+        <text class="s2aL" x="46" y="122">freeze on my card till we can figure</text>
+        <text class="s2aL" x="46" y="142">this out."</text>
+        <text class="s2aS" x="96" y="236">a real customer, one of 616</text>
+
+        <text class="s2aA" x="432" y="70">INTENT · what they want</text>
+        <text class="s2aL" x="432" y="89">Card payment not recognised</text>
+        <text class="s2aA" x="432" y="136">URGENCY · how fast</text>
+        <text class="s2aL" x="432" y="155">Now: money may still be leaving</text>
+        <text class="s2aB" x="432" y="202">RISK · cost of a wrong answer</text>
+        <text class="s2aL" x="432" y="221">Fraud, a dispute, lost money</text>
+        <text class="s2aW" x="764" y="136">A person,</text>
+        <text class="s2aW" x="764" y="155">now</text>
+
+        <text class="s2aN" x="30" y="296">The classifier supplies only the first box. The other two are a policy you write per intent.</text>
+        <text class="s2aN" x="30" y="316">Get them wrong and a correct classification still sends a fraud victim to a FAQ answer.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the classifier can be right and the route still wrong, because urgency and risk are yours to set</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Three questions, three different owners<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <table class="clean">
+          <tr><th>Reading</th><th>Who decides it</th><th>How it fails</th></tr>
+          <tr><td><strong>Intent</strong></td><td>A classifier, or the bot's own understanding</td><td>Wrong label: the customer gets an answer to a different question</td></tr>
+          <tr><td><strong>Urgency</strong></td><td>Your policy, per intent, sometimes raised by words in the message ("freeze", "now", "stolen")</td><td>A blocked card waits in the same queue as a question about exchange rates</td></tr>
+          <tr><td><strong>Risk</strong></td><td>Your policy, per intent: money, identity, regulated topics, vulnerability</td><td>A correct label, a confident bot, and a fraud victim reading a help article</td></tr>
+        </table>
+        <div class="callout example">
+          <span class="ex-pill">Real world</span>
+          <p>Another real message from the same test set: "Why can't I verify my identity?" The playground's classifier scores it 0.68 against <em>why verify identity</em>, a harmless explainer intent, when its true label is <em>unable to verify identity</em>, a customer locked out of their own money. The words are almost the same. The risk is not. You will meet this message again in the build-along.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>What Banking77 is, and what it is not<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Banking77 was released by PolyAI with the paper "Efficient Intent Detection with Dual Sentence Encoders" (Casanueva, Temcinas, Gerz, Henderson and Vulic, 2020). Its dataset card describes "13,083 customer service queries labeled with 77 intents"; the repository splits them into 10,003 training and 3,080 test examples. It is licensed CC BY 4.0.</p>
+        <p>The playground uses 24 training messages and 8 test messages per intent, drawn with a fixed seed, so 1,848 to learn from and 616 to triage. The text is unchanged. Three honest limits: every message is a single short query, not a conversation; the test set is balanced at the same count per intent, which real queues never are; and the risk tier of each intent is Quayside's constructed judgement, not part of the data.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PART 2 ============ -->
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers the automate, assist and human map</span>
+      <h2>Volume tells you where the work is, risk tells you who does it</h2>
+      <span class="tag concept">6 min live</span>
+    </div>
+    <p class="lede">Each intent gets one of three routes. Automate: the bot answers and the conversation may end without a person. Assist: a person answers, with an AI draft beside them (session 3). Human: a person answers, and the bot's job is to get the customer there fast with the context attached (session 4).</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A quadrant of Quayside intents. Horizontal axis: answerable from the help centre on the left, needs the customer's account on the right. Vertical axis: harm if the answer is wrong, low at the bottom. Exchange rate, top-up limits and why verify identity sit in the automate corner. Card arrival and pending transfer sit in the assist corner. Lost or stolen card, charged twice and unable to verify identity sit in the human corner, with verify source of funds in the regulated corner.">
+        <defs>
+          <filter id="s2bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="37" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <marker id="s2bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#0D1B33" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s2bL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s2bC { font: 800 11px Inter, sans-serif; fill: #0A4DBF; letter-spacing: .04em; }
+          .s2bB { font: 800 11px Inter, sans-serif; fill: #B8480C; letter-spacing: .04em; }
+          .s2bA { font: 700 11px Inter, sans-serif; fill: #0A4DBF; }
+          .s2bN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <g filter="url(#s2bSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="90" y="40" width="730" height="300" rx="6" fill="#FFFFFF"/>
+          <rect x="94" y="44" width="722" height="142" rx="4" fill="#FDF0E6" stroke="none"/>
+          <path d="M455 44 L455 336" stroke="#CBD4E4" stroke-dasharray="4 6"/>
+          <path d="M94 190 L816 190" stroke="#CBD4E4" stroke-dasharray="4 6"/>
+          <path d="M90 352 L820 352" marker-end="url(#s2bAr)"/>
+          <path d="M78 340 L78 40" marker-end="url(#s2bAr)"/>
+          <circle cx="200" cy="300" r="6" fill="#0A4DBF" stroke="#0A4DBF"/>
+          <circle cx="300" cy="262" r="6" fill="#0A4DBF" stroke="#0A4DBF"/>
+          <circle cx="170" cy="226" r="6" fill="#0A4DBF" stroke="#0A4DBF"/>
+          <circle cx="560" cy="296" r="6" fill="#B8CBEF" stroke="#0A2E73"/>
+          <circle cx="660" cy="250" r="6" fill="#B8CBEF" stroke="#0A2E73"/>
+          <circle cx="520" cy="84" r="6" fill="#B8480C" stroke="#B8480C"/>
+          <circle cx="620" cy="126" r="6" fill="#B8480C" stroke="#B8480C"/>
+          <circle cx="690" cy="160" r="6" fill="#B8480C" stroke="#B8480C"/>
+          <circle cx="220" cy="120" r="6" fill="#B8480C" stroke="#B8480C"/>
+        </g>
+
+        <text class="s2bB" x="104" y="62">HUMAN: REGULATED</text>
+        <text class="s2bB" x="806" y="62" text-anchor="end">HUMAN: MONEY AT RISK</text>
+        <text class="s2bC" x="104" y="330">AUTOMATE</text>
+        <text class="s2bC" x="806" y="330" text-anchor="end">ASSIST: NEEDS ACCOUNT</text>
+
+        <text class="s2bL" x="210" y="304">Exchange rate</text>
+        <text class="s2bL" x="310" y="266">Top-up limits</text>
+        <text class="s2bL" x="180" y="230">Why verify identity</text>
+        <text class="s2bL" x="570" y="300">Card arrival</text>
+        <text class="s2bL" x="670" y="254">Pending transfer</text>
+        <text class="s2bL" x="530" y="88">Lost or stolen card</text>
+        <text class="s2bL" x="630" y="130">Charged twice</text>
+        <text class="s2bL" x="700" y="164">Unable to verify ID</text>
+        <text class="s2bL" x="230" y="124">Verify source of funds</text>
+
+        <text class="s2bA" x="455" y="374" text-anchor="middle">answerable from the help centre  →  needs the customer's account</text>
+        <text class="s2bA" x="40" y="330" transform="rotate(-90 40 330)">harm if the answer is wrong  →</text>
+        <text class="s2bN" x="90" y="402">Constructed Quayside tiers. The shaded band is everything a bot should hand over, however common it is.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - "why verify identity" and "unable to verify ID" are neighbours in wording and opposite corners in risk</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Three tests for every intent, in this order<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <ol>
+          <li><strong>Risk first.</strong> If a wrong answer can lose the customer money, expose their identity, or touch a regulated process (disputes, complaints, closing an account, source of funds), the route is human. Volume does not change this.</li>
+          <li><strong>Answerability second.</strong> If answering needs the customer's own account (where is <em>my</em> card, why is <em>my</em> transfer pending), the bot cannot answer from the help centre. The route is assist, unless the bot is genuinely connected to that data and you have tested it.</li>
+          <li><strong>Volume last.</strong> Among what survives the first two tests, automate the busiest first, because that is where the savings are.</li>
+        </ol>
+        <p>Applied to Quayside's 77 intents this gives 36 automate, 29 assist and 12 human. In the balanced test sample, 46.8 percent of messages belong to an automate intent. That is the ceiling on safe coverage before the classifier makes a single mistake.</p>
+        <div class="callout example">
+          <span class="ex-pill">Real world</span>
+          <p>Brynjolfsson, Li and Raymond's study of AI assistance for 5,000-plus support agents reports that "the gains from AI adoption are largest for moderately rare problems, where human agents have less baseline experience but the system still has adequate training data" (QJE 2025 abstract). Rare intents are poor automation candidates and good assist candidates: the person still answers, with help. Session 3 builds on it.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>When a message carries two intents<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Real messages often do. "Transactions on my card look really weird. I've been charged twice for a couple things this week! Please check this and return the double charged ones." (a Banking77 test message) is labelled <em>transaction charged twice</em>, but "look really weird" is the start of a fraud report. A single-label classifier returns one intent. The safe rule is that the riskiest plausible reading sets the route: if any reading is human, the message goes to a person.</p>
+        <p>The playground cannot show this, because every Banking77 message carries exactly one label. Say so when you present it.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PART 3 ============ -->
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers reading the confusion</span>
+      <h2>An average accuracy hides where the mistakes land</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">The playground's classifier matches 481 of 616 messages to the right intent. That one number says nothing about which 135 it got wrong, and for triage that is the only thing that matters: a mistake between two harmless intents costs a repeat contact, a mistake into an automate intent can cost a customer their money.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Five triage maps on 616 real messages. Automate nothing: 0 percent coverage, 0 risky messages. Automate everything: 100 percent, 96 risky. Automate the busiest 20 intents: 24.5 percent, 37 risky. Risk-first map: 48.1 percent, 4 risky. Risk-first with a 0.40 confidence gate: 33.9 percent, 2 risky.">
+        <defs>
+          <filter id="s2cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="41" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+        </defs>
+        <style>
+          .s2cL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s2cA { font: 700 11px Inter, sans-serif; fill: #0A4DBF; }
+          .s2cB { font: 800 11px Inter, sans-serif; fill: #B8480C; }
+          .s2cV { font: 800 12px Inter, sans-serif; fill: #0A2E73; }
+          .s2cR { font: 800 12px Inter, sans-serif; fill: #B8480C; }
+          .s2cN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s2cA" x="260" y="44">COVERAGE · % OF MESSAGES THE BOT ANSWERS</text>
+        <text class="s2cB" x="590" y="44">RISKY MESSAGES KEPT FROM A PERSON</text>
+
+        <g filter="url(#s2cSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M260 64 L260 274" stroke="#CBD4E4"/>
+          <path d="M590 64 L590 274" stroke="#CBD4E4"/>
+          <rect x="260" y="112" width="240" height="24" rx="4" fill="#0A4DBF"/>
+          <rect x="260" y="158" width="59" height="24" rx="4" fill="#0A4DBF"/>
+          <rect x="260" y="204" width="115" height="24" rx="4" fill="#0A4DBF"/>
+          <rect x="260" y="250" width="81" height="24" rx="4" fill="#0A4DBF"/>
+          <rect x="590" y="112" width="230" height="24" rx="4" fill="#B8480C"/>
+          <rect x="590" y="158" width="89" height="24" rx="4" fill="#B8480C"/>
+          <rect x="590" y="204" width="10" height="24" rx="3" fill="#B8480C"/>
+          <rect x="590" y="250" width="5" height="24" rx="2" fill="#B8480C"/>
+        </g>
+
+        <text class="s2cL" x="240" y="82" text-anchor="end">Automate nothing</text>
+        <text class="s2cV" x="270" y="82">0%</text>
+        <text class="s2cR" x="600" y="82">0</text>
+        <text class="s2cL" x="240" y="128" text-anchor="end">Automate everything</text>
+        <text class="s2cV" x="510" y="128">100%</text>
+        <text class="s2cR" x="830" y="128">96</text>
+        <text class="s2cL" x="240" y="174" text-anchor="end">The busiest 20 intents</text>
+        <text class="s2cV" x="329" y="174">24.5%</text>
+        <text class="s2cR" x="689" y="174">37</text>
+        <text class="s2cL" x="240" y="220" text-anchor="end">Risk-first map</text>
+        <text class="s2cV" x="385" y="220">48.1%</text>
+        <text class="s2cR" x="610" y="220">4</text>
+        <text class="s2cL" x="240" y="266" text-anchor="end">Risk-first + gate 0.40</text>
+        <text class="s2cV" x="351" y="266">33.9%</text>
+        <text class="s2cR" x="605" y="266">2</text>
+
+        <text class="s2cN" x="30" y="312">The busiest 20 covers half as much as the risk-first map and keeps nine times as many risky messages from a person.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - computed by the playground below; run each row yourself</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>The busiest-intents plan fails with a correct classifier<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Rank Banking77's intents by how many training examples each has (a stand-in for volume) and the top 20 include five that Quayside routes to a person: card payment not recognised, cash withdrawal not recognised, direct debit payment not recognised, transaction charged twice, and wrong amount of cash received. Disputes are among the most common things bank customers write about.</p>
+        <p>Automate those 20 and the bot answers 37 risky messages. Read them in the playground: most are classified <strong>correctly</strong>. "There is a card payment I do not recognise." is matched to <em>card payment not recognised</em> with a score of 0.645. The classifier did its job. The map sent a fraud report to a help article.</p>
+        <div class="callout example">
+          <span class="ex-pill">Real world</span>
+          <p>Gartner predicted in March 2025 that "By 2029, agentic AI will autonomously resolve 80% of common customer service issues without human intervention". It is a prediction, not a finding, and the word doing the work is "common". In a bank's inbox, common and safe are different lists.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>The confusions, read as pairs<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The most frequent confusions in the 616 are near-synonyms: <em>top up reverted</em> read as <em>top up failed</em> (3 times), <em>declined cash withdrawal</em> read as <em>declined transfer</em> or <em>pending cash withdrawal</em> (2 each), <em>get disposable virtual card</em> read as <em>getting virtual card</em> (2). Per queue, Fraud and loss is matched right 48 of 56 times and Transfers 61 of 88.</p>
+        <p>Pairs like these are why the map should be drawn on groups of intents that share a route, not on single intents. A confusion inside one route costs a slightly wrong answer. A confusion that crosses from human into automate costs the customer.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ DEMO ============ -->
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>The triage playground: 616 real messages</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">When this page loaded, your browser trained a classifier on 1,848 real Banking77 messages and ran it on 616 more. Nothing is simulated: every count below is computed from real text. What is constructed is Quayside's risk tier per intent, and the playground labels that.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="How the playground routes one message. The real message whats your exchange rate is split into words, each word weighted by how rare it is, compared with the average of 24 training messages for each of 77 intents, and matched to exchange rate with a score of 0.450. That clears a 0.40 gate and exchange rate is an automate intent, so the bot answers, but the true label was exchange charge.">
+        <defs>
+          <filter id="s2dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="43" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s2dHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#0A4DBF" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s2dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#0D1B33" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s2dH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s2dL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s2dS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s2dB { font: 800 11px Inter, sans-serif; fill: #B8480C; }
+          .s2dV { font: 800 16px Inter, sans-serif; fill: #0A2E73; }
+          .s2dW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s2dN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s2dH" x="30" y="26">HOW ONE MESSAGE GETS ROUTED, STEP BY STEP</text>
+
+        <g filter="url(#s2dSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="60" width="150" height="80" rx="10" transform="rotate(-1 105 100)" fill="#FFFFFF"/>
+          <rect x="210" y="60" width="150" height="80" rx="8" transform="rotate(0.6 285 100)" fill="#EDF2FC"/>
+          <rect x="390" y="52" width="140" height="30" rx="4" transform="rotate(-1 460 67)" fill="url(#s2dHc)"/>
+          <rect x="390" y="96" width="140" height="50" rx="6" transform="rotate(-0.5 460 121)" fill="#FFFFFF"/>
+          <rect x="566" y="60" width="130" height="80" rx="8" transform="rotate(0.5 631 100)" fill="#EDF2FC"/>
+          <rect x="728" y="60" width="126" height="80" rx="10" transform="rotate(-0.8 791 100)" fill="#0A4DBF"/>
+          <path d="M182 100 L204 100" marker-end="url(#s2dAr)"/>
+          <path d="M362 100 L384 108" marker-end="url(#s2dAr)"/>
+          <path d="M532 116 L560 104" marker-end="url(#s2dAr)"/>
+          <path d="M698 100 L722 100" marker-end="url(#s2dAr)"/>
+          <rect x="566" y="184" width="288" height="60" rx="8" transform="rotate(0.3 710 214)" fill="#FDF0E6"/>
+          <path d="M791 142 L791 178" marker-end="url(#s2dAr)"/>
+        </g>
+
+        <text class="s2dS" x="44" y="80">the real message</text>
+        <text class="s2dL" x="44" y="104">"whats your</text>
+        <text class="s2dL" x="44" y="122">exchange rate"</text>
+        <text class="s2dS" x="224" y="80">words, weighted</text>
+        <text class="s2dL" x="224" y="102">exchange, rate: high</text>
+        <text class="s2dL" x="224" y="122">whats, your: low</text>
+        <text class="s2dS" x="404" y="118">77 intent averages</text>
+        <text class="s2dL" x="404" y="136">best: exchange rate</text>
+        <text class="s2dS" x="580" y="80">score, then gate</text>
+        <text class="s2dV" x="580" y="106">0.450</text>
+        <text class="s2dL" x="580" y="126">clears 0.40</text>
+        <text class="s2dW" x="742" y="94">Tag: automate</text>
+        <text class="s2dW" x="742" y="114">bot answers</text>
+        <text class="s2dB" x="580" y="206">TRUE LABEL: EXCHANGE CHARGE</text>
+        <text class="s2dL" x="580" y="228">they asked about a fee, got a rate</text>
+        <text class="s2dS" x="30" y="186">words never seen in training</text>
+        <text class="s2dS" x="30" y="202">are simply ignored</text>
+
+        <text class="s2dN" x="30" y="282">A confident wrong answer passes any gate. That is the job of session 4's hand-off, not of a better threshold.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - a real row from the playground: right topic, wrong question, routed with confidence</figcaption>
+    </figure>
+
+    <div id="acs-triage"></div>
+
+    <div class="steps">
+      <div class="step"><p><strong>Read the classifier line first.</strong> 481 of 616 messages matched to the right intent, 78.1 percent. Keep that number in mind as the thing that does NOT change while you change the map: every preset below runs on the same predictions.</p></div>
+      <div class="step"><p><strong>Click "Automate everything".</strong> Coverage 100 percent, 135 bot answers to the wrong intent (21.9 percent of them), and 96 risky messages kept from a person. This is a bot with no triage at all.</p></div>
+      <div class="step"><p><strong>Click "Automate the busiest 20".</strong> Coverage drops to 24.5 percent, and the risky count is still 37. Open "Read the messages the bot would have answered wrongly", then open the intent list and find the five human-tier intents sitting in the busiest 20.</p></div>
+      <div class="step"><p><strong>Click "Risk-first map".</strong> Quayside's constructed tiers: coverage 48.1 percent, 4 risky, and 62 wrong-intent answers (20.9 percent of bot answers). More coverage than the busiest 20 and a fraction of the risk, because the map was drawn on risk before volume.</p></div>
+      <div class="step"><p><strong>Click "Risk-first + confidence gate".</strong> The bot answers only when its score is at least 0.40. Coverage 33.9 percent, wrong-intent answers fall to 29 (13.9 percent), and 88 safe messages now reach a person. Drag the slider: at 0.30 coverage is 42.9 percent with 17.4 percent wrong, at 0.50 it is 17.9 percent with 12.7 percent wrong. There is no free setting.</p>
+        <div class="prompt-box good"><span class="label">★ The two risky messages the gate cannot stop</span>
+"Why can't I verify my identity?"     scored 0.68 as: why verify identity
+"It is impossible to verify my identity"   scored 0.68 as: why verify identity
+True label for both: unable to verify identity (human)</div></div>
+      <div class="step"><p><strong>Break it.</strong> Press "Break it: shuffle the training labels". The classifier now matches 3 of 616, and the gate passes almost nothing. If the bench could not get worse, it would not be measuring anything; this proves the numbers above come from what the classifier learned. Restore the labels.</p></div>
+      <div class="step"><p><strong>Write section 2 of the plan.</strong> Change any tag you disagree with first; the counts update live.</p>
+        <div class="prompt-box good"><span class="label">★ Plan section 2 · the automate / assist / human map</span>
+Tests, in order: risk (money, identity, regulated: human), then
+answerability (needs the account: assist), then volume.
+Automate: 36 informational intents, only when the classifier's
+score is at least 0.40.
+Assist: 29 intents that need the customer's account.
+Human: 12 intents (fraud, disputes, identity, closing an account).
+Measured on 616 real messages: 33.9% answered by the bot,
+29 to the wrong intent, 2 risky. Those 2 are the hand-off's job.</div></div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>What the playground deliberately leaves out.</strong> Real message volumes, conversations longer than one message, and anything a customer writes after the first answer. Those are where the next three sessions live: the assist draft, the hand-off trigger, and the QA read.</p>
+    </div>
+  </section>
+
+  <!-- ============ HOMEWORK ============ -->
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before session 3</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>List your own top 20 contact reasons by volume.</strong> From your ticketing tool's tags, or from a sample of 100 tickets if the tags cannot be trusted.</li>
+      <li><strong>Run the three tests on each one</strong>: risk, then answerability, then volume. Mark every reason that is in your top 20 by volume and fails the risk test.</li>
+      <li><strong>Find your two near-synonyms.</strong> Two contact reasons whose wording is almost the same and whose risk is opposite, like "why verify identity" and "unable to verify identity". Write the words that tell them apart.</li>
+      <li><strong>Decide your gate.</strong> If you had to choose between 42.9 percent coverage with 17.4 percent wrong answers and 33.9 percent with 13.9 percent, which would you sign, and what would you need from session 4 to sign the other?</li>
+    </ol>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 2 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="1">
+      <p class="qtext">1 · Automating Banking77's 20 busiest intents keeps 37 risky messages from a person, even though most of them are classified correctly. What went wrong?</p>
+      <button class="qopt" type="button">A · The classifier is not accurate enough on high-volume intents</button>
+      <button class="qopt" type="button">B · The map: five dispute and fraud intents are among the busiest, and volume was ranked before risk</button>
+      <button class="qopt" type="button">C · The confidence gate was set too high</button>
+      <p class="qwhy">Most of the 37 are correct classifications of risky intents. The fix is the order of the tests: risk first, then answerability, then volume.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">2 · Raising the confidence gate on the risk-first map from 0 to 0.40 changes coverage from 48.1 to 33.9 percent. What does it buy?</p>
+      <button class="qopt" type="button">A · Nothing measurable, because accuracy stays at 481 of 616</button>
+      <button class="qopt" type="button">B · It removes every risky message from the bot</button>
+      <button class="qopt" type="button">C · Wrong-intent bot answers fall from 62 to 29 and risky ones from 4 to 2, while 88 safe messages now go to a person</button>
+      <p class="qwhy">Accuracy does not move, because the predictions are the same; the gate changes which predictions the bot acts on. Two risky messages are still scored 0.68, which no sensible gate catches.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">3 · Shuffling the training labels drops the classifier to 3 of 616. Why is that button on the page?</p>
+      <button class="qopt" type="button">A · It proves the counts come from what the classifier learned: a bench that cannot get worse is not measuring anything</button>
+      <button class="qopt" type="button">B · It shows what happens when a vendor's model is out of date</button>
+      <button class="qopt" type="button">C · It simulates a bad day for the classifier, to set expectations</button>
+      <p class="qwhy">Break the thing the result depends on and the result should collapse. It does, to about one in 77 by chance, which is what a classifier that learned nothing would score.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <!-- ============ OFFICIAL COVERAGE ============ -->
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Banking77 (PolyAI), CC BY 4.0</span><span class="note">Casanueva et al. 2020, arXiv:2003.04807; 13,083 queries, 77 intents. Modified: 1,848 train and 616 test rows sampled with a fixed seed</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">The classifier and every count</span><span class="note">Computed in your browser and matched by a Python reference run, value by value</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Generative AI at Work, on rare problems</span><span class="note">QJE 2025 abstract: gains largest for moderately rare problems</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Gartner prediction, March 2025</span><span class="note">80 percent of common issues by 2029, taught as a prediction</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Quayside's risk tiers</span><span class="note">Constructed: 36 automate, 29 assist, 12 human. A teaching judgement, not part of the dataset</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Routing between models</span><span class="note">Linked, not retaught: LLM Inference session 2</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <!-- ============ CHEAT SHEET ============ -->
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 2 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>Three readings</b><span>Intent from the classifier; urgency and risk from your policy, per intent.</span></div>
+      <div class="cheat-item"><b>Test order</b><span>Risk, then answerability, then volume. Never volume first.</span></div>
+      <div class="cheat-item"><b>Busiest 20</b><span>24.5% coverage, 37 risky. The classifier was right; the map was wrong.</span></div>
+      <div class="cheat-item"><b>Risk-first + gate 0.40</b><span>33.9% coverage, 29 wrong answers, 2 risky, 88 safe messages to a person.</span></div>
+      <div class="cheat-item"><b>Confident and wrong</b><span>"Why can't I verify my identity?" scores 0.68 as a harmless intent. No gate catches that.</span></div>
+      <div class="cheat-item"><b>The break button</b><span>Shuffled labels: 3 of 616. A bench that cannot get worse measures nothing.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>Twenty-nine intents on Quayside's map say "assist": a person answers with AI help. Session 3 is the strongest evidence anyone has on what that help is worth, who it helps most, who it barely helps at all, and the rules that keep the draft from becoming the answer.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 2 of 6 · learn-ai-customer-support-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="01-deflection-is-not-resolution.html">← Prev: Deflection is not resolution</a> &nbsp;·&nbsp; <a href="03-draft-with-the-agent.html">Next: Draft with the agent, not instead of them →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/app.js?v=2"></script>
+<script src="../assets/acs-sample.js?v=1"></script>
+<script src="../assets/acs-live.js?v=2"></script>
+</body>
+</html>

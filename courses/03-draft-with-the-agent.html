@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 3 of 6. Agent assist versus a customer-facing bot, the strongest evidence on what AI drafts are worth to support agents (both versions of Generative AI at Work), grounding the draft on the help centre, and Quayside's assist rules.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="Draft with the agent, not instead of them - learn ai customer support with phoebe">
+<meta property="og:description" content="Session 3 of 6. Who presses send is the whole difference between a bot and an assistant. The evidence says the draft helps newer agents most, and the agent still sends.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/courses/03-draft-with-the-agent.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Draft with the agent, not instead of them - learn ai customer support with phoebe">
+<meta name="twitter:description" content="Session 3 of 6. 14 percent on average, 34 percent for novices in one version of the paper. Plan on the average, and let the agent press send.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 3 · Draft with the agent, not instead of them - learn ai customer support with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=1">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-ai-customer-support-with-phoebe</a> / Session 3 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn AI + Customer Support with Phoebe · Session 3 of 6</div>
+    <h1>Draft with the agent, <span class="accent">not instead of them</span></h1>
+    <p class="sub">Twenty-nine of Quayside's intents need a person who can see the customer's account. Tonight is about what AI can do for that person: write the first draft, show where it came from, and step back. You read the strongest study anyone has on agent assist, in both of its published versions, and you write the rules that keep the draft from quietly becoming the answer.</p>
+    <div class="chip-row">
+      <span class="chip level">🟡 Builds on sessions 1 and 2</span>
+      <span class="chip audience">Support and CX leads deciding where AI helps people</span>
+      <span class="chip audience">Team leads who coach the agents using it</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:3">0-3 · Welcome</span>
+      <span class="a2" style="flex:17">3-20 · Assist vs bot, and the evidence</span>
+      <span class="a3" style="flex:22">20-42 · Build-along: Quayside's assist rules</span>
+      <span class="a4" style="flex:3">42-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ INTRO ============ -->
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>From the map to the middle tier</h2>
+    </div>
+    <p class="lede">Session 1 fixed what "resolved" means. Session 2 sorted Quayside's 77 intents into automate, assist and human. Tonight adds <strong>section 3 of the plan: the assist rules</strong>, for the middle tier, where a person answers and the AI writes beside them.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">Constructed Quayside example = invented, labelled every time</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> One sentence that separates an assistant from a bot. The real numbers from <em>Generative AI at Work</em>, with the version each one comes from, so nobody can quote the flattering one at you. A grounding rule that makes a draft checkable in seconds. And section 3 of Quayside's plan, followed by the halfway scorecard on everything you have written so far.</p>
+    </div>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>Why the middle tier gets its own session<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Most of the AI conversation in support is about the bot: what it can answer alone. The assist tier is quieter and, on the evidence, better understood. It is where the customer needs something only their account can answer (where is <em>my</em> card, why is <em>my</em> transfer pending), so a person must answer, and the question becomes how much faster and better that person gets with a draft in front of them.</p>
+        <p>It is also where a support plan most often goes wrong without anyone noticing, because an assistant that is trusted too much is a bot with an extra click. Tonight's rules are about keeping that click meaningful.</p>
+        <div class="callout example">
+          <span class="ex-pill">Real world</span>
+          <p>Session 2 quoted one line from the study this session is built on: "the gains from AI adoption are largest for moderately rare problems" (Brynjolfsson, Li and Raymond, QJE 2025 abstract). Rare problems are poor automation candidates and good assist candidates. That is the bridge from the map to tonight.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PART 1 ============ -->
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers agent assist vs a customer-facing bot</span>
+      <h2>Who presses send is the whole difference</h2>
+      <span class="tag concept">6 min live</span>
+    </div>
+    <p class="lede">The same model, the same help centre and the same answer can be a bot or an assistant. What decides it is one thing: whether a person stands between the answer and the customer. In a bot loop, nobody does. In an assist loop, the agent reads, edits or rejects, and only then sends.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two loops side by side. Bot loop: the customer writes, the bot answers, and the answer goes straight back to the customer with no person in between, as with Klarna's 2024 customer-facing assistant. Assist loop: the customer writes to the agent, the AI draft sits beside the agent, the agent edits or rejects it and the agent sends the reply, as in the Brynjolfsson study where agents could ignore the suggestions.">
+        <defs>
+          <filter id="s3aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="37" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <marker id="s3aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#0D1B33" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s3aH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s3aL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s3aS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s3aB { font: 800 11px Inter, sans-serif; fill: #B8480C; }
+          .s3aW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s3aN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s3aH" x="60" y="36">BOT LOOP: THE BOT SENDS</text>
+        <text class="s3aH" x="480" y="36">ASSIST LOOP: THE AGENT SENDS</text>
+
+        <g filter="url(#s3aSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M440 30 L440 290" stroke="#CBD4E4" stroke-dasharray="4 6"/>
+          <rect x="60" y="90" width="130" height="56" rx="8" transform="rotate(-1.2 125 118)" fill="#FFFFFF"/>
+          <rect x="260" y="90" width="130" height="56" rx="8" transform="rotate(1 325 118)" fill="#EDF2FC"/>
+          <path d="M194 108 L254 108" marker-end="url(#s3aAr)"/>
+          <path d="M325 152 C325 200 125 200 125 154" marker-end="url(#s3aAr)"/>
+          <rect x="480" y="90" width="120" height="56" rx="8" transform="rotate(-1 540 118)" fill="#FFFFFF"/>
+          <rect x="700" y="90" width="130" height="56" rx="8" transform="rotate(1.2 765 118)" fill="#B8480C"/>
+          <rect x="700" y="190" width="130" height="50" rx="8" transform="rotate(-1.5 765 215)" fill="#EDF2FC"/>
+          <path d="M604 108 L694 108" marker-end="url(#s3aAr)"/>
+          <path d="M765 186 L765 154" stroke-dasharray="5 5" marker-end="url(#s3aAr)"/>
+          <path d="M765 86 C765 52 540 52 540 84" marker-end="url(#s3aAr)"/>
+        </g>
+
+        <text class="s3aL" x="74" y="114">Customer</text>
+        <text class="s3aS" x="74" y="132">writes</text>
+        <text class="s3aL" x="274" y="114">Bot</text>
+        <text class="s3aS" x="274" y="132">answers</text>
+        <text class="s3aS" x="225" y="222" text-anchor="middle">the answer reaches the customer as written</text>
+        <text class="s3aB" x="60" y="258">NO PERSON BETWEEN ANSWER AND CUSTOMER</text>
+        <text class="s3aS" x="60" y="276">Klarna, 2024: the assistant answered customers</text>
+
+        <text class="s3aL" x="494" y="114">Customer</text>
+        <text class="s3aS" x="494" y="132">writes</text>
+        <text class="s3aW" x="714" y="114">Agent</text>
+        <text class="s3aW" x="714" y="132">edits, rejects</text>
+        <text class="s3aL" x="714" y="212">AI draft</text>
+        <text class="s3aS" x="714" y="229">beside the agent</text>
+        <text class="s3aS" x="652" y="76" text-anchor="middle">the agent sends</text>
+        <text class="s3aB" x="480" y="258">THE AGENT PRESSES SEND, EVERY TIME</text>
+        <text class="s3aS" x="480" y="276">Brynjolfsson et al.: suggestions the agent could ignore</text>
+
+        <text class="s3aN" x="30" y="312">Same model, same help centre. The only thing that changed is whose hand is on send.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - in the assist loop a person stands between every answer and the customer</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Who presses send<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Put any AI feature in a support stack through one question: <strong>when the customer reads the reply, did a person decide to send it?</strong> If yes, it is assist. If no, it is a bot, whatever the vendor calls it, and everything in session 1 about containment and resolution applies to it.</p>
+        <table class="clean">
+          <tr><th></th><th>Customer-facing bot</th><th>Agent assist</th></tr>
+          <tr><td><strong>Who reads the AI's text first</strong></td><td>The customer</td><td>The agent</td></tr>
+          <tr><td><strong>Who sends</strong></td><td>The bot</td><td>The agent, always</td></tr>
+          <tr><td><strong>A wrong answer costs</strong></td><td>A customer acting on it</td><td>Seconds of the agent's time, if the agent checks</td></tr>
+          <tr><td><strong>What you measure</strong></td><td>True resolution and false containment (session 1)</td><td>Resolutions per hour, quality, and how often the draft is edited</td></tr>
+        </table>
+        <div class="callout tip">
+          <p><strong>The quiet failure.</strong> An assistant becomes a bot the day agents stop reading the draft. Nothing in the software changes; the edit rate falls to zero and nobody notices. That is why the build-along logs every edit.</p>
+        </div>
+        <div class="callout example">
+          <span class="ex-pill">Real world</span>
+          <p>Klarna's February 2024 announcement described an assistant that handled 2.3 million conversations, "two-thirds of Klarna's customer service chats", in its first month. It answered customers directly: a bot loop. The study in Part 2 is the opposite design: a tool that gave suggestions to agents, who could use them or ignore them. Both get called "AI in customer service". They are different decisions with different evidence, and session 5 takes the Klarna numbers apart.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Which of Quayside's intents are assist<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Session 2's map put <strong>29 of Quayside's 77 intents</strong> in the assist tier (constructed tiers, applied to real Banking77 messages). The test that put them there was answerability: answering needs the customer's own account, so the help centre alone cannot do it. Card arrival and a pending transfer are the typical shape.</p>
+        <p>Two consequences follow for tonight's rules. First, the draft can only be as good as what the assistant is allowed to see: a draft written from the help centre alone will be generic for exactly these intents, and the agent supplies the account-specific part. Second, the 12 human-tier intents (fraud, disputes, identity, closing an account) are not assist intents. A draft there is a temptation, not a help, and Quayside's rules give them none.</p>
+        <div class="callout tip">
+          <p><strong>Check your own map.</strong> For each assist intent, write what the agent looks up in the account before replying. If the answer is "nothing", the intent may belong in automate. If it is "something the customer could be harmed by", it may belong in human.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PART 2 ============ -->
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers the strongest evidence on assist</span>
+      <h2>What one study of 5,000 agents found, in two versions</h2>
+      <span class="tag concept">6 min live</span>
+    </div>
+    <p class="lede">Erik Brynjolfsson, Danielle Li and Lindsey Raymond studied a generative AI assistant rolled out to customer support agents at a Fortune 500 software firm. The paper exists as a 2023 NBER working paper and a 2025 journal article, and the two abstracts do not say quite the same thing. The difference matters most for the group you might assume benefits most.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 345" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Productivity gain in issues resolved per hour with the AI assistant, by agent group, in two versions of Generative AI at Work. NBER working paper 2023, 5,179 agents: 14 percent on average, 34 percent for novice and low-skilled agents, minimal impact for experienced and highly skilled agents. QJE 2025, 5,172 agents: 15 percent on average; less experienced agents improve speed and quality, about 30 percent in the arXiv v2 text; the most skilled see small gains in speed and small declines in quality. The 34 percent appears in the NBER version only.">
+        <defs>
+          <filter id="s3bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="41" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s3bHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#0A4DBF" stroke-width="1" opacity=".5"/></pattern>
+        </defs>
+        <style>
+          .s3bH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s3bL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s3bS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s3bB { font: 800 11px Inter, sans-serif; fill: #B8480C; }
+          .s3bV { font: 800 16px Inter, sans-serif; fill: #0A2E73; }
+          .s3bA { font: 700 11px Inter, sans-serif; fill: #0A4DBF; }
+          .s3bN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s3bH" x="30" y="26">GAIN IN ISSUES RESOLVED PER HOUR, BY AGENT GROUP</text>
+
+        <text class="s3bA" x="30" y="58">NBER WORKING PAPER, 2023 · 5,179 AGENTS</text>
+        <text class="s3bA" x="30" y="196">QJE, 2025 · 5,172 AGENTS</text>
+
+        <g filter="url(#s3bSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="260" y="70" width="168" height="24" rx="4" transform="rotate(-0.4 344 82)" fill="#3E6FCE"/>
+          <rect x="260" y="102" width="408" height="24" rx="4" transform="rotate(0.3 464 114)" fill="#B8480C"/>
+          <rect x="260" y="208" width="180" height="24" rx="4" transform="rotate(0.4 350 220)" fill="#3E6FCE"/>
+          <rect x="260" y="240" width="360" height="24" rx="4" transform="rotate(-0.3 440 252)" fill="url(#s3bHc)"/>
+        </g>
+
+        <text class="s3bL" x="250" y="87" text-anchor="end">All agents, average</text>
+        <text class="s3bV" x="440" y="89">14%</text>
+        <text class="s3bL" x="250" y="119" text-anchor="end">Novice and low-skilled</text>
+        <text class="s3bV" x="680" y="121">34%</text>
+        <text class="s3bB" x="730" y="119">NBER ONLY</text>
+        <text class="s3bL" x="250" y="151" text-anchor="end">Most experienced, skilled</text>
+        <text class="s3bS" x="260" y="151">"minimal impact" - no figure given</text>
+
+        <text class="s3bL" x="250" y="225" text-anchor="end">All agents, average</text>
+        <text class="s3bV" x="452" y="227">15%</text>
+        <text class="s3bL" x="250" y="257" text-anchor="end">Less experienced</text>
+        <text class="s3bV" x="632" y="259">~30%</text>
+        <text class="s3bS" x="700" y="257">arXiv v2 text, approximate</text>
+        <text class="s3bL" x="250" y="289" text-anchor="end">Most experienced, skilled</text>
+        <text class="s3bS" x="260" y="289">"small gains in speed and small declines in quality"</text>
+
+        <text class="s3bN" x="30" y="326">The 34% is in the NBER abstract only. Cite the version you quote, and plan on the average.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the headline gains are real; the most skilled agents went from "minimal impact" to a small quality decline</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>The two versions, side by side<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <table class="clean">
+          <tr><th></th><th>NBER Working Paper 31161 (2023)</th><th>Quarterly Journal of Economics (2025)</th></tr>
+          <tr><td><strong>Agents</strong></td><td>5,179</td><td>5,172</td></tr>
+          <tr><td><strong>Average gain</strong></td><td>14% in issues resolved per hour</td><td>15%, "with substantial heterogeneity across workers"</td></tr>
+          <tr><td><strong>Newer, lower-skilled agents</strong></td><td>"a 34% improvement for novice and low-skilled workers"</td><td>"improve both the speed and quality of their output"</td></tr>
+          <tr><td><strong>Most experienced, most skilled</strong></td><td>"minimal impact"</td><td>"small gains in speed and small declines in quality"</td></tr>
+        </table>
+        <p>The QJE abstract adds two findings the agents' managers will care about: "customers are more polite and less likely to ask to speak to a manager", and "the gains from AI adoption are largest for moderately rare problems". The working paper's abstract reports that assistance "improves customer sentiment, increases employee retention, and may lead to worker learning", and the body of the arXiv version says attrition fell, "driven by the retention of newer workers".</p>
+        <div class="callout tip">
+          <p><strong>Cite the version you quote.</strong> "34 percent" is true of the NBER abstract. The journal version's text puts the low-skill gain at about 30 percent, and changes the story for the most skilled from no effect to a small quality decline. Anyone who quotes 34 percent as "the AI productivity gain" has picked the largest subgroup number from the earlier version.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>What the study can and cannot tell Quayside<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>What it was.</strong> Agent assist: the tool suggested responses and the human sent. It was not a customer-facing bot, so it says nothing about containment or false containment. The setting was "a Fortune 500 software firm that provides business process software", and most agents "work from offices located in the Philippines" (arXiv v2).</p>
+        <p><strong>What transfers.</strong> The shape: the largest gains go to the people with the least experience, on the problems they have seen least. The direction for the most skilled: little speed to gain, and some quality to lose, at least in the journal version.</p>
+        <p><strong>What does not transfer automatically.</strong> The size. Quayside is a constructed bank, with different products, a different help centre and a different mix of tenure. One study in one firm is the strongest evidence available, not a forecast for yours. That is why the build-along caps the planning number rather than copying the headline.</p>
+        <div class="callout example">
+          <span class="ex-pill">Real world</span>
+          <p>The heterogeneity is the finding. The same tool, in the same firm, made the least experienced agents faster and better, and made the most skilled agents slightly worse on quality. A rollout plan that treats every agent the same is ignoring the main result.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PART 3 ============ -->
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers grounding the draft</span>
+      <h2>A draft you can check in seconds shows where it came from</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">The agent's check is only fast if the draft carries its evidence. A grounded draft quotes the help-centre article it used and links to it, so the agent compares two lines instead of searching for one. When no article is found, the honest draft is no draft: the agent answers alone.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 322" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A grounded draft, step by step: the customer's message; a help-centre article is retrieved; the draft quotes the article and links to it; the agent opens the link and checks the quoted line against the article; the agent sends. If no article is found, there is no draft and the agent answers alone.">
+        <defs>
+          <filter id="s3cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="43" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <marker id="s3cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#0D1B33" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s3cH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s3cL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s3cS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s3cW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s3cN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s3cH" x="30" y="24">A GROUNDED DRAFT: THE SOURCE TRAVELS WITH IT</text>
+
+        <g filter="url(#s3cSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="80" width="140" height="70" rx="8" transform="rotate(-1.5 100 115)" fill="#FFFFFF"/>
+          <rect x="202" y="80" width="140" height="70" rx="8" transform="rotate(1 272 115)" fill="#EDF2FC"/>
+          <rect x="374" y="80" width="140" height="70" rx="8" transform="rotate(-0.8 444 115)" fill="#FFFFFF"/>
+          <rect x="546" y="80" width="140" height="70" rx="8" transform="rotate(1.2 616 115)" fill="#B8480C"/>
+          <rect x="718" y="80" width="140" height="70" rx="8" transform="rotate(-1 788 115)" fill="#0A4DBF"/>
+          <path d="M173 115 L196 115" marker-end="url(#s3cAr)"/>
+          <path d="M345 115 L368 115" marker-end="url(#s3cAr)"/>
+          <path d="M517 115 L540 115" marker-end="url(#s3cAr)"/>
+          <path d="M689 115 L712 115" marker-end="url(#s3cAr)"/>
+          <path d="M600 76 C600 36 290 36 290 74" stroke-dasharray="5 5" marker-end="url(#s3cAr)"/>
+          <path d="M272 154 L272 206" marker-end="url(#s3cAr)"/>
+          <rect x="202" y="212" width="200" height="50" rx="8" transform="rotate(0.8 302 237)" fill="#FFFFFF"/>
+        </g>
+
+        <text class="s3cL" x="44" y="108">Message</text>
+        <text class="s3cS" x="44" y="128">where is my card?</text>
+        <text class="s3cL" x="216" y="108">Article retrieved</text>
+        <text class="s3cS" x="216" y="128">card delivery</text>
+        <text class="s3cL" x="388" y="108">Draft quotes it</text>
+        <text class="s3cS" x="388" y="128">with the link</text>
+        <text class="s3cW" x="560" y="108">Agent checks</text>
+        <text class="s3cW" x="560" y="128">quote vs article</text>
+        <text class="s3cW" x="732" y="108">Agent sends</text>
+        <text class="s3cW" x="732" y="128">or rewrites</text>
+        <text class="s3cS" x="445" y="68" text-anchor="middle">opens the link to check</text>
+
+        <text class="s3cS" x="282" y="186">nothing found</text>
+        <text class="s3cL" x="216" y="234">No article, no draft</text>
+        <text class="s3cS" x="216" y="252">the agent answers alone</text>
+
+        <text class="s3cL" x="460" y="220">What the agent compares</text>
+        <text class="s3cS" x="460" y="238">the quoted line in the draft</text>
+        <text class="s3cS" x="460" y="256">against the same line in the article</text>
+
+        <text class="s3cN" x="30" y="300">A draft that shows its source turns the check into seconds of reading, not minutes of searching.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the link back to the article is what makes a fast human check possible</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>The citation rule, and the empty case<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Two rules make a draft checkable. <strong>Every factual sentence in the draft quotes or points to the help-centre article it came from, with a link.</strong> And <strong>if no article supports an answer, the assistant shows no draft</strong> and says so: "No article found. Answer yourself."</p>
+        <p>The second rule is the one teams skip. A fluent draft with no source is the most dangerous thing an assistant can produce, because it reads exactly like a grounded one and the agent has nothing to check it against. An empty panel costs the agent a few seconds of writing. A confident invented fee costs a customer.</p>
+        <p>How retrieval and citation are actually built (chunking, ranking, citation formats, refusing when nothing matches) is taught in full in <a href="https://phoebefu6.github.io/learn-rag-with-phoebe/courses/b7-grounding-citations.html">RAG: grounding and citations ↗</a> and, for an internal helpdesk, <a href="https://phoebefu6.github.io/learn-ship-internal-ai-assistant-with-phoebe/courses/b4-grounded-answers.html">Ship an Internal AI Assistant: grounded answers ↗</a>. Tonight decides only what the support plan requires of the draft.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Why the check has to be fast<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The study in Part 2 measured issues resolved per hour. Every second the agent spends verifying a draft comes out of that gain. If checking an ungrounded draft means opening the help centre and searching, a careful agent loses the time the draft saved, and a hurried agent stops checking. Grounding is what lets the agent be both fast and careful.</p>
+        <div class="callout example">
+          <span class="ex-pill">Real world</span>
+          <p>Zendesk's "Verified" resolution tier, introduced in May 2026, has a large language model that "evaluates the text of the conversation to confirm that the customer's request was satisfactorily resolved". That is a machine reading the conversation after the fact. A grounded draft puts a person's read before the fact, and the citation is what makes that read take seconds.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ DEMO ============ -->
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>Quayside's assist rules, written down</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">Six decisions, each one a line in section 3 of Quayside's plan. Write them as you go; the last step assembles them. Then score the plan so far on the halfway scorecard. No tool needed.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Quayside's assist loop: an AI draft with its source, for assist intents only, goes to the agent, who edits or rejects it; the agent sends, never an auto-send. Every edit is logged as draft versus sent and flows to session 5's QA sample as an edit rate per intent. Newer agents see a draft on every chat, the most experienced on demand. The planning cap is plus 14 percent resolutions per hour.">
+        <defs>
+          <filter id="s3dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="47" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <marker id="s3dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#0D1B33" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s3dH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s3dL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s3dS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s3dV { font: 800 20px Inter, sans-serif; fill: #0A2E73; }
+          .s3dW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s3dN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s3dH" x="40" y="40">QUAYSIDE'S ASSIST LOOP, WITH THE EDIT KEPT FOR QA</text>
+
+        <g filter="url(#s3dSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="40" y="80" width="170" height="60" rx="8" transform="rotate(-1 125 110)" fill="#EDF2FC"/>
+          <rect x="270" y="80" width="170" height="60" rx="8" transform="rotate(0.8 355 110)" fill="#FFFFFF"/>
+          <rect x="500" y="80" width="170" height="60" rx="8" transform="rotate(-0.8 585 110)" fill="#0A4DBF"/>
+          <path d="M213 110 L264 110" marker-end="url(#s3dAr)"/>
+          <path d="M443 110 L494 110" marker-end="url(#s3dAr)"/>
+          <rect x="270" y="210" width="170" height="60" rx="8" transform="rotate(1.2 355 240)" fill="#B8480C"/>
+          <path d="M355 144 L355 204" marker-end="url(#s3dAr)"/>
+          <path d="M540 146 L450 206" marker-end="url(#s3dAr)"/>
+          <rect x="660" y="212" width="190" height="60" rx="8" transform="rotate(-1 755 242)" fill="#FFFFFF"/>
+          <path d="M444 248 L654 248" marker-end="url(#s3dAr)"/>
+        </g>
+
+        <text class="s3dL" x="54" y="106">AI draft + source</text>
+        <text class="s3dS" x="54" y="124">assist intents only</text>
+        <text class="s3dL" x="284" y="106">Agent reviews</text>
+        <text class="s3dS" x="284" y="124">edits or rejects</text>
+        <text class="s3dW" x="514" y="106">Agent sends</text>
+        <text class="s3dW" x="514" y="124">never auto-send</text>
+
+        <text class="s3dW" x="284" y="236">Edit logged</text>
+        <text class="s3dW" x="284" y="254">draft vs sent</text>
+        <text class="s3dS" x="480" y="238">every edit, kept</text>
+        <text class="s3dL" x="674" y="238">Session 5 QA sample</text>
+        <text class="s3dS" x="674" y="256">edit rate per intent</text>
+
+        <text class="s3dL" x="700" y="92">Planning cap</text>
+        <text class="s3dV" x="700" y="120">+14%</text>
+        <text class="s3dS" x="700" y="138">resolutions per hour</text>
+        <text class="s3dS" x="700" y="156">the average, not the 34%</text>
+
+        <text class="s3dL" x="40" y="200">Who sees drafts</text>
+        <text class="s3dS" x="40" y="220">newer agents: every chat</text>
+        <text class="s3dS" x="40" y="238">most experienced: on demand</text>
+
+        <text class="s3dN" x="40" y="310">Constructed Quayside example. The edit log is the cheapest QA data you will ever collect.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the agent always sends, and the difference between draft and reply becomes session 5's evidence</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step"><p><strong>Decide which intents get drafts.</strong> Only the assist tier from session 2's map: 29 intents that need the customer's account. Automate-tier intents go to the bot; human-tier intents get no draft at all, because a ready-made reply on a fraud or dispute case is exactly the shortcut a tired agent should not be offered.</p>
+        <div class="prompt-box good"><span class="label">Scope</span>
+Drafts appear on the 29 assist intents only.
+No drafts on human-tier intents (fraud, disputes, identity,
+closing an account).</div></div>
+      <div class="step"><p><strong>Write the citation rule.</strong> Every factual sentence in a draft links the help-centre article it came from. No article, no draft: the panel says so and the agent writes the reply.</p>
+        <div class="prompt-box good"><span class="label">Grounding</span>
+Every draft quotes and links the help-centre article it used.
+If no article supports an answer, show no draft:
+"No article found. Answer yourself."</div></div>
+      <div class="step"><p><strong>Write who may send.</strong> The agent, always. No auto-send on a timer, no "send if confidence is high", no exception for quiet hours. The moment an assistant can send by itself it is a bot, and it belongs back in session 1's metric and session 2's automate tier.</p>
+        <div class="prompt-box good"><span class="label">Who sends</span>
+The agent sends every reply. The assistant never sends,
+on any intent, at any hour, at any confidence.</div></div>
+      <div class="step"><p><strong>Decide who sees drafts, and when.</strong> Newer agents get a suggestion on every chat, because that is where the study found both speed and quality improve. The most experienced agents get drafts on demand, because the journal version reports "small declines in quality" for them. The study did not test an on-demand setting; this is Quayside's reading of its heterogeneity, and session 5's QA sample is where you would see if it is wrong.</p>
+        <div class="prompt-box good"><span class="label">Who sees drafts</span>
+Newer agents: a draft on every assist chat.
+Most experienced agents: drafts on demand (one click).
+Review this split after the first QA read in session 5.</div></div>
+      <div class="step"><p><strong>Log every edit.</strong> Store the draft and the reply that was actually sent, side by side, for every assist chat. The edit rate per intent tells you where the help centre is thin; an edit rate falling to zero tells you agents have stopped reading.</p>
+        <div class="prompt-box good"><span class="label">Edit log</span>
+For every assist chat, keep: intent, draft, sent reply,
+edited yes / no, rejected yes / no, agent tenure band.
+Feeds session 5's QA sample.</div></div>
+      <div class="step"><p><strong>Cap the planning number.</strong> Plan on <strong>+14 percent resolutions per hour</strong>: the NBER average, and the lower of the two published averages. Not 34 percent, which is one subgroup in one version. Session 6's simulator caps the assist lever at exactly this number. On that bench, assist alone takes Quayside from 24 agents to 23, and cost per resolved contact from $7.71 to $7.39 (session 6 bench, constructed inputs).</p>
+        <div class="prompt-box good"><span class="label">★ Plan section 3 · the assist rules</span>
+Scope: drafts on the 29 assist intents only; none on human-tier intents.
+Grounding: every draft quotes and links its help-centre article.
+No article, no draft: "No article found. Answer yourself."
+Who sends: the agent, always. Never auto-send.
+Who sees drafts: newer agents on every chat; most experienced
+on demand (QJE 2025 reports small quality declines for the most skilled).
+Edit log: draft vs sent reply, every assist chat, for the QA sample.
+Planning assumption: at most +14% resolutions per hour
+(NBER 2023 average). Never the 34% novice figure.
+Owner: the support lead. Constructed Quayside example.</div></div>
+    </div>
+
+    <div class="wipe" data-title="One assist chat: the draft and what the agent sent" data-label-a="Raw draft" data-label-b="What the agent sent" data-foot="Drag to compare. Constructed Quayside example. The edit between them is exactly what the log keeps.">
+      <div class="wipe-a">
+        <p><strong>Draft, quoting "Card delivery":</strong> Cards usually arrive within a few working days. If yours has not arrived, you can order a replacement in the app.</p>
+        <p>Grounded and polite, and wrong for this customer: it answers the general question, not theirs.</p>
+      </div>
+      <div class="wipe-b">
+        <p><strong>Sent by the agent:</strong> Your card came back to us undelivered, so a replacement would have gone to the same address. I have updated the address you confirmed and reissued the card.</p>
+        <p>The agent checked the account, kept the tone, replaced the advice. One logged edit.</p>
+      </div>
+    </div>
+
+    <div class="tick" data-stages="Message|Draft|Check|Edit|Send" data-title="One assist chat, five moves">
+      <p class="tick-note" data-stage="0"><b>Message.</b> "My new card still hasn't come." An assist intent: the answer is in the account.</p>
+      <p class="tick-note" data-stage="1"><b>Draft.</b> The assistant quotes the card delivery article and links it.</p>
+      <p class="tick-note" data-stage="2"><b>Check.</b> The agent opens the link and the account. The article is right; the account says the card came back.</p>
+      <p class="tick-note" data-stage="3"><b>Edit.</b> The agent rewrites the advice. The log keeps draft and reply side by side.</p>
+      <p class="tick-note" data-stage="4"><b>Send.</b> The agent presses send. The assistant never does.</p>
+    </div>
+
+    <div class="scorecard" data-title="Halfway scorecard: Quayside's plan so far">
+      <div class="sc-row"><div class="sc-q">The metric definition is written down with a window
+        <em>A named number of days for a repeat contact, not "we track repeats". Half marks if the window exists but nobody owns it.</em></div></div>
+      <div class="sc-row"><div class="sc-q">Containment and true resolution are reported side by side
+        <em>Both numbers in the same weekly line. Half marks if true resolution is computed but lives in a different report.</em></div></div>
+      <div class="sc-row"><div class="sc-q">The map was drawn risk before volume
+        <em>Money, identity and regulated intents went to a person first; volume came last. Half marks if you applied it to most intents but not all.</em></div></div>
+      <div class="sc-row"><div class="sc-q">A gate was chosen with its trade-off written down
+        <em>A confidence threshold plus what it costs: the coverage you gave up and the wrong answers you still accept. Half marks for a threshold with no stated cost.</em></div></div>
+      <div class="sc-row"><div class="sc-q">The assist rules say the agent always sends
+        <em>No auto-send, on any intent, at any confidence. Half marks if there is one exception you can defend in writing.</em></div></div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Halfway, not final.</strong> This scorecard is forgiving on purpose: it checks that sections 1 to 3 exist and say the right thing. Session 6 has a strict one for the whole plan, priced. Anything you score 0 tonight is the cheapest thing to fix before then.</p>
+    </div>
+  </section>
+
+  <!-- ============ HOMEWORK ============ -->
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before session 4</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Run the send test on your own stack.</strong> List every AI feature your team uses or is evaluating. For each, answer: when the customer reads the reply, did a person decide to send it? Mark each one bot or assist.</li>
+      <li><strong>Find the version.</strong> Find one slide, article or vendor deck that quotes a productivity number for AI in support. Trace it to its source and write down which version and which subgroup it comes from.</li>
+      <li><strong>Read ten drafts against their sources.</strong> If you have an assistant, pick ten drafts and check each against the article it cites. Count how many had no source, and how many cited an article that did not say what the draft said.</li>
+      <li><strong>Start the edit log.</strong> Even by hand for one day: for ten assist chats, copy the draft and the reply that was sent. Mark which were edited. Bring the count to session 5.</li>
+    </ol>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 3 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="1">
+      <p class="qtext">1 · According to Generative AI at Work, what happened to the most experienced and highest-skilled agents with the AI assistant?</p>
+      <button class="qopt" type="button">A · They gained 34 percent, the same as novices, in both versions</button>
+      <button class="qopt" type="button">B · The 2023 NBER version says "minimal impact"; the 2025 QJE version says small gains in speed and small declines in quality</button>
+      <button class="qopt" type="button">C · Both versions say their quality improved more than their speed</button>
+      <p class="qwhy">34 percent is the NBER figure for novice and low-skilled agents only. For the most skilled, the working paper reports "minimal impact" and the journal version reports "small gains in speed and small declines in quality". Cite the version you quote.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">2 · Why do Quayside's assist rules say the agent always presses send, with no auto-send even at high confidence?</p>
+      <button class="qopt" type="button">A · Because regulators forbid AI from sending messages to customers</button>
+      <button class="qopt" type="button">B · Because agents are faster at sending than the software is</button>
+      <button class="qopt" type="button">C · Because an assistant that can send by itself is a bot, with no person between the answer and the customer, and must be measured and gated as one</button>
+      <p class="qwhy">Who presses send is the whole difference between assist and a bot. The evidence in Part 2 is about agents who could ignore suggestions; an auto-send removes the agent's check and the evidence with it.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">3 · Quayside's plan caps the assist lever at +14 percent resolutions per hour. Why not 34 percent?</p>
+      <button class="qopt" type="button">A · 34 percent is one subgroup (novice and low-skilled agents) in one version of the paper; 14 percent is the average across all agents</button>
+      <button class="qopt" type="button">B · 34 percent was retracted, so it cannot be used</button>
+      <button class="qopt" type="button">C · 14 percent is what Quayside measured in its own pilot</button>
+      <p class="qwhy">Quayside has a mix of agents, so the planning number is the average, and the lower of the two published averages (14 in NBER 2023, 15 in QJE 2025). Nothing was retracted, and Quayside is constructed: it has no pilot to measure.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <!-- ============ OFFICIAL COVERAGE ============ -->
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Generative AI at Work, both versions</span><span class="note">NBER WP 31161 (2023): 5,179 agents, 14% average, 34% novice and low-skilled, "minimal impact" for the most skilled. QJE 140(2), 2025: 5,172 agents, 15% average, small quality declines for the most skilled, moderately rare problems, politer customers. arXiv v2 for setting and attrition</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Grounding and citations</span><span class="note">Linked, not retaught: RAG b7 and Ship an Internal AI Assistant b4 own how retrieval and citation are built. Here, only what the support plan requires of a draft</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Klarna's 2024 assistant</span><span class="note">Used only as the customer-facing contrast to agent assist. The full disagreement over its numbers is in session 5</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <!-- ============ CHEAT SHEET ============ -->
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 3 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>The send test</b><span>Did a person decide to send it? Yes: assist. No: a bot, measured like one.</span></div>
+      <div class="cheat-item"><b>The average</b><span>14% (NBER 2023), 15% (QJE 2025), in issues resolved per hour.</span></div>
+      <div class="cheat-item"><b>The subgroup</b><span>34% for novices is NBER only. The QJE-era text says about 30%.</span></div>
+      <div class="cheat-item"><b>The most skilled</b><span>"Minimal impact" (NBER) became small speed gains, small quality declines (QJE).</span></div>
+      <div class="cheat-item"><b>Grounded draft</b><span>Quotes and links its article. No article, no draft: the agent answers alone.</span></div>
+      <div class="cheat-item"><b>The planning cap</b><span>+14% resolutions per hour. Log every edit for the QA sample.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>Session 2 left two real messages that no gate catches: "Why can't I verify my identity?" and "It is impossible to verify my identity", both answered with confidence as a harmless explainer. Session 4 builds the trigger that hands them to a person before the bot loops, and reads the tribunal decision that held an airline to what its chatbot told a grieving customer.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 3 of 6 · learn-ai-customer-support-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="02-triage-before-anyone-answers.html">← Prev: Triage: read the message before anyone answers</a> &nbsp;·&nbsp; <a href="04-the-hand-off.html">Next: The hand-off: let go before the loop →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/app.js?v=2"></script>
+</body>
+</html>

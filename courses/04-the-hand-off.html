@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 4 of 6. Hand-off triggers checked on every customer turn, the context packet that stops a customer explaining twice, and Moffatt v. Air Canada: why a company answers for what its chatbot says.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="The hand-off: let go before the loop - learn ai customer support with phoebe">
+<meta property="og:description" content="Session 4 of 6. Five triggers, one packet, and the tribunal that held a company to its chatbot's answer.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/courses/04-the-hand-off.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The hand-off: let go before the loop - learn ai customer support with phoebe">
+<meta name="twitter:description" content="Session 4 of 6. A bot that keeps answering after it has failed is the most expensive moment in the conversation.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 4 · The hand-off: let go before the loop - learn ai customer support with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=1">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-ai-customer-support-with-phoebe</a> / Session 4 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn AI + Customer Support with Phoebe · Session 4 of 6</div>
+    <h1>The hand-off: let go <span class="accent">before the loop</span></h1>
+    <p class="sub">Every bot fails some customers. The difference between a plan that works and one that ends up in front of a tribunal is what happens next: whether something notices, whether a person takes over, and whether that person already knows what the customer said. Tonight you write the rules for that moment, section 4 of Quayside's support operating plan.</p>
+    <div class="chip-row">
+      <span class="chip level">🟠 Builds on sessions 1 to 3</span>
+      <span class="chip audience">Support and CX leads deciding when the bot lets go</span>
+      <span class="chip audience">Team leads whose agents pick up the hand-off</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:3">0-3 · Welcome</span>
+      <span class="a2" style="flex:17">3-20 · Triggers, the packet, the loop</span>
+      <span class="a3" style="flex:22">20-42 · Build-along: Quayside's hand-off rules</span>
+      <span class="a4" style="flex:3">42-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ INTRO ============ -->
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>From the map to the moment of letting go</h2>
+    </div>
+    <p class="lede">Session 2's map decided which messages the bot may touch. Session 3 decided how people answer with AI help. Tonight covers the seam between them: <strong>section 4 of the plan, the hand-off rules</strong>. When the bot stops, what travels with the customer, and what the bot is allowed to say on the way out.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">Constructed Quayside example = invented, labelled every time</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> Five hand-off triggers and which turn each one is checked on. The fields of a context packet that means no customer explains twice. The one tribunal decision every support lead should be able to quote. And Quayside's hand-off rules on one page, with an owner.</p>
+    </div>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>Two messages the map could not stop<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>In session 2's playground, two real customer messages, "Why can't I verify my identity?" and "It is impossible to verify my identity", were both scored 0.68 as <em>why verify identity</em>, a harmless explainer. Their true label is <em>unable to verify identity</em>: a customer locked out of their own account. No sensible confidence gate catches a 0.68.</p>
+        <p>So the bot answers. It explains why banks verify identity. The customer writes back. <strong>That second turn is where the hand-off earns its place</strong>: the classifier was confidently wrong once, and the conversation itself is now the evidence.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PART 1 ============ -->
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers hand-off triggers</span>
+      <h2>Five triggers, checked on every turn</h2>
+      <span class="tag concept">7 min live</span>
+    </div>
+    <p class="lede">A hand-off rule that is only checked on the first message is a routing rule. A real one runs on every customer turn, because most of what goes wrong in a bot conversation is only visible after the bot has answered once.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Each customer turn passes five checks in order: human-tier intent, negative sentiment or alarm words, repeated failure, regulated topic, explicit ask for a person. Any yes hands the chat to a person with the context packet. If none fires, the bot answers and the next customer turn goes through all five checks again. The identity message scored 0.68 passes every check on turn one and is caught by repeated failure on turn two.">
+        <defs>
+          <filter id="s4aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="41" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <marker id="s4aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#0D1B33" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s4aH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s4aL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s4aS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s4aW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s4aA { font: 700 11px Inter, sans-serif; fill: #0A4DBF; }
+          .s4aN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s4aH" x="30" y="24">EVERY CUSTOMER TURN FALLS THROUGH FIVE CHECKS</text>
+
+        <g filter="url(#s4aSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="200" y="40" width="320" height="36" rx="8" transform="rotate(-0.4 360 58)" fill="#EDF2FC"/>
+          <path d="M360 78 L360 96" marker-end="url(#s4aAr)"/>
+          <rect x="200" y="100" width="320" height="40" rx="6" transform="rotate(0.4 360 120)" fill="#FFFFFF"/>
+          <path d="M360 142 L360 156" marker-end="url(#s4aAr)"/>
+          <rect x="200" y="160" width="320" height="40" rx="6" transform="rotate(-0.3 360 180)" fill="#FFFFFF"/>
+          <path d="M360 202 L360 216" marker-end="url(#s4aAr)"/>
+          <rect x="200" y="220" width="320" height="40" rx="6" transform="rotate(0.3 360 240)" fill="#FFFFFF"/>
+          <path d="M360 262 L360 276" marker-end="url(#s4aAr)"/>
+          <rect x="200" y="280" width="320" height="40" rx="6" transform="rotate(-0.4 360 300)" fill="#FFFFFF"/>
+          <path d="M360 322 L360 336" marker-end="url(#s4aAr)"/>
+          <rect x="200" y="340" width="320" height="40" rx="6" transform="rotate(0.3 360 360)" fill="#FFFFFF"/>
+          <path d="M360 382 L360 396" marker-end="url(#s4aAr)"/>
+          <rect x="200" y="400" width="320" height="40" rx="8" transform="rotate(-0.3 360 420)" fill="#EDF2FC"/>
+          <path d="M198 420 L130 420 L130 58 L194 58" marker-end="url(#s4aAr)"/>
+          <path d="M524 120 C580 120 580 205 634 205" marker-end="url(#s4aAr)"/>
+          <path d="M524 180 C580 180 580 222 634 222" marker-end="url(#s4aAr)"/>
+          <path d="M524 240 L634 240" marker-end="url(#s4aAr)"/>
+          <path d="M524 300 C580 300 580 258 634 258" marker-end="url(#s4aAr)"/>
+          <path d="M524 360 C580 360 580 275 634 275" marker-end="url(#s4aAr)"/>
+          <rect x="640" y="190" width="210" height="100" rx="10" transform="rotate(0.6 745 240)" fill="#B8480C"/>
+        </g>
+
+        <text class="s4aL" x="214" y="63">A customer turn arrives</text>
+        <text class="s4aS" x="400" y="63">first or tenth</text>
+
+        <text class="s4aL" x="214" y="117">1 · Human-tier intent (session 2's map)</text>
+        <text class="s4aS" x="214" y="133">checked from the first message</text>
+        <text class="s4aL" x="214" y="177">2 · Negative sentiment or alarm words</text>
+        <text class="s4aS" x="214" y="193">"freeze", "stolen", "complaint"</text>
+        <text class="s4aL" x="214" y="237">3 · Repeated failure</text>
+        <text class="s4aS" x="214" y="253">two failed turns, or a rephrased question</text>
+        <text class="s4aL" x="214" y="297">4 · Regulated topic</text>
+        <text class="s4aS" x="214" y="313">dispute, complaint, closure, source of funds</text>
+        <text class="s4aL" x="214" y="357">5 · Asks for a person</text>
+        <text class="s4aS" x="214" y="373">any wording, any turn</text>
+        <text class="s4aL" x="214" y="425">None fired: the bot answers</text>
+
+        <text class="s4aS" x="370" y="156">no</text>
+        <text class="s4aS" x="370" y="216">no</text>
+        <text class="s4aS" x="370" y="276">no</text>
+        <text class="s4aS" x="370" y="336">no</text>
+        <text class="s4aS" x="370" y="396">no</text>
+        <text class="s4aA" x="530" y="110">yes</text>
+        <text class="s4aA" x="640" y="180">any yes</text>
+
+        <text class="s4aW" x="656" y="228">Hand off to a person</text>
+        <text class="s4aW" x="656" y="248">the packet travels</text>
+        <text class="s4aW" x="656" y="266">with the chat</text>
+
+        <text class="s4aS" x="120" y="236" text-anchor="end">next turn,</text>
+        <text class="s4aS" x="120" y="252" text-anchor="end">check again</text>
+
+        <text class="s4aN" x="30" y="468">Session 2's identity message, scored 0.68 as harmless, passes all five checks on turn one.</text>
+        <text class="s4aN" x="30" y="490">When the customer writes again about the same thing, check 3 fires. That is why the loop matters.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the checks run on every turn, so a confident mistake on turn one is caught on turn two</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>The five triggers, and what each one catches<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <table class="clean">
+          <tr><th>Trigger</th><th>What it catches</th><th>When it is checked</th></tr>
+          <tr><td><strong>Human-tier intent</strong></td><td>Anything session 2's map put in the human column: lost or stolen cards, charges twice, identity lockouts</td><td>From the first message</td></tr>
+          <tr><td><strong>Negative sentiment or alarm words</strong></td><td>"freeze", "stolen", "complaint", and a customer whose tone has turned</td><td>Every turn</td></tr>
+          <tr><td><strong>Repeated failure</strong></td><td>The bot has failed twice, or the customer rephrases the same question</td><td>Every turn after the first answer</td></tr>
+          <tr><td><strong>Regulated topic</strong></td><td>Disputes, complaints, closing an account, source of funds, a vulnerable customer</td><td>Every turn</td></tr>
+          <tr><td><strong>Explicit ask for a person</strong></td><td>"Can I talk to someone", in any wording</td><td>Every turn, no argument</td></tr>
+        </table>
+        <p>Notice which trigger catches the identity message. Not the intent: the classifier got that wrong with confidence. Not a threshold: 0.68 passes any sensible gate. <strong>Repeated failure</strong> catches it, because a customer who asks the same thing twice has told you the first answer did not work. The classifier can be wrong; the conversation is evidence.</p>
+        <div class="callout example">
+          <span class="ex-pill">Real world</span>
+          <p>When Gartner surveyed 5,728 customers in December 2023, it reported in July 2024 that the top concern about AI in service was that "it will get more difficult reaching a person". The explicit-ask trigger is the direct answer to that fear, which is why it fires every time, with no attempt to talk the customer out of it.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>A promise of a person is now part of the pitch<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>In May 2025, Klarna's chief executive Sebastian Siemiatkowski reportedly said that "there will be always a human if you want". This is reported: CX Dive quoted it from Bloomberg, whose page could not be read. The same report quotes him saying that cost had been "a too predominant evaluation factor" and that the result was "lower quality".</p>
+        <p>Whatever you make of the Klarna story, and session 5 lays out both sides, the sentence is a product promise. A promise of a person is only true if a trigger fires on the ask and an agent is there to take it. That makes trigger 5 a staffing decision as much as a bot setting, and session 6 prices it.</p>
+        <p>Banking-specific rules on complaints handling and timelines vary by jurisdiction and are not taught here. They appear only as the reason "regulated topic" is a trigger category: when a topic has a legal clock, a person starts it.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PART 2 ============ -->
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers the context packet</span>
+      <h2>The context packet: nobody asks twice</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">A hand-off that drops the conversation is a second contact wearing a disguise. The customer starts again, more annoyed, with a person who knows less than the bot did. The context packet is what travels with the chat so the agent's first line can be "I can see what happened", not "How can I help?".</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="When the bot fails on turn two and a trigger fires, a context packet travels from the bot to the agent's desk. Its seven fields: the customer's own words verbatim, the intent and its score, what the bot already said, what was already verified, account references, sentiment on the last turn, and why the hand-off fired.">
+        <defs>
+          <filter id="s4bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="43" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <marker id="s4bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#0D1B33" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s4bH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s4bL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s4bS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s4bB { font: 800 11px Inter, sans-serif; fill: #B8480C; }
+          .s4bN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s4bH" x="30" y="24">WHAT TRAVELS WITH THE HAND-OFF</text>
+
+        <g filter="url(#s4bSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="120" width="170" height="70" rx="10" transform="rotate(-1 115 155)" fill="#EDF2FC"/>
+          <path d="M204 155 L254 155" marker-end="url(#s4bAr)"/>
+          <rect x="260" y="50" width="330" height="240" rx="8" transform="rotate(0.6 425 170)" fill="#FDF0E6" stroke="#B8480C"/>
+          <rect x="278" y="94" width="10" height="10" rx="2"/>
+          <rect x="278" y="118" width="10" height="10" rx="2"/>
+          <rect x="278" y="142" width="10" height="10" rx="2"/>
+          <rect x="278" y="166" width="10" height="10" rx="2"/>
+          <rect x="278" y="190" width="10" height="10" rx="2"/>
+          <rect x="278" y="214" width="10" height="10" rx="2"/>
+          <rect x="278" y="238" width="10" height="10" rx="2"/>
+          <path d="M594 155 L674 155" marker-end="url(#s4bAr)"/>
+          <rect x="680" y="110" width="170" height="90" rx="10" transform="rotate(1 765 155)" fill="#FFFFFF"/>
+        </g>
+
+        <text class="s4bH" x="46" y="146">The bot</text>
+        <text class="s4bS" x="46" y="164">fails on turn 2</text>
+        <text class="s4bS" x="46" y="180">a trigger fires</text>
+
+        <text class="s4bB" x="278" y="78">THE CONTEXT PACKET</text>
+        <text class="s4bL" x="298" y="104">The customer's own words, verbatim</text>
+        <text class="s4bL" x="298" y="128">The intent and its score</text>
+        <text class="s4bL" x="298" y="152">What the bot already said</text>
+        <text class="s4bL" x="298" y="176">What was already verified</text>
+        <text class="s4bL" x="298" y="200">Account references</text>
+        <text class="s4bL" x="298" y="224">Sentiment on the last turn</text>
+        <text class="s4bL" x="298" y="248">Why the hand-off fired</text>
+        <text class="s4bS" x="278" y="276">travels with the chat, not after it</text>
+
+        <text class="s4bH" x="696" y="138">The agent's desk</text>
+        <text class="s4bS" x="696" y="158">reads the packet</text>
+        <text class="s4bS" x="696" y="176">opens without re-asking</text>
+
+        <text class="s4bN" x="30" y="314">Constructed Quayside example: session 6's bench assumes a repeat contact costs 1.5x the handle time.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - seven fields, and every one of them is a question the agent no longer has to ask</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Seven fields, and the question each one saves<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <table class="clean">
+          <tr><th>Field</th><th>The question it saves</th></tr>
+          <tr><td><strong>The customer's own words</strong></td><td>"Can you describe the problem?" Verbatim, not the bot's summary, because the summary is where a misreading hides</td></tr>
+          <tr><td><strong>Intent and its score</strong></td><td>"What is this about?" And it shows the agent when the bot was confidently wrong, like the 0.68</td></tr>
+          <tr><td><strong>What the bot already said</strong></td><td>Stops the agent repeating the answer that already failed</td></tr>
+          <tr><td><strong>What was already verified</strong></td><td>"Can you confirm your details?" asked a second time</td></tr>
+          <tr><td><strong>Account references</strong></td><td>"Which card, which payment?"</td></tr>
+          <tr><td><strong>Sentiment</strong></td><td>Tells the agent to open with an apology rather than a greeting</td></tr>
+          <tr><td><strong>Why the hand-off fired</strong></td><td>Tells the agent what kind of conversation this is before reading a word of it</td></tr>
+        </table>
+        <p>In Quayside's constructed model, the one session 6 prices, a customer who has to explain again takes <strong>1.5 times the normal handle time</strong>. That multiplier is constructed and labelled so on the bench; your numbers will differ. The direction is not in doubt: every field the packet carries is a minute the agent does not spend rebuilding the conversation.</p>
+        <div class="callout example">
+          <span class="ex-pill">Real world</span>
+          <p>The strongest field evidence on AI in support is about agents, not bots. Brynjolfsson, Li and Raymond's study, published in the Quarterly Journal of Economics in 2025, reports that with AI assistance "customers are more polite and less likely to ask to speak to a manager". An agent who starts with the full context is in the same position: the escalation the customer was building towards never needs to happen.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>The phone version: warm transfer and consent<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Everything here is written for chat and email, which carry Quayside's volume. On a call, the hand-off becomes a warm transfer, and the packet has to reach the agent before the customer does, along with the consent notices a recorded or AI-handled call needs. That is taught in full in <a href="https://phoebefu6.github.io/learn-voice-multimodal-agents-with-phoebe/courses/06-shipping-the-call.html">Voice and Multimodal Agents, session 6 ↗</a>. The packet fields above carry over unchanged.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PART 3 ============ -->
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers the bot loop and who is liable</span>
+      <h2>The loop, and who answers for what the bot says</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">A bot that keeps answering after it has failed is the most expensive moment in the conversation. Each extra turn makes the customer angrier, makes the eventual agent's job longer, and gives the bot one more chance to say something the company will be held to. One tribunal has already said so in writing.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Moffatt v. Air Canada. The chatbot told the customer to submit for a reduced bereavement rate within 90 days of the date the ticket was issued; the policy page said something different. The customer relied on the chatbot. Air Canada argued the chatbot was a separate legal entity, which the tribunal called a remarkable submission. The tribunal held the company to the chatbot's answer for negligent misrepresentation and awarded 812.02 dollars of the 880 claimed.">
+        <defs>
+          <filter id="s4cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="47" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <marker id="s4cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#0D1B33" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s4cH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s4cL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s4cS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s4cB { font: 800 11px Inter, sans-serif; fill: #B8480C; }
+          .s4cV { font: 800 16px Inter, sans-serif; fill: #0A2E73; }
+          .s4cW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s4cN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s4cH" x="30" y="24">WHY THE COMPANY OWNS THE BOT'S ANSWER</text>
+
+        <g filter="url(#s4cSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="40" y="50" width="260" height="70" rx="8" transform="rotate(-0.6 170 85)" fill="#FFFFFF"/>
+          <path d="M170 124 L162 132 L178 140 L162 148 L178 156 L170 166" stroke="#B8480C"/>
+          <rect x="40" y="170" width="260" height="90" rx="8" transform="rotate(0.6 170 215)" fill="#B8480C"/>
+          <path d="M304 215 L374 215" marker-end="url(#s4cAr)"/>
+          <rect x="380" y="180" width="150" height="60" rx="10" transform="rotate(-1.2 455 210)" fill="#EDF2FC"/>
+          <path d="M534 210 L584 210" marker-end="url(#s4cAr)"/>
+          <rect x="590" y="40" width="270" height="80" rx="8" transform="rotate(0.5 725 80)" fill="#FFFFFF"/>
+          <path d="M725 124 L725 150" marker-end="url(#s4cAr)"/>
+          <rect x="590" y="156" width="270" height="120" rx="10" transform="rotate(-0.4 725 216)" fill="#EDF2FC"/>
+        </g>
+
+        <text class="s4cL" x="56" y="78">The policy page</text>
+        <text class="s4cS" x="56" y="98">said something different</text>
+        <text class="s4cB" x="190" y="150">THEY DISAGREE</text>
+
+        <text class="s4cW" x="56" y="196">The chatbot said</text>
+        <text class="s4cW" x="56" y="218">"within 90 days of the date</text>
+        <text class="s4cW" x="56" y="240">your ticket was issued"</text>
+
+        <text class="s4cL" x="396" y="206">The customer</text>
+        <text class="s4cS" x="396" y="224">relies on the bot</text>
+
+        <text class="s4cL" x="606" y="64">Air Canada's defence</text>
+        <text class="s4cS" x="606" y="84">"a separate legal entity"</text>
+        <text class="s4cS" x="606" y="102">tribunal: "a remarkable submission"</text>
+
+        <text class="s4cH" x="606" y="182">The tribunal</text>
+        <text class="s4cL" x="606" y="204">holds the company to the bot</text>
+        <text class="s4cS" x="606" y="224">negligent misrepresentation</text>
+        <text class="s4cV" x="606" y="258">$812.02 awarded</text>
+
+        <text class="s4cN" x="30" y="304">Moffatt v. Air Canada, 2024 BCCRT 149: claimed $880, awarded $812.02. Small claims, British Columbia.</text>
+        <text class="s4cN" x="30" y="326">"It makes no difference whether the information comes from a static page or a chatbot."</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - when the bot and the policy page disagree and the customer relies on the bot, the company answers for the bot</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Moffatt v. Air Canada, in five facts<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The decision was issued on February 14, 2024 by British Columbia's Civil Resolution Tribunal, cited as 2024 BCCRT 149. A customer asked Air Canada's website chatbot about bereavement fares. The chatbot said:</p>
+        <div class="prompt-box bad">
+          <span class="label">The chatbot's answer, as quoted in the decision</span>
+"If you need to travel immediately or have already travelled and
+would like to submit your ticket for a reduced bereavement rate,
+kindly do so within 90 days of the date your ticket was issued"
+        </div>
+        <p>The customer relied on that answer. Air Canada argued, in the tribunal's words, that "the chatbot is a separate legal entity that is responsible for its own actions. This is a remarkable submission." The tribunal went on: "It should be obvious to Air Canada that it is responsible for all the information on its website. It makes no difference whether the information comes from a static page or a chatbot."</p>
+        <p>The finding was <strong>negligent misrepresentation</strong>: "Air Canada did not take reasonable care to ensure its chatbot was accurate." The customer claimed $880 and was awarded <strong>$812.02</strong>: $650.88 in damages, $36.14 in pre-judgment interest and $125 in tribunal fees, in Canadian dollars.</p>
+        <div class="callout example">
+          <span class="ex-pill">Real world</span>
+          <p>This is a <strong>small-claims tribunal decision in British Columbia</strong>. It is persuasive, not binding precedent anywhere else, and the amount is small. It matters anyway, because the reasoning is the one any customer, regulator or journalist will reach for first: the chatbot is the company, speaking. Read it in full at the tribunal's own site: <a href="https://decisions.civilresolutionbc.ca/crt/crtd/en/item/525448/index.do">Moffatt v. Air Canada, 2024 BCCRT 149 ↗</a>.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>What the decision means for the hand-off<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Three operating consequences follow, none of them legal advice:</p>
+        <ul>
+          <li><strong>Policy questions with money attached are a trigger, not a topic.</strong> Refunds, fees, eligibility: if a wrong answer is a promise the company may be held to, the bot hands off or quotes the policy page word for word.</li>
+          <li><strong>The bot's last message is a statement too.</strong> What the bot says while handing over must never promise an outcome on money or policy. "A colleague will look at your refund" is safe; "you will get your refund" is a commitment.</li>
+          <li><strong>The loop multiplies exposure.</strong> Every extra turn after the bot has failed is another chance to say something like the sentence above. Repeated failure is the trigger that closes the loop.</li>
+        </ul>
+        <p>Whether the bot's answers are grounded in the help centre in the first place belongs to session 3's assist rules and to <a href="https://phoebefu6.github.io/learn-rag-with-phoebe/courses/b7-grounding-citations.html">RAG: grounding and citations ↗</a>. The hand-off is the safety net under that, not a replacement for it.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ DEMO ============ -->
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>Quayside's hand-off rules</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">You now write section 4 of Quayside's plan: which triggers, at what thresholds, on which turn, what the packet carries, what the bot says on the way out, and who owns it. Every threshold below is a constructed Quayside choice. Change any of them you can defend differently.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 374" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Quayside's hand-off rules as a one-page card. Left: five triggers and when each fires; human-tier intent from the first message, the other four on any turn. Right: seven packet fields. Bottom: the never re-ask rule and what the bot says while handing over, with no promise on money or policy. Owner: the support lead.">
+        <defs>
+          <filter id="s4dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="53" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+        </defs>
+        <style>
+          .s4dH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s4dL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s4dS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s4dB { font: 800 11px Inter, sans-serif; fill: #B8480C; }
+          .s4dA { font: 700 11px Inter, sans-serif; fill: #0A4DBF; }
+          .s4dN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <g filter="url(#s4dSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="40" y="40" width="800" height="300" rx="8" transform="rotate(-0.3 440 190)" fill="#FFFFFF"/>
+          <rect x="60" y="74" width="440" height="196" rx="6" transform="rotate(0.3 280 172)" fill="#EDF2FC"/>
+          <rect x="520" y="74" width="300" height="196" rx="6" transform="rotate(-0.4 670 172)" fill="#FFFFFF"/>
+          <rect x="60" y="284" width="760" height="46" rx="6" transform="rotate(0.2 440 307)" fill="#FDF0E6"/>
+        </g>
+
+        <text class="s4dH" x="60" y="62">QUAYSIDE HAND-OFF RULES</text>
+        <text class="s4dS" x="250" y="62">plan section 4 · constructed · owner: the support lead</text>
+
+        <text class="s4dH" x="76" y="96">TRIGGER</text>
+        <text class="s4dA" x="484" y="96" text-anchor="end">FIRES ON</text>
+        <text class="s4dL" x="76" y="122">Human-tier intent (12 on the map)</text>
+        <text class="s4dS" x="484" y="122" text-anchor="end">first message</text>
+        <text class="s4dL" x="76" y="146">Alarm words or negative sentiment</text>
+        <text class="s4dS" x="484" y="146" text-anchor="end">any turn</text>
+        <text class="s4dL" x="76" y="170">Two failed turns, or a rephrase</text>
+        <text class="s4dS" x="484" y="170" text-anchor="end">any turn</text>
+        <text class="s4dL" x="76" y="194">Regulated topic</text>
+        <text class="s4dS" x="484" y="194" text-anchor="end">any turn</text>
+        <text class="s4dL" x="76" y="218">Asks for a person</text>
+        <text class="s4dS" x="484" y="218" text-anchor="end">any turn, no argument</text>
+        <text class="s4dS" x="76" y="252">thresholds are Quayside's choice, constructed</text>
+
+        <text class="s4dH" x="536" y="96">PACKET FIELDS</text>
+        <text class="s4dL" x="536" y="120">Own words, verbatim</text>
+        <text class="s4dL" x="536" y="142">Intent and score</text>
+        <text class="s4dL" x="536" y="164">What the bot said</text>
+        <text class="s4dL" x="536" y="186">Already verified</text>
+        <text class="s4dL" x="536" y="208">Account references</text>
+        <text class="s4dL" x="536" y="230">Sentiment</text>
+        <text class="s4dL" x="536" y="252">Why it fired</text>
+
+        <text class="s4dB" x="76" y="303">NEVER RE-ASK WHAT THE PACKET HOLDS</text>
+        <text class="s4dL" x="76" y="322">Bot says: "A colleague is taking over and can see this chat." No promise on money or policy.</text>
+
+        <text class="s4dN" x="40" y="362">Constructed Quayside example. Your thresholds will differ; write down why yours are what they are.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - one page: what fires, what travels, what never gets asked twice</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step"><p><strong>List the triggers with thresholds.</strong> Start from the five in Part 1 and give each one a number or a list you could hand to whoever configures the bot. "Repeated failure" is not a rule until it says how many turns.</p>
+        <div class="prompt-box good"><span class="label">★ Triggers and thresholds (constructed)</span>
+Human-tier intent: any of the 12 on session 2's map
+Alarm words: "freeze", "stolen", "complaint", "fraud"
+Repeated failure: 2 failed turns, OR the customer rephrases
+  the same question
+Regulated topic: dispute, complaint, closing an account,
+  source of funds, a customer who says they are vulnerable
+Asks for a person: any wording</div></div>
+      <div class="step"><p><strong>Mark when each one is checked.</strong> Human-tier intents fire on the first message: the map already said a person handles them. The other four are checked on every customer turn, because they only become visible as the conversation goes on. Write "every turn" next to them in so many words, or someone will build them as a first-message filter.</p></div>
+      <div class="step"><p><strong>Define the packet.</strong> Copy the seven fields. For each one, name where it comes from (the transcript, the classifier, the verification log, the account system), because a field nobody populates is a field the agent re-asks.</p></div>
+      <div class="step"><p><strong>Write the no-re-asking rule.</strong> One sentence, aimed at agents, not at the bot: the agent does not ask for anything already in the packet. If the packet is wrong or empty, that is a defect report, not a reason to start over with the customer.</p></div>
+      <div class="step"><p><strong>Write what the bot says while it hands over.</strong> Short, honest about what happens next, and never a promise about money or policy it cannot keep. After Moffatt, the hand-over message is the one sentence you should assume will be quoted back to you.</p>
+        <div class="prompt-box good"><span class="label">★ The hand-over message</span>
+"I'm passing you to a colleague now. They can see this whole
+conversation, so you won't need to repeat anything. Typical
+wait: [live estimate]."
+
+Never: "Your refund is approved", "You're eligible",
+"That fee will be waived".</div></div>
+      <div class="step"><p><strong>Name an owner.</strong> Triggers drift: someone adds an intent, someone tunes a threshold to "improve containment". One named person signs off on any change to this section, and that person is not the vendor.</p></div>
+      <div class="step"><p><strong>Preview what it is worth on session 6's bench.</strong> These are the bench's numbers, from constructed inputs; yours will differ. With the bot on "Automate the safe third", <strong>735 customers a month</strong> are falsely contained. Add a hand-off that catches 70 percent of failing chats, the "+ hand-off" rung, and that falls to <strong>221</strong>. The all-in cost per resolved contact, which counts the customers a false containment loses, moves from <strong>$6.98 to $6.61</strong>.</p></div>
+      <div class="step"><p><strong>Write section 4 of the plan.</strong></p>
+        <div class="prompt-box good"><span class="label">★ Plan section 4 · the hand-off rules</span>
+Triggers, checked on EVERY customer turn unless marked:
+  1. Human-tier intent (12 on the map): first message
+  2. Alarm words or negative sentiment
+  3. Repeated failure: 2 failed turns, or a rephrased question
+  4. Regulated topic: dispute, complaint, closure, source of
+     funds, vulnerable customer
+  5. Asks for a person: always, no argument
+Packet: own words verbatim, intent + score, what the bot said,
+  what was verified, account refs, sentiment, why it fired.
+Agents never re-ask what the packet holds.
+Bot's hand-over line: no promise on money or policy, ever.
+Bench preview (session 6, constructed): falsely contained
+  735 -&gt; 221 a month; all-in cost per resolved $6.98 -&gt; $6.61.
+Owner: the support lead.</div></div>
+    </div>
+
+    <div class="tick" data-stages="Bot fails|Trigger|Packet|Agent|Resolved" data-title="The identity message, handed off properly">
+      <p class="tick-note" data-stage="0"><b>Bot fails.</b> "Why can't I verify my identity?" is scored 0.68 as a harmless explainer. The bot explains why banks verify.</p>
+      <p class="tick-note" data-stage="1"><b>Trigger.</b> The customer writes "It is impossible to verify my identity". Same question, rephrased: repeated failure fires.</p>
+      <p class="tick-note" data-stage="2"><b>Packet.</b> Both messages verbatim, the 0.68, the bot's answer, what was verified, and "repeated failure" as the reason.</p>
+      <p class="tick-note" data-stage="3"><b>Agent.</b> Opens with "I can see the check failed twice", not "How can I help?".</p>
+      <p class="tick-note" data-stage="4"><b>Resolved.</b> One hand-off, no repeat explanation, and the customer never learns how close they came to a loop.</p>
+    </div>
+
+    <div class="hotspot" data-title="Where the packet lands on the agent's desk">
+      <div class="hs-mock">
+        <svg viewBox="0 0 880 400" role="img" aria-label="A constructed agent desk. Left: the chat transcript with two customer messages about identity verification, the bot's answer, a hand-off line naming repeated failure, and the agent's reply box. Right: the context packet with intent and score, what was verified, account reference, sentiment and trigger.">
+          <rect x="0" y="0" width="880" height="400" fill="#EDF2FC"/>
+          <rect x="0" y="0" width="880" height="40" fill="#0A2E73"/>
+          <text x="20" y="26" style="font:700 13px Inter,sans-serif;fill:#FFFFFF">Quayside agent desk · constructed</text>
+          <rect x="20" y="56" width="500" height="328" rx="8" fill="#FFFFFF" stroke="#CBD4E4"/>
+          <rect x="40" y="76" width="300" height="40" rx="10" fill="#EDF2FC" stroke="#B8CBEF"/>
+          <text x="56" y="101" style="font:600 12px Inter,sans-serif;fill:#0D1B33">Why can't I verify my identity?</text>
+          <rect x="200" y="128" width="300" height="40" rx="10" fill="#FFFFFF" stroke="#CBD4E4"/>
+          <text x="216" y="153" style="font:400 12px Inter,sans-serif;fill:#4E5A70">Bot: Here is why we verify identity...</text>
+          <rect x="40" y="180" width="320" height="40" rx="10" fill="#EDF2FC" stroke="#B8CBEF"/>
+          <text x="56" y="205" style="font:600 12px Inter,sans-serif;fill:#0D1B33">It is impossible to verify my identity</text>
+          <rect x="40" y="240" width="460" height="36" rx="6" fill="#FDF0E6" stroke="#B8480C"/>
+          <text x="56" y="263" style="font:800 12px Inter,sans-serif;fill:#B8480C">Handed over: repeated failure, turn 2</text>
+          <rect x="40" y="300" width="460" height="64" rx="8" fill="#FFFFFF" stroke="#0A4DBF"/>
+          <text x="56" y="326" style="font:400 12px Inter,sans-serif;fill:#4E5A70">I can see the check failed twice. Let me look at it</text>
+          <text x="56" y="346" style="font:400 12px Inter,sans-serif;fill:#4E5A70">with you now.</text>
+          <rect x="540" y="56" width="320" height="328" rx="8" fill="#FFFFFF" stroke="#CBD4E4"/>
+          <text x="560" y="84" style="font:800 12px Inter,sans-serif;fill:#0A2E73">CONTEXT PACKET</text>
+          <text x="580" y="120" style="font:600 12px Inter,sans-serif;fill:#0D1B33">Intent: why verify identity · 0.68</text>
+          <text x="580" y="160" style="font:600 12px Inter,sans-serif;fill:#0D1B33">Verified: email and phone</text>
+          <text x="580" y="200" style="font:600 12px Inter,sans-serif;fill:#0D1B33">Account: reference on file</text>
+          <text x="580" y="240" style="font:600 12px Inter,sans-serif;fill:#0D1B33">Sentiment: frustrated</text>
+          <text x="580" y="280" style="font:600 12px Inter,sans-serif;fill:#0D1B33">Trigger: repeated failure</text>
+          <text x="560" y="350" style="font:400 11px Inter,sans-serif;fill:#4E5A70">constructed, not a real customer</text>
+        </svg>
+      </div>
+      <button class="hs-pin" style="--x:2.5%;--y:24%" data-title="Their own words" data-cap="Verbatim, both turns. The agent reads what the customer wrote, not the bot's summary of it."></button>
+      <button class="hs-pin" style="--x:2.5%;--y:65%" data-title="Why it fired" data-cap="Repeated failure on turn 2. The agent knows this is a second attempt before reading a word."></button>
+      <button class="hs-pin" style="--x:64%;--y:29%" data-title="The confident mistake" data-cap="Intent and score, shown honestly. A 0.68 on the wrong intent tells the agent to distrust the bot's framing."></button>
+      <button class="hs-pin" style="--x:64%;--y:39%" data-title="Already verified" data-cap="Whatever the customer already proved stays proved. Asking again is the fastest way to lose them."></button>
+      <button class="hs-pin" style="--x:2.5%;--y:83%" data-title="The first line" data-cap="The packet is what makes this opening possible. Without it, the first line is &quot;How can I help?&quot;"></button>
+    </div>
+
+    <div class="wipe" data-title="The same hand-off, two ways" data-label-a="Packet dropped" data-label-b="Packet carried" data-foot="Drag to compare. Same customer, same agent, one difference: what travelled with the chat.">
+      <div class="wipe-a">
+        <p><strong>Bot:</strong> "Let me connect you to an agent."</p>
+        <p><strong>Agent:</strong> "Hi, thanks for waiting! How can I help you today? Could you confirm your email and describe the problem?" The customer explains for the third time.</p>
+      </div>
+      <div class="wipe-b">
+        <p><strong>Bot:</strong> "I'm passing you to a colleague who can see this conversation."</p>
+        <p><strong>Agent:</strong> "I can see your identity check failed twice and you've already confirmed your email and phone. Let me look at why." The customer explains nothing again.</p>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Why the hand-off counts as a win, not a failure.</strong> A dashboard built on containment scores every hand-off as a loss. Session 1's definition does not: a handed-off customer who is resolved by a person is resolved. On session 6's bench, adding the hand-off lowers the vendor-reported resolution rate and lowers the all-in cost per resolved contact at the same time. Both numbers are true; only one describes the customers.</p>
+    </div>
+  </section>
+
+  <!-- ============ HOMEWORK ============ -->
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before session 5</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Find your own loop.</strong> Pull 20 bot conversations where the customer wrote three or more times. Count how many show the same question asked twice before any hand-off. That count is what your repeated-failure trigger would have caught.</li>
+      <li><strong>Audit one real hand-off.</strong> Read one conversation from the moment the bot hands over to the agent's first line. List every question the agent asked that the conversation had already answered. Each one is a packet field you are missing.</li>
+      <li><strong>Read the hand-over line out loud.</strong> Find what your bot says when it hands over. Ask of it: does it promise anything about money or policy? If yes, rewrite it tonight.</li>
+      <li><strong>Read Moffatt in full.</strong> It is short. Note the one sentence you would put in front of whoever approves your bot's policy answers, and why.</li>
+    </ol>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 4 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="1">
+      <p class="qtext">1 · "Why can't I verify my identity?" is scored 0.68 as the harmless intent <em>why verify identity</em>. Which trigger catches it?</p>
+      <button class="qopt" type="button">A · The human-tier intent trigger, on the first message</button>
+      <button class="qopt" type="button">B · Repeated failure, when the customer asks the same thing again on the next turn</button>
+      <button class="qopt" type="button">C · A stricter confidence gate, set above 0.68</button>
+      <p class="qwhy">The intent trigger never sees the true intent, because the classifier got it wrong with confidence. A gate high enough to stop a 0.68 would strand most safe messages too. The rephrased second message is the evidence, which is why the checks run on every turn.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">2 · In Moffatt v. Air Canada, what did the tribunal decide about the chatbot, and why does it matter even though it is a small-claims decision?</p>
+      <button class="qopt" type="button">A · That the chatbot was a separate legal entity, so the airline was not responsible for it</button>
+      <button class="qopt" type="button">B · That chatbots may not answer policy questions at all, which binds every Canadian court</button>
+      <button class="qopt" type="button">C · That the company is responsible for all information on its website, chatbot or static page; persuasive rather than binding, but the reasoning anyone will reach for first</button>
+      <p class="qwhy">The tribunal called the separate-entity argument "a remarkable submission" and found negligent misrepresentation, awarding $812.02. It is a British Columbia small-claims decision, not binding precedent elsewhere, and still the plainest statement of the principle on record.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">3 · What does the context packet prevent?</p>
+      <button class="qopt" type="button">A · The customer having to explain the problem again to the person who takes over</button>
+      <button class="qopt" type="button">B · The bot handing off too often, by giving it more context to answer with</button>
+      <button class="qopt" type="button">C · Any need for a person, because the packet lets the bot resolve the issue itself</button>
+      <p class="qwhy">The packet travels to the agent, not back to the bot. Its whole job is that nobody asks twice: the customer's words, what was said, what was verified and why the hand-off fired arrive with the chat.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <!-- ============ OFFICIAL COVERAGE ============ -->
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Moffatt v. Air Canada, 2024 BCCRT 149</span><span class="note">Issued February 14, 2024. Read in full at the tribunal's site, decisions.civilresolutionbc.ca: the chatbot's sentence, the "separate legal entity" argument, negligent misrepresentation, $812.02 awarded</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Gartner customer survey, July 2024</span><span class="note">5,728 customers, December 2023; top concern, "it will get more difficult reaching a person"</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Generative AI at Work, QJE 2025</span><span class="note">Abstract: with AI assistance, customers "less likely to ask to speak to a manager"</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Klarna CEO, May 2025</span><span class="note">Reported: "there will be always a human if you want", via CX Dive quoting Bloomberg; the Bloomberg page could not be read</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Phone hand-off and consent</span><span class="note">Linked, not retaught: Voice and Multimodal Agents session 6 owns warm transfer and consent notices</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <!-- ============ CHEAT SHEET ============ -->
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 4 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>Five triggers</b><span>Human-tier intent, alarm words, repeated failure, regulated topic, asks for a person.</span></div>
+      <div class="cheat-item"><b>Every turn</b><span>Only human-tier intents are a first-message rule. The rest are checked on every customer turn.</span></div>
+      <div class="cheat-item"><b>The confident mistake</b><span>A 0.68 on the wrong intent passes any gate. The rephrase on turn two is what catches it.</span></div>
+      <div class="cheat-item"><b>The packet</b><span>Own words, intent and score, what the bot said, verified, account, sentiment, why it fired.</span></div>
+      <div class="cheat-item"><b>Moffatt</b><span>"It makes no difference whether the information comes from a static page or a chatbot."</span></div>
+      <div class="cheat-item"><b>The hand-over line</b><span>Says a person is coming and can see the chat. Never promises money or policy.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>The hand-off catches the customers who say something. Session 5 finds the ones who never come back and never complain, the ones no trigger and no survey will ever show you, and then hears the Klarna story told by both sides, so you can tell which numbers in it measured resolution at all.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 4 of 6 · learn-ai-customer-support-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="03-draft-with-the-agent.html">← Prev: Draft with the agent, not instead of them</a> &nbsp;·&nbsp; <a href="05-qa-you-can-trust.html">Next: The quality bar: QA you can trust →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/app.js?v=2"></script>
+</body>
+</html>

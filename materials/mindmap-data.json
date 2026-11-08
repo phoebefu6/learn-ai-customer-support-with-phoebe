@@ -1,0 +1,120 @@
+{
+ "title": "AI + Customer\nSupport",
+ "centerColor": "#0A2E73",
+ "sessions": [
+  {
+   "label": "Deflection is not\nresolution",
+   "href": "courses/01-deflection-is-not-resolution.html",
+   "color": "#34D399",
+   "concepts": [
+    {
+     "label": "Containment vs resolved",
+     "href": "courses/01-deflection-is-not-resolution.html"
+    },
+    {
+     "label": "Repeat within 7 days",
+     "href": "courses/01-deflection-is-not-resolution.html"
+    },
+    {
+     "label": "False containment",
+     "href": "courses/01-deflection-is-not-resolution.html"
+    }
+   ]
+  },
+  {
+   "label": "Triage before\nanyone answers",
+   "href": "courses/02-triage-before-anyone-answers.html",
+   "color": "#FBBF24",
+   "concepts": [
+    {
+     "label": "Intent, urgency, risk",
+     "href": "courses/02-triage-before-anyone-answers.html"
+    },
+    {
+     "label": "Risk before volume",
+     "href": "courses/02-triage-before-anyone-answers.html"
+    },
+    {
+     "label": "The confidence gate",
+     "href": "courses/02-triage-before-anyone-answers.html"
+    }
+   ]
+  },
+  {
+   "label": "Draft with\nthe agent",
+   "href": "courses/03-draft-with-the-agent.html",
+   "color": "#FBBF24",
+   "concepts": [
+    {
+     "label": "Who presses send",
+     "href": "courses/03-draft-with-the-agent.html"
+    },
+    {
+     "label": "14% average, not 34%",
+     "href": "courses/03-draft-with-the-agent.html"
+    },
+    {
+     "label": "Grounded drafts",
+     "href": "courses/03-draft-with-the-agent.html"
+    }
+   ]
+  },
+  {
+   "label": "The hand-off",
+   "href": "courses/04-the-hand-off.html",
+   "color": "#FB923C",
+   "concepts": [
+    {
+     "label": "Five triggers",
+     "href": "courses/04-the-hand-off.html"
+    },
+    {
+     "label": "The context packet",
+     "href": "courses/04-the-hand-off.html"
+    },
+    {
+     "label": "Moffatt v. Air Canada",
+     "href": "courses/04-the-hand-off.html"
+    }
+   ]
+  },
+  {
+   "label": "QA you\ncan trust",
+   "href": "courses/05-qa-you-can-trust.html",
+   "color": "#FB923C",
+   "concepts": [
+    {
+     "label": "Stratified sample",
+     "href": "courses/05-qa-you-can-trust.html"
+    },
+    {
+     "label": "One rubric, calibrated",
+     "href": "courses/05-qa-you-can-trust.html"
+    },
+    {
+     "label": "CSAT non-response",
+     "href": "courses/05-qa-you-can-trust.html"
+    }
+   ]
+  },
+  {
+   "label": "Price the\nsupport plan",
+   "href": "courses/06-price-the-support-plan.html",
+   "color": "#F87171",
+   "concepts": [
+    {
+     "label": "Erlang C at 80/20",
+     "href": "courses/06-price-the-support-plan.html"
+    },
+    {
+     "label": "Cost per resolved",
+     "href": "courses/06-price-the-support-plan.html"
+    },
+    {
+     "label": "Measured vs predicted",
+     "href": "courses/06-price-the-support-plan.html"
+    }
+   ]
+  }
+ ]
+}

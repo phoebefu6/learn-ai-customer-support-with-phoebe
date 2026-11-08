@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Six sessions on AI in customer support for support leads and the team leads who run it. Deflection is not resolution: triage 616 real customer messages in your browser, draft with agents instead of for them, hand off before the loop, read quality you can trust, and price the plan on a live Erlang C bench. Free, by Phoebe Fu.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="Learn AI + Customer Support with Phoebe">
+<meta property="og:description" content="Deflection is not resolution. Triage real customer messages, draft with agents, hand off before the loop, and price a support plan on one live bench.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/assets/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Learn AI + Customer Support with Phoebe">
+<meta name="twitter:description" content="The bot contained 70 percent. It resolved 45. Six sessions on the difference.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Learn AI + Customer Support with Phoebe</title>
+<link rel="stylesheet" href="assets/style.css?v=1">
+<style>
+
+  .stats-row { display: flex; gap: 2.4rem; margin-top: 1.5rem; flex-wrap: wrap; }
+  .stat b { display: block; font-size: 2.1rem; font-weight: 800; line-height: 1.05; font-variant-numeric: tabular-nums; }
+  .stat span { font-size: .72rem; opacity: 1; text-transform: uppercase; letter-spacing: .09em; font-weight: 600; }
+
+  .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .course-card {
+    border: 1px solid var(--hairline);
+    border-top: 4px solid var(--diff, var(--indigo));
+    border-radius: var(--radius);
+    padding: 1.2rem 1.3rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    text-decoration: none;
+    color: var(--ink);
+    background: #fff;
+    transition: box-shadow .15s ease, border-color .15s ease, transform .15s ease;
+    position: relative;
+  }
+  .course-card:hover { border-color: var(--indigo-soft); border-top-color: var(--diff, var(--indigo)); box-shadow: 0 8px 28px rgba(10,77,191,.14); transform: translateY(-3px); }
+  .course-card .cicon { font-size: 1.7rem; line-height: 1; }
+  .course-card .cnum { font-size: .72rem; font-weight: 700; color: var(--indigo); text-transform: uppercase; letter-spacing: .1em; }
+  .course-card h3 { font-size: 1.05rem; font-weight: 800; line-height: 1.3; }
+  .course-card p { font-size: .85rem; color: var(--muted); flex: 1; }
+  .course-card .meta { display: flex; gap: .4rem; flex-wrap: wrap; }
+
+  .diff-legend { display: flex; gap: 1rem; margin-top: 1.6rem; font-size: .74rem; color: var(--muted); font-weight: 600; flex-wrap: wrap; }
+  .diff-legend i { display: inline-block; width: .85rem; height: .35rem; border-radius: 999px; margin-right: .35rem; vertical-align: middle; }
+
+  .paths { margin-top: 2.6rem; }
+  .paths h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: .3rem; }
+  .paths .plede { color: var(--muted); font-size: .92rem; margin-bottom: .8rem; }
+  .path { display: flex; gap: .55rem; align-items: center; padding: .75rem 0; border-bottom: .5px solid var(--hairline); flex-wrap: wrap; }
+  .path:last-child { border-bottom: none; }
+  .path b { min-width: 15.5rem; font-size: .9rem; }
+  .path .pstep { background: var(--indigo-50); color: var(--indigo-deep); border-radius: 999px; padding: .16rem .68rem; font-weight: 700; font-size: .8rem; text-decoration: none; transition: all .12s ease; }
+  .path .pstep:hover { background: var(--indigo); color: #fff; }
+  .path .parr { color: var(--muted); font-weight: 700; }
+
+  .mm-section { margin-top: 1.6rem; }
+  .mm-section h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: .2rem; }
+  .mm-section .mm-lede { color: var(--muted); font-size: .92rem; margin-bottom: .4rem; }
+  .mm-wrap { border: 1px solid var(--hairline); border-radius: var(--radius); background: linear-gradient(180deg,#fff,var(--paper)); padding: .6rem; overflow-x: auto; }
+  .mm-svg { width: 100%; height: auto; display: block; max-width: 60rem; margin: 0 auto; min-width: 34rem; }
+  .mm-link { cursor: pointer; text-decoration: none; }
+  .mm-node rect { transition: opacity .15s ease, filter .15s ease; }
+  .mm-node text { pointer-events: none; }
+  .mm-link:hover .mm-node rect { filter: brightness(1.06); }
+  .mm-edge { transition: opacity .15s ease; }
+
+  .hero-art { margin: 1.8rem 0 0; border-radius: var(--radius); overflow: hidden; background: #fff; border: 1px solid rgba(255,255,255,.55); }
+  .hero-art img { display: block; width: 100%; height: auto; }
+  .hero-art figcaption { padding: 1rem 1.3rem; background: #fff; color: var(--ink); font-size: .86rem; line-height: 1.65; }
+  .hero-art figcaption b { color: var(--indigo-deep); }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn with Phoebe · Applied AI</div>
+    <h1>Learn AI + <span class="accent">Customer Support</span> with Phoebe</h1>
+    <p class="sub">Six sessions, 45 minutes each, for support and CX leads being sold a bot that "deflects 70 percent", and for the team leads and analysts who will run it. One question runs through all six: how many customers actually got their problem solved, at what cost, and who caught the ones the bot failed? You triage 616 real customer messages in your browser, read the strongest evidence on agent assist, design the hand-off a tribunal would have wanted, and price the whole plan on a live Erlang C bench.</p>
+    <div class="stats-row">
+      <div class="stat"><b data-count="6">6</b><span>sessions</span></div>
+      <div class="stat"><b data-count="616">616</b><span>real messages triaged</span></div>
+      <div class="stat"><b data-count="45">45</b><span>% resolved, of a 70% contained</span></div>
+      <div class="stat"><b data-count="18">18</b><span>agents in the plan, from 24</span></div>
+      <div class="stat"><b data-count="45">45</b><span>min per session</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section">
+    <div class="paths" style="margin-top:0">
+      <h2>The six sessions 🎧 <span style="font-size:.85rem;font-weight:600;color:var(--muted)">· one support plan, built across all of them</span></h2>
+      <p class="plede">Bring a real support operation if you have one: a vendor proposal, a dashboard, a queue you run. Every session adds one section to Quayside's support operating plan (a constructed digital bank), and you can write yours beside it.</p>
+    </div>
+
+    <div class="course-grid">
+      <a class="course-card" href="courses/01-deflection-is-not-resolution.html" style="--diff:#34D399">
+        <span class="cicon">📏</span>
+        <span class="cnum">Session 1 · easy</span>
+        <h3>Deflection is not resolution</h3>
+        <p>Containment, resolution, repeat contact and false containment. Turn 20 chats the dashboard calls 70 percent into the 45 percent that were actually solved.</p>
+        <span class="meta"><span class="pill amber">▶ Start here</span></span>
+      </a>
+      <a class="course-card" href="courses/02-triage-before-anyone-answers.html" style="--diff:#FBBF24">
+        <span class="cicon">🧭</span>
+        <span class="cnum">Session 2 · medium</span>
+        <h3>Triage: read the message before anyone answers</h3>
+        <p>Train a classifier on real Banking77 messages in your browser. Automate the busiest 20 intents and the bot answers 37 risky ones.</p>
+        <span class="meta"><span class="pill">playground</span></span>
+      </a>
+      <a class="course-card" href="courses/03-draft-with-the-agent.html" style="--diff:#FBBF24">
+        <span class="cicon">✍️</span>
+        <span class="cnum">Session 3 · medium</span>
+        <h3>Draft with the agent, not instead of them</h3>
+        <p>The strongest study of AI assist for support agents, in both its published versions: 14 percent on average, most for new agents, little for the best.</p>
+        <span class="meta"><span class="pill">halfway scorecard</span></span>
+      </a>
+      <a class="course-card" href="courses/04-the-hand-off.html" style="--diff:#FB923C">
+        <span class="cicon">🤝</span>
+        <span class="cnum">Session 4 · hands-on</span>
+        <h3>The hand-off: let go before the loop</h3>
+        <p>Five triggers, the context packet, and the tribunal that held an airline to what its chatbot said.</p>
+        <span class="meta"><span class="pill">the rules</span></span>
+      </a>
+      <a class="course-card" href="courses/05-qa-you-can-trust.html" style="--diff:#FB923C">
+        <span class="cicon">🔎</span>
+        <span class="cnum">Session 5 · hands-on</span>
+        <h3>The quality bar: QA you can trust</h3>
+        <p>A weekly sample, one rubric for bot and people, a judge you calibrate, and why CSAT hears from the wrong customers. Klarna, told by both sides.</p>
+        <span class="meta"><span class="pill">contested</span></span>
+      </a>
+      <a class="course-card" href="courses/06-price-the-support-plan.html" style="--diff:#F87171">
+        <span class="cicon">🧮</span>
+        <span class="cnum">Session 6 · hardest</span>
+        <h3>The support plan: price it on the bench</h3>
+        <p>Erlang C at 80/20 and the true-resolution funnel. The vendor pitch needs 16 agents and costs more per resolved customer than today.</p>
+        <span class="meta"><span class="pill amber">🔒 the memo unlocks at 4 stamps</span></span>
+      </a>
+    </div>
+
+    <div class="diff-legend">
+      <span><i style="background:#34D399"></i>easy - everyone</span>
+      <span><i style="background:#FBBF24"></i>medium</span>
+      <span><i style="background:#FB923C"></i>hands-on</span>
+      <span><i style="background:#F87171"></i>hardest</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="paths" style="margin-top:0">
+      <h2>Your passport 🎫</h2>
+      <p class="plede">Clear all three quiz questions in a session and it gets stamped. Stamps live in this browser only.</p>
+    </div>
+    <div class="pp-strip"></div>
+  </section>
+
+  <section class="section">
+    <div class="paths">
+      <h2>Choose your path 🗺️</h2>
+      <p class="plede">Three doors into the same conviction: a contained chat is not a solved problem.</p>
+      <div class="path"><b>📑 I am being sold a bot</b>
+        <a class="pstep" href="courses/01-deflection-is-not-resolution.html">1</a><span class="parr">→</span>
+        <a class="pstep" href="courses/02-triage-before-anyone-answers.html">2</a><span class="parr">→</span>
+        <a class="pstep" href="courses/06-price-the-support-plan.html">6</a>
+        <span style="font-size:.82rem;color:var(--muted)">the metric, what it may touch, then the price</span>
+      </div>
+      <div class="path"><b>🛠️ I will run it day to day</b>
+        <a class="pstep" href="courses/03-draft-with-the-agent.html">3</a><span class="parr">→</span>
+        <a class="pstep" href="courses/04-the-hand-off.html">4</a><span class="parr">→</span>
+        <a class="pstep" href="courses/05-qa-you-can-trust.html">5</a>
+        <span style="font-size:.82rem;color:var(--muted)">assist, hand-off and the weekly read</span>
+      </div>
+      <div class="path"><b>🎧 The whole plan</b>
+        <a class="pstep" href="courses/01-deflection-is-not-resolution.html">1</a><span class="parr">→</span>
+        <a class="pstep" href="courses/02-triage-before-anyone-answers.html">2</a><span class="parr">→</span>
+        <a class="pstep" href="courses/03-draft-with-the-agent.html">3</a><span class="parr">→</span>
+        <a class="pstep" href="courses/04-the-hand-off.html">4</a><span class="parr">→</span>
+        <a class="pstep" href="courses/05-qa-you-can-trust.html">5</a><span class="parr">→</span>
+        <a class="pstep" href="courses/06-price-the-support-plan.html">6</a>
+        <span style="font-size:.82rem;color:var(--muted)">from a vendor slide to a plan you can sign</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="paths" style="margin-top:0">
+      <h2>What is real here 🧾</h2>
+      <p class="plede">A set of sessions about measuring honestly owes you an exact account of its own numbers.</p>
+    </div>
+    <table class="clean">
+      <tr><th>Claim</th><th>Status</th></tr>
+      <tr><td>The 616 customer messages and the classifier in session 2</td><td>Real. Banking77 (PolyAI, CC BY 4.0), sampled; the classifier trains in your browser and a Python reference run agrees value by value</td></tr>
+      <tr><td>The Erlang C staffing in session 6</td><td>The real formula, hour by hour, and it reproduces Koole's published worked example (24 agents, about 21 percent answered in 20 seconds)</td></tr>
+      <tr><td>Quayside, its volumes, costs and rates</td><td>Constructed, and labelled on every page and widget. Your numbers will differ</td></tr>
+      <tr><td>The AI assist evidence</td><td>Brynjolfsson, Li and Raymond, quoted per version: 14 percent (NBER 2023) and 15 percent (QJE 2025) more issues resolved per hour</td></tr>
+      <tr><td>Moffatt v. Air Canada</td><td>Read in full at the tribunal's own site: $812.02 awarded, and a small-claims decision, not binding precedent elsewhere</td></tr>
+      <tr><td>Klarna's AI assistant</td><td>Contested, and taught as contested: the 2024 release, the CEO's reported 2025 quality concerns, and the company's own reply</td></tr>
+      <tr><td>Vendor prices and resolution definitions</td><td>Quoted from Intercom, Zendesk and Salesforce pages read in November 2026. They change often: re-verify before you sign</td></tr>
+    </table>
+  </section>
+
+  <section class="section mm-section">
+    <h2>The knowledge map 🧠</h2>
+    <p class="mm-lede">All six sessions at a glance - hover a session to spotlight its concepts, click any node to jump in.</p>
+    <div class="mm-wrap"><div id="mindmap"></div></div>
+  </section>
+
+  <footer class="pagefoot">
+    <span>learn-ai-customer-support-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span>Pairs with <a href="https://phoebefu6.github.io/learn-agent-launch-with-phoebe/">Learn Agent Launch ↗</a></span>
+  </footer>
+
+</main>
+
+<script>
+window.MINDMAP_DATA = {
+  "title": "AI + Customer\nSupport",
+  "centerColor": "#0A2E73",
+  "sessions": [
+    {
+      "label": "Deflection is not\nresolution",
+      "href": "courses/01-deflection-is-not-resolution.html",
+      "color": "#34D399",
+      "concepts": [
+        {
+          "label": "Containment vs resolved",
+          "href": "courses/01-deflection-is-not-resolution.html"
+        },
+        {
+          "label": "Repeat within 7 days",
+          "href": "courses/01-deflection-is-not-resolution.html"
+        },
+        {
+          "label": "False containment",
+          "href": "courses/01-deflection-is-not-resolution.html"
+        }
+      ]
+    },
+    {
+      "label": "Triage before\nanyone answers",
+      "href": "courses/02-triage-before-anyone-answers.html",
+      "color": "#FBBF24",
+      "concepts": [
+        {
+          "label": "Intent, urgency, risk",
+          "href": "courses/02-triage-before-anyone-answers.html"
+        },
+        {
+          "label": "Risk before volume",
+          "href": "courses/02-triage-before-anyone-answers.html"
+        },
+        {
+          "label": "The confidence gate",
+          "href": "courses/02-triage-before-anyone-answers.html"
+        }
+      ]
+    },
+    {
+      "label": "Draft with\nthe agent",
+      "href": "courses/03-draft-with-the-agent.html",
+      "color": "#FBBF24",
+      "concepts": [
+        {
+          "label": "Who presses send",
+          "href": "courses/03-draft-with-the-agent.html"
+        },
+        {
+          "label": "14% average, not 34%",
+          "href": "courses/03-draft-with-the-agent.html"
+        },
+        {
+          "label": "Grounded drafts",
+          "href": "courses/03-draft-with-the-agent.html"
+        }
+      ]
+    },
+    {
+      "label": "The hand-off",
+      "href": "courses/04-the-hand-off.html",
+      "color": "#FB923C",
+      "concepts": [
+        {
+          "label": "Five triggers",
+          "href": "courses/04-the-hand-off.html"
+        },
+        {
+          "label": "The context packet",
+          "href": "courses/04-the-hand-off.html"
+        },
+        {
+          "label": "Moffatt v. Air Canada",
+          "href": "courses/04-the-hand-off.html"
+        }
+      ]
+    },
+    {
+      "label": "QA you\ncan trust",
+      "href": "courses/05-qa-you-can-trust.html",
+      "color": "#FB923C",
+      "concepts": [
+        {
+          "label": "Stratified sample",
+          "href": "courses/05-qa-you-can-trust.html"
+        },
+        {
+          "label": "One rubric, calibrated",
+          "href": "courses/05-qa-you-can-trust.html"
+        },
+        {
+          "label": "CSAT non-response",
+          "href": "courses/05-qa-you-can-trust.html"
+        }
+      ]
+    },
+    {
+      "label": "Price the\nsupport plan",
+      "href": "courses/06-price-the-support-plan.html",
+      "color": "#F87171",
+      "concepts": [
+        {
+          "label": "Erlang C at 80/20",
+          "href": "courses/06-price-the-support-plan.html"
+        },
+        {
+          "label": "Cost per resolved",
+          "href": "courses/06-price-the-support-plan.html"
+        },
+        {
+          "label": "Measured vs predicted",
+          "href": "courses/06-price-the-support-plan.html"
+        }
+      ]
+    }
+  ]
+};
+</script>
+<script src="assets/mindmap.js?v=1"></script>
+<script src="assets/app.js?v=2"></script>
+</body>
+</html>

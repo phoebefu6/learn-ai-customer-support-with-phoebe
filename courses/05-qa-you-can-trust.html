@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 5 of 6. Sampling, one rubric for bot and people, an LLM judge you calibrate before trusting, and why CSAT alone cannot see the customers a bot failed. Klarna taught as the disagreement it is.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="The quality bar: QA you can trust - learn ai customer support with phoebe">
+<meta property="og:description" content="Session 5 of 6. The customer the bot failed never came back, and never answered the survey either. Only a read finds them.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/courses/05-qa-you-can-trust.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The quality bar: QA you can trust - learn ai customer support with phoebe">
+<meta name="twitter:description" content="Session 5 of 6. One rubric for bot and people, a judge that earns its trust, and CSAT never reported alone.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-ai-customer-support-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 5 · The quality bar: QA you can trust - learn ai customer support with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=1">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-ai-customer-support-with-phoebe</a> / Session 5 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn AI + Customer Support with Phoebe · Session 5 of 6</div>
+    <h1>The quality bar: <span class="accent">QA you can trust</span></h1>
+    <p class="sub">Two of the customers in session 1's contact log got a wrong answer, never came back, and never complained. No dashboard counted them and no survey heard from them. Tonight you build the only thing that finds them: a weekly read of a sample, graded on one rubric for the bot and the people alike, with a judge you check before you trust it.</p>
+    <div class="chip-row">
+      <span class="chip level">🟠 Builds on sessions 1 to 4</span>
+      <span class="chip audience">QA and CX leads who sign off the bot</span>
+      <span class="chip audience">Team leads who run the weekly read</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:3">0-3 · Welcome</span>
+      <span class="a2" style="flex:17">3-20 · Sampling, the judge, the survey</span>
+      <span class="a3" style="flex:22">20-42 · Build-along: Quayside's QA plan</span>
+      <span class="a4" style="flex:3">42-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ INTRO ============ -->
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Every rule so far needs someone to check it</h2>
+    </div>
+    <p class="lede">Session 1 defined resolution. Session 2 drew the map, session 3 wrote the assist rules, session 4 the hand-off. Each is a promise about what happens in a conversation, and none of them checks itself. Tonight adds <strong>section 5 of the plan: the QA plan</strong>, the weekly habit that tells you whether the other four are holding.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">Constructed Quayside example = invented, labelled every time</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> A stratified weekly sample that over-samples the risky conversations. One five-criterion rubric that grades the bot and the people on the same test. A rule for when an LLM judge's score can stand without a person. A CSAT rule that stops a survey from posing as a resolution number. And the habit that closes the loop: every failed read goes back to an owner.</p>
+    </div>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>Why reading beats every number you already have<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Go back to rows 14 and 17 of session 1's log. One customer got the steps for a first-time identity check when theirs kept failing. The other got instructions for ordering a virtual card when theirs would not work. Neither came back within 7 days. Containment counted both as wins, the repeat-contact window counted both as resolved, and neither customer was asked how it went.</p>
+        <p>The only instrument that saw them was a person reading the conversation. Tonight is about making that reading systematic, cheap enough to do every week, and honest about what it can and cannot see.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PART 1 ============ -->
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers sampling</span>
+      <h2>A silent failure is only found by reading it</h2>
+      <span class="tag concept">6 min live</span>
+    </div>
+    <p class="lede">You cannot read every conversation, and you do not need to. You need a sample drawn so that the conversations most likely to hurt someone are the ones most likely to be read. That means stratifying by route and over-sampling the risky intents, then feeding the sample to one rubric and to two kinds of reader.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 334" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="All of Quayside's conversations, with session 1's two silent failures hidden inside, flow into a stratified weekly sample split by route: automate, assist and human, with risky intents over-sampled. The sample is graded on one rubric by human reviewers and by an LLM judge, compared before the judge works alone, and the results feed the weekly line from session 1: containment, true resolution and false containment.">
+        <defs>
+          <filter id="s5aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="51" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s5aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#0A4DBF" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s5aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#0D1B33" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s5aH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s5aL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s5aS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s5aB { font: 800 11px Inter, sans-serif; fill: #B8480C; }
+          .s5aW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s5aA { font: 700 11px Inter, sans-serif; fill: #0A4DBF; }
+          .s5aN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s5aH" x="30" y="26">HOW A SILENT FAILURE GETS FOUND</text>
+        <text class="s5aS" x="300" y="26">Quayside, constructed</text>
+
+        <g filter="url(#s5aSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="70" width="130" height="160" rx="6" transform="rotate(-1.2 95 150)" fill="url(#s5aHc)"/>
+          <circle cx="70" cy="200" r="7" fill="#B8480C" stroke="#B8480C"/>
+          <circle cx="118" cy="168" r="7" fill="#B8480C" stroke="#B8480C"/>
+          <path d="M164 150 L190 150" marker-end="url(#s5aAr)"/>
+          <rect x="196" y="64" width="180" height="48" rx="8" transform="rotate(-0.6 286 88)" fill="#EDF2FC"/>
+          <rect x="196" y="124" width="180" height="48" rx="8" transform="rotate(0.5 286 148)" fill="#EDF2FC"/>
+          <rect x="196" y="184" width="180" height="48" rx="8" transform="rotate(-0.4 286 208)" fill="#EDF2FC"/>
+          <path d="M380 88 C400 88 400 130 410 134" marker-end="url(#s5aAr)"/>
+          <path d="M380 148 L410 148" marker-end="url(#s5aAr)"/>
+          <path d="M380 208 C400 208 400 166 410 162" marker-end="url(#s5aAr)"/>
+          <rect x="416" y="110" width="126" height="76" rx="8" transform="rotate(0.6 479 148)" fill="#FFFFFF"/>
+          <path d="M546 134 C560 134 560 90 572 88" marker-end="url(#s5aAr)"/>
+          <path d="M546 162 C560 162 560 202 572 204" marker-end="url(#s5aAr)"/>
+          <rect x="578" y="62" width="140" height="52" rx="8" transform="rotate(-0.5 648 88)" fill="#FFFFFF"/>
+          <rect x="578" y="178" width="140" height="52" rx="8" transform="rotate(0.5 648 204)" fill="#0A4DBF"/>
+          <path d="M648 118 L648 174" stroke="#3E6FCE" stroke-dasharray="4 5"/>
+          <path d="M722 88 C732 88 732 120 736 124" marker-end="url(#s5aAr)"/>
+          <path d="M722 204 C732 204 732 170 736 166" marker-end="url(#s5aAr)"/>
+          <rect x="740" y="100" width="130" height="96" rx="10" transform="rotate(0.4 805 148)" fill="#EDF2FC"/>
+        </g>
+
+        <text class="s5aL" x="30" y="58">All conversations</text>
+        <text class="s5aB" x="30" y="252">2 SILENT FAILURES</text>
+        <text class="s5aS" x="30" y="268">s1 rows 14 and 17</text>
+
+        <text class="s5aL" x="210" y="85">Automate route</text>
+        <text class="s5aS" x="210" y="102">risky ones over-sampled</text>
+        <text class="s5aL" x="210" y="145">Assist route</text>
+        <text class="s5aS" x="210" y="162">drafts a person sent</text>
+        <text class="s5aL" x="210" y="205">Human route</text>
+        <text class="s5aS" x="210" y="222">incl. every hand-off</text>
+        <text class="s5aA" x="196" y="252">STRATIFIED WEEKLY SAMPLE</text>
+
+        <text class="s5aL" x="430" y="136">One rubric</text>
+        <text class="s5aS" x="430" y="154">5 criteria</text>
+        <text class="s5aS" x="430" y="170">bot and people</text>
+
+        <text class="s5aL" x="592" y="85">Human reviewers</text>
+        <text class="s5aS" x="592" y="103">a few, every week</text>
+        <text class="s5aS" x="656" y="150">agree?</text>
+        <text class="s5aW" x="592" y="201">LLM judge</text>
+        <text class="s5aW" x="592" y="219">after calibration</text>
+
+        <text class="s5aH" x="752" y="122">Weekly line</text>
+        <text class="s5aS" x="752" y="142">containment</text>
+        <text class="s5aS" x="752" y="160">true resolution</text>
+        <text class="s5aS" x="752" y="178">false containment</text>
+
+        <text class="s5aN" x="30" y="296">Containment can never find rows 14 and 17: neither customer came back. Only a read can.</text>
+        <text class="s5aN" x="30" y="318">Sample sizes per route are a Quayside choice, set in the build-along. Yours will differ.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the two warm dots are invisible to every number until the sample puts them in front of a reader</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Stratify by route, then over-sample what can hurt<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>A plain random sample of Quayside's week would be mostly balance questions and card activations, because that is what most conversations are. You would read dozens of easy wins and, in a typical week, very few of the conversations where a wrong answer costs a customer money. So the sample is drawn in layers.</p>
+        <table class="clean">
+          <tr><th>Layer</th><th>What it catches</th><th>Why it gets its own quota</th></tr>
+          <tr><td><strong>Automate route</strong></td><td>Wrong answers the customer accepted, like rows 14 and 17</td><td>Nobody else ever looks at these conversations</td></tr>
+          <tr><td><strong>Assist route</strong></td><td>A draft the agent sent without fixing it</td><td>Session 3's rules only work if someone checks they were followed</td></tr>
+          <tr><td><strong>Human route</strong></td><td>Hand-offs that arrived late or without the context packet</td><td>Session 4's triggers fire in this layer, or fail to</td></tr>
+        </table>
+        <p>Within the automate layer, <strong>over-sample the risky intents</strong>: the ones that sit nearest the line on session 2's map, where a misread intent sends money questions to the bot. If those are a small share of volume, a proportional sample would hardly ever draw one. Over-sampling means you deliberately read more of them than their share, then weight them back down when you report a rate for the whole route.</p>
+        <div class="callout tip">
+          <p><strong>Two numbers, never confused.</strong> The sample's failure rate on risky intents tells you where to look. The weighted rate across the route tells you how the route is doing. Reporting the over-sampled rate as if it were the route's rate makes the bot look worse than it is, and the first time someone notices, the whole QA plan loses its credibility.</p>
+        </div>
+        <div class="callout example">
+          <span class="ex-pill">Real world</span>
+          <p>Zendesk's resolution tiers, introduced on May 18, 2026, include a verified tier in which a large language model "evaluates the text of the conversation to confirm that the customer's request was satisfactorily resolved". That is automated QA, run by the vendor, on the vendor's own bot. It is a useful signal and a sensible design. It is also exactly the kind of judge that Part 2 says must be checked against people before anyone treats its verdict as final.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>How big a sample, honestly<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>There is no published standard for how many support conversations to read a week, and any number on a vendor slide is a sales choice. What decides it in practice is reviewer time and how rare the failure you are hunting is. If a failure appears in one conversation in fifty, a weekly read of twenty will often contain none of them, and a quiet week will look like a good week.</p>
+        <p>So size the sample from the other end: how many hours can your QA reviewers give each week, how long does one careful read take, and which layer can you least afford to miss? The build-along sets Quayside's constructed numbers this way. Treat them as a starting shape, not a benchmark.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PART 2 ============ -->
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers the LLM judge and one rubric</span>
+      <h2>One test for the bot and the people, and a judge that earns its seat</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">If the bot is graded on whether the customer left and the agents are graded on a ten-point QA form, you have built a comparison the bot cannot lose. One rubric, applied to both, is the only way "the bot is as good as our people" can ever be a fair sentence. And a judge that scores at scale is worth having only once you know it agrees with the people it replaces.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 352" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A bot conversation and a human conversation both go into the same five-criterion rubric: resolved, correct, policy-compliant, effort for the customer, and tone. The rubric feeds a calibration check where human reviewers and the LLM judge label the same conversations and their labels are compared. If they do not agree, people keep grading and the rubric or judge is fixed. If they agree, the judge runs alone and is re-checked on a schedule.">
+        <defs>
+          <filter id="s5bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="57" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <marker id="s5bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#0D1B33" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s5bH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s5bL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s5bS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s5bW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s5bN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s5bH" x="30" y="26">ONE RUBRIC, TWO KINDS OF CONVERSATION</text>
+        <text class="s5bH" x="574" y="44">CALIBRATION CHECK</text>
+
+        <g filter="url(#s5bSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="52" width="210" height="60" rx="8" transform="rotate(-1 135 82)" fill="#FFFFFF"/>
+          <rect x="30" y="168" width="210" height="60" rx="8" transform="rotate(1.2 135 198)" fill="#EDF2FC"/>
+          <path d="M244 82 C266 82 266 110 284 112" marker-end="url(#s5bAr)"/>
+          <path d="M244 198 C266 198 266 170 284 168" marker-end="url(#s5bAr)"/>
+          <rect x="290" y="52" width="220" height="176" rx="8" transform="rotate(0.4 400 140)" fill="#FFFFFF"/>
+          <path d="M514 90 C540 90 548 82 568 82" marker-end="url(#s5bAr)"/>
+          <rect x="574" y="56" width="130" height="50" rx="8" transform="rotate(-0.8 639 81)" fill="#FFFFFF"/>
+          <rect x="724" y="56" width="130" height="50" rx="8" transform="rotate(0.8 789 81)" fill="#EDF2FC"/>
+          <path d="M640 110 C640 130 660 140 676 146" marker-end="url(#s5bAr)"/>
+          <path d="M790 110 C790 130 770 140 760 146" marker-end="url(#s5bAr)"/>
+          <rect x="644" y="150" width="150" height="48" rx="10" transform="rotate(-0.5 719 174)" fill="#B8480C"/>
+          <path d="M680 202 C676 224 640 232 626 246" marker-end="url(#s5bAr)"/>
+          <path d="M760 202 C764 224 784 232 790 246" marker-end="url(#s5bAr)"/>
+          <rect x="540" y="250" width="160" height="56" rx="8" transform="rotate(0.6 620 278)" fill="#FFFFFF"/>
+          <rect x="714" y="250" width="152" height="56" rx="8" transform="rotate(-0.6 790 278)" fill="#EDF2FC"/>
+        </g>
+
+        <text class="s5bL" x="44" y="77">Bot conversation</text>
+        <text class="s5bS" x="44" y="95">graded on the same five</text>
+        <text class="s5bL" x="44" y="193">Human conversation</text>
+        <text class="s5bS" x="44" y="211">no easier, no harder</text>
+        <text class="s5bS" x="30" y="258">the bot never gets an easier test</text>
+
+        <text class="s5bH" x="306" y="76">THE RUBRIC</text>
+        <text class="s5bL" x="306" y="102">1 · Resolved?</text>
+        <text class="s5bL" x="306" y="126">2 · Correct?</text>
+        <text class="s5bL" x="306" y="150">3 · Policy-compliant?</text>
+        <text class="s5bL" x="306" y="174">4 · Effort for the customer</text>
+        <text class="s5bL" x="306" y="198">5 · Tone</text>
+
+        <text class="s5bL" x="588" y="78">Human labels</text>
+        <text class="s5bS" x="588" y="96">reviewers score</text>
+        <text class="s5bL" x="738" y="78">Judge labels</text>
+        <text class="s5bS" x="738" y="96">LLM scores</text>
+        <text class="s5bW" x="664" y="179">Do they agree?</text>
+
+        <text class="s5bL" x="554" y="274">No: people grade</text>
+        <text class="s5bS" x="554" y="292">fix rubric or judge</text>
+        <text class="s5bL" x="728" y="274">Yes: judge runs</text>
+        <text class="s5bS" x="728" y="292">re-check on schedule</text>
+
+        <text class="s5bN" x="30" y="336">Same five questions for the bot and for people. The judge grades alone only after it agrees.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the judge earns its seat in the warm box, and keeps earning it on a schedule</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>The five criteria, and why each one is there<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <table class="clean">
+          <tr><th>Criterion</th><th>The question the reader answers</th><th>What it catches that a dashboard cannot</th></tr>
+          <tr><td><strong>Resolved</strong></td><td>Did the customer's actual problem end?</td><td>Rows 14 and 17: the chat ended, the problem did not</td></tr>
+          <tr><td><strong>Correct</strong></td><td>Was every fact, fee, limit and step right?</td><td>A confident wrong answer the customer believed</td></tr>
+          <tr><td><strong>Policy-compliant</strong></td><td>Did it stay inside what Quayside allows, and hand off when it should?</td><td>A promise nobody is authorised to make</td></tr>
+          <tr><td><strong>Effort for the customer</strong></td><td>How many times did they have to repeat themselves?</td><td>The loop session 4 was written to stop</td></tr>
+          <tr><td><strong>Tone</strong></td><td>Would you be comfortable reading it aloud to the customer?</td><td>The reply that was right and still lost them</td></tr>
+        </table>
+        <p>The same five go on every conversation, whichever route it took. That is what makes "the bot resolves as well as our people" a claim you can test rather than a slide you have to believe.</p>
+        <div class="callout example">
+          <span class="ex-pill">Real world</span>
+          <p>The largest field study of AI in a support team, Brynjolfsson, Li and Raymond's <em>Generative AI at Work</em> (Quarterly Journal of Economics, 2025), found that with an assist tool "the most experienced and highest-skilled workers see small gains in speed and small declines in quality". You only see a decline like that if people's conversations are graded too. A rubric that only grades the bot would have missed half the story.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>When the judge's score can stand without a person<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>An LLM judge is an instrument. Like any instrument it is trusted after it has been checked against a known reference, and only for as long as nothing has changed. Three conditions, all of them, before Quayside lets a judge's score stand alone:</p>
+        <ul>
+          <li><strong>It agrees with people on a calibration set.</strong> Reviewers and the judge label the same conversations against the same rubric, and the agreement clears a bar Quayside wrote down in advance.</li>
+          <li><strong>It is re-checked on a schedule</strong>, and again <strong>whenever the bot, the rubric or the judge changes</strong>. A new model version is a new instrument.</li>
+          <li><strong>It never grades its own vendor's bot unchecked.</strong> A vendor's judge scoring a vendor's bot is a reasonable signal and a conflict of interest at the same time. Calibrate it like any other judge, against your own reviewers.</li>
+        </ul>
+        <p>How to build a judge prompt, measure agreement properly and assemble the golden set it is calibrated on is taught in full elsewhere and not repeated here: <a href="https://phoebefu6.github.io/learn-ai-evals-with-phoebe/courses/b5-llm-as-judge.html">AI Evals: the LLM judge ↗</a>, <a href="https://phoebefu6.github.io/learn-ai-evals-with-phoebe/courses/b2-golden-set.html">AI Evals: the golden set ↗</a>, and <a href="https://phoebefu6.github.io/learn-agent-launch-with-phoebe/courses/b4-llm-as-judge.html">Agent Launch: the judge as an instrument ↗</a>.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>When the judge and the reviewer disagree, who wins<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>During calibration, the person's label stands. That is not because people are always right; reviewers disagree with each other too. It is because the rubric was written for people to apply, and the judge is being checked against that use of it. A useful habit: when the two disagree, read the conversation together and ask whether the rubric was clear. Often the fix is a sharper criterion, not a better judge.</p>
+        <p>After calibration, keep a small human read every week anyway. It is the tripwire that tells you the judge has drifted before the next scheduled re-check does.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PART 3 ============ -->
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers CSAT and the contested case</span>
+      <h2>The survey hears only from the customers who answer it</h2>
+      <span class="tag concept">6 min live</span>
+    </div>
+    <p class="lede">CSAT is the number every bot vendor reaches for, because it is easy to collect and it sounds like the customer's own verdict. It is the verdict of the customers who chose to answer. The falsely contained customer who never came back never answers the survey either.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 338" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A survey funnel. All contacts this week narrow to those asked to rate the conversation, and narrow again to the minority who answered, which is the CSAT number. Beside it, research by Tyser and colleagues in 2016 in healthcare found a 16.5 percent response rate and non-response bias. Outside the funnel sit the silent failures: customers told they were done who never came back and never answer a survey.">
+        <defs>
+          <filter id="s5cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="63" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <marker id="s5cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#0D1B33" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s5cH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s5cL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s5cS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s5cB { font: 800 11px Inter, sans-serif; fill: #B8480C; }
+          .s5cW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s5cN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s5cH" x="30" y="30">WHO A SATISFACTION SURVEY CAN HEAR</text>
+
+        <g filter="url(#s5cSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="40" y="50" width="800" height="52" rx="8" transform="rotate(-0.3 440 76)" fill="#FFFFFF"/>
+          <path d="M440 106 L440 128" marker-end="url(#s5cAr)"/>
+          <rect x="200" y="134" width="480" height="50" rx="8" transform="rotate(0.4 440 159)" fill="#EDF2FC"/>
+          <path d="M440 188 L440 210" marker-end="url(#s5cAr)"/>
+          <rect x="330" y="216" width="220" height="52" rx="8" transform="rotate(-0.6 440 242)" fill="#0A4DBF"/>
+          <rect x="30" y="216" width="270" height="52" rx="8" transform="rotate(0.7 165 242)" fill="#FFFFFF"/>
+          <path d="M790 106 L790 210" stroke="#B8480C" stroke-dasharray="5 6" marker-end="url(#s5cAr)"/>
+          <rect x="600" y="216" width="250" height="52" rx="8" transform="rotate(0.6 725 242)" fill="#FDF0E6"/>
+        </g>
+
+        <text class="s5cL" x="60" y="72">All contacts this week</text>
+        <text class="s5cS" x="60" y="90">bot and people, resolved or not</text>
+        <text class="s5cL" x="216" y="156">Asked to rate the conversation</text>
+        <text class="s5cS" x="216" y="174">most never open the survey</text>
+        <text class="s5cW" x="344" y="238">Answered: the CSAT</text>
+        <text class="s5cW" x="344" y="256">a minority, not a sample</text>
+        <text class="s5cL" x="44" y="238">Who answers differs</text>
+        <text class="s5cS" x="44" y="256">Tyser 2016, healthcare: 16.5% replied</text>
+        <text class="s5cB" x="614" y="238">SILENT FAILURES</text>
+        <text class="s5cS" x="614" y="256">told they were done, never back</text>
+
+        <text class="s5cN" x="30" y="300">Shapes, not data: report the response rate beside every CSAT, and never CSAT alone.</text>
+        <text class="s5cN" x="30" y="322">The falsely contained customer who never came back never answers the survey either.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the customers the bot failed most quietly sit outside the only box CSAT can see</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Who answers a survey, and what the evidence does and does not show<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>The solid evidence is from healthcare, not support.</strong> Tyser and colleagues (BMC Health Services Research, 2016) studied a patient satisfaction survey at a medical practice. "The survey response rate was 16.5 %", and the survey "exhibited non-response bias": the odds of answering varied with age, sex, insurance type and subspecialty. What that shows is that <em>who answers differs</em> from who does not. It does not measure how the non-respondents felt.</p>
+        <p><strong>The support evidence is a preprint.</strong> Hong and Potteiger (arXiv, July 2026, not peer reviewed) report "a full-census 2.91 against the surveyed 3.62 on a five-point scale" at one firm. The 2.91 is itself an LLM's estimate over about 9,000 conversations, not a survey of everyone. It is suggestive, and it points the way you would expect. It is not a finding to put in a board pack.</p>
+        <div class="callout tip">
+          <p><strong>What to take from both.</strong> You do not need proof that non-respondents are less happy to stop treating CSAT as the whole story. You only need to know that respondents are a self-selected group, and that the customers a bot failed most quietly are the least likely to be in it.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Klarna: three statements, three different measurements<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Klarna is the most quoted support-bot story there is, and it is usually told as either a triumph or a reversal. Read the sources side by side and it is neither. It is a disagreement about what was being measured, and it is not settled.</p>
+        <div class="callout example">
+          <span class="ex-pill">Real world</span>
+          <p><strong>Side one: the launch, 27 February 2024.</strong> Klarna's press release, read at source, reported 2.3 million conversations in the first month, "two-thirds of Klarna's customer service chats", "the equivalent work of 700 full-time agents" (a workload estimate, not a headcount of people let go), customer satisfaction "on par with human agents", "a 25% drop in repeat inquiries", resolution in "less than 2 mins compared to 11 mins previously", and an estimated $40 million profit improvement in 2024.</p>
+        </div>
+        <div class="callout example">
+          <span class="ex-pill">Real world</span>
+          <p><strong>Side two: the CEO, May 2025, as reported.</strong> CX Dive, quoting Bloomberg, reported Sebastian Siemiatkowski saying: "As cost unfortunately seems to have been a too predominant evaluation factor when organizing this, what you end up having is lower quality", and "Really investing in the quality of the human support is the way of the future for us."</p>
+        </div>
+        <div class="callout example">
+          <span class="ex-pill">Real world</span>
+          <p><strong>Side three: the company, then and later.</strong> A spokesperson told CX Dive: "The chatbot still handles two-thirds of all customer inquiries." and "AI gives us speed. Talent gives us empathy." On the Q3 2025 earnings call, as reported by CX Dive, the assistant could do the work of more than 853 full-time agents and had saved $60 million.</p>
+        </div>
+        <p><strong>The lesson is not who is right.</strong> Side one and side three measured workload, speed and CSAT. Side two talked about quality. Every one of those statements can be true at once, which is exactly the problem: an organisation that reports one kind of number can be surprised by the other. That is why Quayside's QA plan reports a sampled read, a true resolution rate and CSAT with its response rate, never one of them alone.</p>
+        <p>For how the same story looks at launch time, before any of this was known, see <a href="https://phoebefu6.github.io/learn-agent-launch-with-phoebe/courses/a1-why-bots-fail.html">Agent Launch: why bots fail ↗</a>.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>The one Klarna number that speaks to resolution<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Of everything in the 2024 release, "a 25% drop in repeat inquiries" is the only figure that speaks to whether problems ended, rather than where chats ended or how fast. It is also the only one that could, in principle, be checked against a sampled read: a repeat inquiry is a customer telling you the first answer did not work.</p>
+        <p>Notice what it cannot show. A customer who got a wrong answer and gave up does not make a repeat inquiry. Session 1 called that false containment, and tonight's sample is the instrument built to find it.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ DEMO ============ -->
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>Quayside's QA plan, one weekly loop</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">You write section 5 of Quayside's support operating plan: who gets read, against what, by whom, how the survey is reported, and where every failure goes next. Every number below is a constructed Quayside example. Your numbers will differ, and the shape of the plan is the part worth copying.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 388" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The weekly QA cycle at Quayside as a loop. One, sample by route with risky intents over-sampled. Two, grade on one rubric for bot and people. Three, an LLM judge and human reviewers, the judge calibrated before working alone. Four, report the weekly line with CSAT beside its response rate. Five, every failed read goes back to its owner: the map from session 2, the assist rules from session 3, or the hand-off rules from session 4. Their fixes feed next week's sample.">
+        <defs>
+          <filter id="s5dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="69" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <marker id="s5dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#0D1B33" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s5dH { font: 800 12px Inter, sans-serif; fill: #0D1B33; }
+          .s5dL { font: 600 12px Inter, sans-serif; fill: #0D1B33; }
+          .s5dS { font: 400 11px Inter, sans-serif; fill: #4E5A70; }
+          .s5dW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s5dN { font: 400 12px Inter, sans-serif; fill: #4E5A70; }
+        </style>
+
+        <text class="s5dH" x="30" y="30">THE WEEKLY QA CYCLE AT QUAYSIDE</text>
+        <text class="s5dS" x="300" y="30">constructed</text>
+
+        <g filter="url(#s5dSk)" fill="none" stroke="#0D1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="56" width="175" height="58" rx="8" transform="rotate(-0.8 117 85)" fill="#EDF2FC"/>
+          <path d="M209 85 L239 85" marker-end="url(#s5dAr)"/>
+          <rect x="245" y="56" width="175" height="58" rx="8" transform="rotate(0.6 332 85)" fill="#FFFFFF"/>
+          <path d="M424 85 L454 85" marker-end="url(#s5dAr)"/>
+          <rect x="460" y="56" width="175" height="58" rx="8" transform="rotate(-0.5 547 85)" fill="#FFFFFF"/>
+          <path d="M639 85 L669 85" marker-end="url(#s5dAr)"/>
+          <rect x="675" y="56" width="175" height="58" rx="8" transform="rotate(0.7 762 85)" fill="#EDF2FC"/>
+          <path d="M762 118 L762 170" marker-end="url(#s5dAr)"/>
+          <rect x="560" y="176" width="290" height="56" rx="10" transform="rotate(-0.4 705 204)" fill="#B8480C"/>
+          <path d="M600 236 C590 256 556 262 550 280" marker-end="url(#s5dAr)"/>
+          <path d="M580 236 C520 262 360 256 335 280" marker-end="url(#s5dAr)"/>
+          <path d="M570 234 C420 262 140 252 120 280" marker-end="url(#s5dAr)"/>
+          <rect x="30" y="286" width="175" height="56" rx="8" transform="rotate(0.8 117 314)" fill="#FFFFFF"/>
+          <rect x="245" y="286" width="175" height="56" rx="8" transform="rotate(-0.6 332 314)" fill="#FFFFFF"/>
+          <rect x="460" y="286" width="175" height="56" rx="8" transform="rotate(0.5 547 314)" fill="#FFFFFF"/>
+          <path d="M26 314 C6 314 6 90 24 88" marker-end="url(#s5dAr)"/>
+        </g>
+
+        <text class="s5dL" x="44" y="81">1 · Sample</text>
+        <text class="s5dS" x="44" y="99">risky ones over-sampled</text>
+        <text class="s5dL" x="259" y="81">2 · Rubric</text>
+        <text class="s5dS" x="259" y="99">bot and people alike</text>
+        <text class="s5dL" x="474" y="81">3 · Judge + people</text>
+        <text class="s5dS" x="474" y="99">calibrated before alone</text>
+        <text class="s5dL" x="689" y="81">4 · Report</text>
+        <text class="s5dS" x="689" y="99">CSAT beside its rate</text>
+
+        <text class="s5dW" x="576" y="200">5 · Every failed read</text>
+        <text class="s5dW" x="576" y="218">goes back to its owner</text>
+
+        <text class="s5dL" x="44" y="310">The map (s2)</text>
+        <text class="s5dS" x="44" y="328">wrong route</text>
+        <text class="s5dL" x="259" y="310">Assist rules (s3)</text>
+        <text class="s5dS" x="259" y="328">a wrong draft was sent</text>
+        <text class="s5dL" x="474" y="310">Hand-off (s4)</text>
+        <text class="s5dS" x="474" y="328">held too long, no packet</text>
+
+        <text class="s5dN" x="30" y="372">Constructed Quayside example. The loop closes when an owner's fix shows up in next week's sample.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - a QA plan that does not route its failures to an owner is a report, not a control</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step"><p><strong>Set the weekly sample, per route.</strong> Quayside handles about 14,000 contacts a month. Its constructed weekly sample is 150 conversations, split by route, with the risky automate-tier intents read at more than their share. When you report a rate for a whole route, weight those back down.</p>
+        <div class="prompt-box good"><span class="label">★ The weekly sample (constructed)</span>
+Automate route   80 conversations, of which 30 from the risky intents
+                 nearest the line on the session 2 map
+Assist route     40 conversations where a person sent an AI draft
+Human route      30 conversations, every one a hand-off from the bot
+Total            150 a week. Your numbers will differ.</div></div>
+      <div class="step"><p><strong>Write the rubric once, for everyone.</strong> Five criteria, each a yes or no with a one-line reason, applied to bot and human conversations alike. A failure on any of the first three fails the conversation.</p>
+        <div class="prompt-box good"><span class="label">★ The rubric</span>
+1 Resolved          did the customer's actual problem end?
+2 Correct           was every fact, fee, limit and step right?
+3 Policy-compliant  inside what Quayside allows; handed off when required?
+4 Effort            did the customer have to repeat themselves?
+5 Tone              could you read it aloud to the customer?
+Fail on 1, 2 or 3 = a failed read. 4 and 5 are reported, not failed.</div></div>
+      <div class="step"><p><strong>Write the judge calibration rule.</strong> The bar below is Quayside's own choice, written before the first calibration run so nobody can move it afterwards. It is not an industry standard; there is none.</p>
+        <div class="prompt-box good"><span class="label">★ Judge calibration (constructed bar)</span>
+Before the judge grades alone: reviewers and judge label the same
+100 conversations. The judge must match the reviewers on criteria
+1 to 3 in at least 90 of 100. Until then, people grade and the
+judge's labels are logged only.
+Re-check: monthly, and whenever the bot, the rubric or the judge
+model changes.
+A vendor's own judge is calibrated the same way before its score
+is reported under Quayside's name.
+Reviewers still read 40 of the 150 every week, judge or no judge.</div></div>
+      <div class="step"><p><strong>Write the CSAT rule.</strong> CSAT stays in the report, because customers who answer are telling you something real. It just never travels alone.</p>
+        <div class="prompt-box good"><span class="label">★ The CSAT rule</span>
+CSAT is always reported with its response rate, in the same line.
+CSAT is never reported alone, and never as the resolution number.
+Bot and human CSAT are compared only alongside the rubric results
+for the same routes.</div></div>
+      <div class="step"><p><strong>Route every failed read to an owner.</strong> A failed read is a finding about an earlier section of the plan. Name which one, so the fix lands with the person who owns it.</p>
+        <div class="prompt-box good"><span class="label">★ Where failures go</span>
+Wrong route, the bot should never have answered    -&gt; owner of the map (section 2)
+A person sent a draft that was wrong               -&gt; owner of the assist rules (section 3)
+Handed off too late, or without the context packet -&gt; owner of the hand-off rules (section 4)
+Each owner replies in writing within the week. The fix is checked
+in next week's sample.</div></div>
+      <div class="step"><p><strong>Assemble the section.</strong> Copy this into section 5 of your version of Quayside's plan. Change any number you can defend changing; keep every rule.</p>
+        <div class="prompt-box good"><span class="label">★ Plan section 5 · the QA plan</span>
+Sample: 150 conversations a week, stratified by route (automate 80,
+assist 40, human 30), risky intents over-sampled and weighted back
+for route-level rates. Constructed; set from reviewer hours.
+Rubric: resolved, correct, policy-compliant, customer effort, tone.
+One rubric for bot and people. Fail on 1, 2 or 3 = a failed read.
+Judge: grades alone only after matching reviewers in 90 of 100 on
+criteria 1 to 3; re-checked monthly and on any change to bot,
+rubric or judge. Reviewers read 40 a week regardless.
+CSAT: always with its response rate, never alone, never as the
+resolution number.
+Weekly line: containment, true resolution, false containment, failed
+reads by route, CSAT with response rate.
+Every failed read goes to the owner of section 2, 3 or 4.
+Owner of this section: the QA lead.</div></div>
+    </div>
+
+    <div class="wipe" data-title="The same week, reported two ways" data-label-a="CSAT-only report" data-label-b="Quayside's QA report" data-foot="Constructed Quayside numbers. Drag to compare. Your numbers will differ.">
+      <div class="wipe-a">
+        <p><strong>CSAT 4.4 of 5. Bot and agents level.</strong></p>
+        <p>Bot conversations rated as highly as people this week. Customers are happy with the assistant. No action needed before next month's review.</p>
+      </div>
+      <div class="wipe-b">
+        <p><strong>CSAT 4.4 of 5, from 9% who answered. 150 read, 12 failed.</strong></p>
+        <p>Failed reads routed: 7 to the map, 3 to the assist rules, 2 to the hand-off. Judge matched reviewers this month. Owners reply by Friday.</p>
+      </div>
+    </div>
+
+    <div class="tick" data-stages="Sample|Rubric|Judge|Calibrate|Report" data-title="One week of Quayside QA">
+      <p class="tick-note" data-stage="0"><b>Sample.</b> 150 conversations drawn by route, the risky intents read at more than their share. Constructed.</p>
+      <p class="tick-note" data-stage="1"><b>Rubric.</b> Every one is graded on the same five criteria, bot or person.</p>
+      <p class="tick-note" data-stage="2"><b>Judge.</b> The LLM judge labels all 150 against the rubric.</p>
+      <p class="tick-note" data-stage="3"><b>Calibrate.</b> Reviewers label 40 of the same. Where they disagree, the person's label stands and the rubric gets sharper.</p>
+      <p class="tick-note" data-stage="4"><b>Report.</b> The weekly line, CSAT beside its response rate, and every failed read sent to its owner.</p>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Why 12 failures in 150 is good news.</strong> Every one of them is a conversation you found before the customer had to tell you, with an owner who can fix the cause. A QA report with zero failures in a week usually means the sample was too small or the rubric too gentle, not that the bot was perfect.</p>
+    </div>
+  </section>
+
+  <!-- ============ HOMEWORK ============ -->
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before session 6</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Read 20 of your own conversations against the five criteria.</strong> Draw them by route if you can. Count how many fail on resolved, correct or policy-compliant, and note which of them your dashboard counted as resolved.</li>
+      <li><strong>Find your CSAT response rate.</strong> If your CSAT report does not print it, ask for it. Then write the two in one line: "CSAT X from Y percent who answered".</li>
+      <li><strong>Check who grades your bot.</strong> If a vendor's own model scores it, find out whether anyone has compared those scores with a person's on the same conversations, and when that was last done.</li>
+      <li><strong>Route three failures.</strong> Take three failed reads from step 1 and write next to each the section of the plan it belongs to: the map, the assist rules or the hand-off. If one fits none of them, that is a gap in the plan worth naming.</li>
+    </ol>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 5 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="1">
+      <p class="qtext">1 · The bot's CSAT matches the agents' this month. Why is that not enough to say the bot is resolving as well as people?</p>
+      <button class="qopt" type="button">A · Because CSAT is always lower for bots, so equal scores mean the survey is broken</button>
+      <button class="qopt" type="button">B · Because only the customers who answer are counted, and a falsely contained customer who never came back rarely answers</button>
+      <button class="qopt" type="button">C · Because CSAT measures speed, and the bot is faster by design</button>
+      <p class="qwhy">Respondents are a self-selected group; Tyser 2016 showed who answers differs, in healthcare. The customers a bot failed most quietly are the least likely to be in that group, so CSAT is reported with its response rate and beside a sampled read, never alone.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">2 · When can Quayside report an LLM judge's scores without a person checking them?</p>
+      <button class="qopt" type="button">A · As soon as the vendor confirms its judge was evaluated on its own bot</button>
+      <button class="qopt" type="button">B · Once the judge has scored more conversations than the reviewers could read</button>
+      <button class="qopt" type="button">C · Only after it agrees with reviewers on a calibration set, and only until the next scheduled re-check or any change to the bot, rubric or judge</button>
+      <p class="qwhy">A judge is an instrument: trusted after it is checked against people on the same conversations, and checked again on a schedule and whenever anything it depends on changes. A vendor's judge grading the vendor's bot is calibrated the same way.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">3 · Klarna's 2024 release reported CSAT on par with agents; in 2025 its CEO was reported saying cost-focus led to lower quality. What is the disagreement actually about?</p>
+      <button class="qopt" type="button">A · The two sides measured different things: workload, speed and CSAT on one side, quality on the other, and all of them can be true at once</button>
+      <button class="qopt" type="button">B · Whether the 2024 numbers were fabricated, which the 2025 statement admitted</button>
+      <button class="qopt" type="button">C · Whether Klarna stopped using the chatbot, which the spokesperson confirmed</button>
+      <p class="qwhy">Nothing in the sources says the 2024 figures were false, and the spokesperson said the chatbot "still handles two-thirds of all customer inquiries". The sides measured different things, which is why a QA plan reports more than one number.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <!-- ============ OFFICIAL COVERAGE ============ -->
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Tyser et al. 2016, BMC Health Services Research</span><span class="note">16.5 percent response rate; the survey "exhibited non-response bias". Healthcare, not support: shows who answers differs, not how non-respondents feel</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Hong and Potteiger 2026, arXiv preprint</span><span class="note">Surveyed 3.62 vs full-census 2.91 on five points; the 2.91 is an LLM estimate at one firm. Not peer reviewed, suggestive only</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Zendesk verified resolution tier</span><span class="note">An LLM reads the conversation to confirm the request "was satisfactorily resolved". Read on support.zendesk.com, 2026-11-09</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Klarna press release, 27 February 2024</span><span class="note">2.3 million conversations, two-thirds of chats, the work of 700 agents as a workload estimate, CSAT on par, 25 percent fewer repeat inquiries. Read at source</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Klarna CEO, spokesperson and Q3 2025 call</span><span class="note">Reported via CX Dive (CEO quoting Bloomberg, May 2025; earnings call, November 2025). Taught as reported, and as a disagreement left open</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">LLM judge mechanics and golden sets</span><span class="note">Linked, not retaught: AI Evals b5 and b2, Agent Launch b4</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <!-- ============ CHEAT SHEET ============ -->
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 5 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>Read to find</b><span>A wrong answer with no repeat contact is found only by reading the conversation.</span></div>
+      <div class="cheat-item"><b>Stratify, then over-sample</b><span>Sample by route, read the risky intents at more than their share, weight back for route rates.</span></div>
+      <div class="cheat-item"><b>One rubric</b><span>Resolved, correct, policy-compliant, effort, tone. Same test for the bot and the people.</span></div>
+      <div class="cheat-item"><b>The judge earns its seat</b><span>Alone only after it agrees with reviewers; re-checked on a schedule and on any change.</span></div>
+      <div class="cheat-item"><b>CSAT never alone</b><span>Always with its response rate. Never as the resolution number.</span></div>
+      <div class="cheat-item"><b>Close the loop</b><span>Every failed read goes to the owner of the map, the assist rules or the hand-off.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>You can now see what the bot gets wrong and who fixes it. Session 6 puts a price on the whole plan: Erlang C staffing on a live bench, and the moment the vendor pitch, once you count the customers it loses, costs more per resolved customer than running Quayside with no AI at all.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 5 of 6 · learn-ai-customer-support-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="04-the-hand-off.html">← Prev: The hand-off: let go before the loop</a> &nbsp;·&nbsp; <a href="06-price-the-support-plan.html">Next: The support plan: price it on the bench →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/app.js?v=2"></script>
+</body>
+</html>
