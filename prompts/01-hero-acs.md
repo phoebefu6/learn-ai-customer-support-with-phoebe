@@ -10,7 +10,7 @@ Absolutely no text anywhere in the image. No letters. No words. No numerals or d
 
 
 ---
-NOT YET GENERATED (2026-11-09: Codex image quota hit). Generate to assets/hero.png (3:2, light, no lettering), then paste this block back into index.html after the .stats-row div:
+GENERATED 2026-11-09 via Codex image_gen (1536x1024), shipped as assets/hero.webp (q86) and inserted in index.html after the .stats-row div. Block as authored:
 
     <figure class="hero-art">
       <img src="assets/hero.png" alt="A bright support desk in morning light. A rack of identical sealed cobalt envelopes stands in a perfect row; one has slipped back out and lies open on the desk, and a human hand reaches in to pick it up.">
